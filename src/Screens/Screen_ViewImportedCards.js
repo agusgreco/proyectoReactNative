@@ -38,7 +38,7 @@ async getData(){
             )
             
     return(
-            <View>
+            <View style={styles.container}>
                 <Text>Valores importados</Text>
                 {valores}
                 <TouchableOpacity onPress={this.getData.bind(this)}>
@@ -47,6 +47,15 @@ async getData(){
                 <TouchableOpacity onPress={() => this.setState({usuarios:[]})}>
                     <View><Text>BORRAR DATOS IMPORTADOS</Text></View>
                 </TouchableOpacity>
+                <Text style={styles.texto}
+                  onPress={ () => this.props.navigation.goBack()}
+                >GO BACK</Text>
+                <Text style={styles.texto}
+                  onPress={ () => this.props.navigation.navigate('Screen Import')}
+                >SCREEN IMPORT</Text>
+                <Text style={styles.texto}
+                  onPress={ () => this.props.navigation.navigate('Screen FlatList')}
+                >FLATLIST</Text>
             </View>
         )
     }

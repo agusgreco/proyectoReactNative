@@ -1,17 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React, {Component} from 'react';
-import {
-  Text,
-  StyleSheet,
-  View,
-  Button,
-  TouchableOpacity,
-  TextInput,
-  TouchableWithoutFeedback,
-  ScrollView
-} from 'react-native';
+// import {
+//   Text,
+//   StyleSheet,
+//   View,
+//   Button,
+//   TouchableOpacity,
+//   TextInput,
+//   TouchableWithoutFeedback,
+//   ScrollView
+// } from 'react-native';
+import {styles} from '../styles/styles';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Screen_Import} from './Screens/Screen_Import'
+import {Screen_ViewImportedCards} from './Screens/Screen_ViewImportedCards'
+import {Screen_FlatList} from './Screens/Screen_FlatList'
+
+const Stack= createStackNavigator();
 
 export default class App extends Component {
   constructor(props){
@@ -27,6 +36,38 @@ export default class App extends Component {
       datos: '',
     }
   }
+
+
+  render(){
+
+    const {datos} = this.state
+
+    return (
+      <NavigationContainer>
+        <Stack.Navigator 
+        //   screenOptions={{
+        //   headerStyle:{backgroundColor:'black'}
+        //   headerTintCOlor: 'white'
+        // }}
+        //no me anda!! ayuda
+        >
+          <Stack.Screen name='Screen Import' component={Screen_Import} options={{title: 'Import'}}/>
+          <Stack.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Imported Cards'}}/>
+          {/* <Stack.Screen name="Screen View Imported Cards" component={Screen_ViewImportedCards} initialParams={{valor:0}}/> */}
+          <Stack.Screen name='Screen Flatlist' component={Screen_FlatList}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+
+  // <ScrollView>
+  //       <Screen_Import/>
+  // </ScrollView>
+    
+
+
+    );
+  }
+}
+
   // componentDidMount(){
   //         // this.getData();
   //   fetch("https://randomuser.me/api/?results=9")
@@ -64,26 +105,3 @@ export default class App extends Component {
   //     console.log(error);
   //   }
   // }
-
-
-  render(){
-
-    const {datos} = this.state
-
-    return (
-  <ScrollView>
-        <Screen_Import/>
-  </ScrollView>
-    
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
-
-    );
-  }
-}
