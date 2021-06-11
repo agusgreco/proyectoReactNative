@@ -19,6 +19,19 @@ class Screen_ViewImportedCards extends Component {
           usuariosImportados: [],
       }
     }
+
+// componentDidMount(){
+
+// }
+
+// componentDidUpdate(){
+
+// }
+
+// componentWIllUnmount(){
+
+// }
+
 async getData(){
         try{
           const resultado = await AsyncStorage.getItem('Usuarios');

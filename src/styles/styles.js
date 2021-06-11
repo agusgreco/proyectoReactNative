@@ -89,8 +89,8 @@ image: {
     height: 100
 },
 separator: {
-    borderButtonWidth: 1,
-    borderButtonColor: 'black'
+    borderBottomWidth: 1,
+    borderBottomColor: 'black'
 }
     
 })

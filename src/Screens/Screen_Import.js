@@ -60,16 +60,15 @@ render(){
               onPress={ () => this.props.navigation.navigate('Screen FlatList')}
             >FLATLIST</Text>
             {/* no se si esta bien */}
+
+            {/* <View style={styles.botonmenu}>
+              <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                <Text styles={styles.textmenu}>MENU</Text>
+              </TouchableOpacity>
+            </View> */}
         </View>
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+
 
     )
 }

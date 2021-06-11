@@ -10,17 +10,20 @@ import React, {Component} from 'react';
 //   TouchableWithoutFeedback,
 //   ScrollView
 // } from 'react-native';
-import {styles} from '../styles/styles';
+import {styles} from './styles/styles';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import * as React from 'react';
+// import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+// import {createStackNavigator} from '@react-navigation/stack';
 import {Screen_Import} from './Screens/Screen_Import'
 import {Screen_ViewImportedCards} from './Screens/Screen_ViewImportedCards'
-import {Screen_FlatList} from './Screens/Screen_FlatList'
+import {Screen_Flatlist} from './Screens/Screen_FlatList'
+import {createDrawerNavigator} from '@react-navigation/drawer'
 
-const Stack= createStackNavigator();
+// const Stack= createStackNavigator();
+const Drawer= createDrawerNavigator();
+
 
 export default class App extends Component {
   constructor(props){
@@ -43,25 +46,29 @@ export default class App extends Component {
     const {datos} = this.state
 
     return (
-      <NavigationContainer>
-        <Stack.Navigator 
-        //   screenOptions={{
-        //   headerStyle:{backgroundColor:'black'}
-        //   headerTintCOlor: 'white'
-        // }}
-        //no me anda!! ayuda
-        >
-          <Stack.Screen name='Screen Import' component={Screen_Import} options={{title: 'Import'}}/>
-          <Stack.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Imported Cards'}}/>
-          {/* <Stack.Screen name="Screen View Imported Cards" component={Screen_ViewImportedCards} initialParams={{valor:0}}/> */}
-          <Stack.Screen name='Screen Flatlist' component={Screen_FlatList}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-
-  // <ScrollView>
-  //       <Screen_Import/>
-  // </ScrollView>
-    
+      // <NavigationContainer>
+      //   <Stack.Navigator 
+      //   //   screenOptions={{
+      //   //   headerStyle:{backgroundColor:'black'}
+      //   //   headerTintColor: 'white'
+      //   // }}
+      //   //no me anda!! ayuda
+      //   >
+      //     <Stack.Screen name='Screen Import' component={Screen_Import} options={{title: 'Import'}}/>
+      //     <Stack.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Imported Cards'}}/>
+      //     {/* <Stack.Screen name="Screen View Imported Cards" component={Screen_ViewImportedCards} initialParams={{valor:0}}/> */}
+      //     <Stack.Screen name='Screen Flatlist' component={Screen_FlatList}/>
+      //   </Stack.Navigator>
+      // </NavigationContainer>
+ <NavigationContainer>
+<Drawer.Navigator initialRouteName='Screen Import' drawerPosition='left' drawerType='slide' overlayColor='grey'>
+  <Drawer.Screen name='Screen Import' component={Screen_Import} options={{title: 'Import'}}/>
+  <Drawer.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Imported Cards'}}/>
+  {/* <Drawer.Screen name="Screen View Imported Cards" component={Screen_ViewImportedCards} initialParams={{valor:0}}/> */}
+  <Drawer.Screen name='Screen Flatlist' component={Screen_Flatlist}/>
+</Drawer.Navigator>
+</NavigationContainer> 
+   
 
 
     );

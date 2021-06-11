@@ -56,7 +56,7 @@ import {
 
             {/* <Text>Valor: {this.props.route.params.valor}</Text> */}
             
-            <Text style={styles.texto}
+            {/* <Text style={styles.texto}
                   onPress={ () => this.props.navigation.goBack()}
             >GO BACK</Text>
             <Text style={styles.texto}
@@ -64,7 +64,7 @@ import {
             >SCREEN IMPORT</Text>
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen View Imported Cards')}
-            >VIEW IMPORTED CARDS</Text>
+            >VIEW IMPORTED CARDS</Text> */}
          </View>
 
         )
@@ -85,12 +85,12 @@ import {
                 <View style={styles.listContainer}>
                     { this.state.activity 
                         ?<ActivityIndicator color="blue"
-                            size= {60}/>
+                            size={60}/>
 
                         :<FlatList
-                            data= {this.state.users}
-                            keyExtractor= {this.keyExtractor}
-                            renderItem= {this.renderItem}
+                            data={this.state.users}
+                            keyExtractor={this.keyExtractor}
+                            renderItem={this.renderItem}
                             // numberColumns= {2}
                             ItemSeparatorComponent={this.separator}
                          />
