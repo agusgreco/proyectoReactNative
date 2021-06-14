@@ -17,8 +17,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import {NavigationContainer} from '@react-navigation/native';
 // import {createStackNavigator} from '@react-navigation/stack';
 import {Screen_Import} from './Screens/Screen_Import'
-import {Screen_ViewImportedCards} from './Screens/Screen_ViewImportedCards'
+// import {Screen_ViewImportedCards} from './Screens/Screen_ViewImportedCards'
 import {Screen_Flatlist} from './Screens/Screen_FlatList'
+import {Screen_Menu} from './Screens/Screen_Menu'
+import {Screen_Recycle} from './Screens/Screen_Recycle'
+
 import {createDrawerNavigator} from '@react-navigation/drawer'
 
 // const Stack= createStackNavigator();
@@ -60,14 +63,17 @@ export default class App extends Component {
       //     <Stack.Screen name='Screen Flatlist' component={Screen_FlatList}/>
       //   </Stack.Navigator>
       // </NavigationContainer>
- <NavigationContainer>
-<Drawer.Navigator initialRouteName='Screen Import' drawerPosition='left' drawerType='slide' overlayColor='grey'>
-  <Drawer.Screen name='Screen Import' component={Screen_Import} options={{title: 'Import'}}/>
-  <Drawer.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Imported Cards'}}/>
-  {/* <Drawer.Screen name="Screen View Imported Cards" component={Screen_ViewImportedCards} initialParams={{valor:0}}/> */}
-  <Drawer.Screen name='Screen Flatlist' component={Screen_Flatlist}/>
-</Drawer.Navigator>
-</NavigationContainer> 
+
+    <NavigationContainer>
+    <Drawer.Navigator initialRouteName='Screen Menu' drawerPosition='left' drawerType='slide' overlayColor='grey'>
+      <Drawer.Screen name='Screen Import' component={Screen_Import} options={{title: 'Importar Tarjetas'}}/>
+      <Drawer.Screen name='Screen Menu' component={Screen_Menu} options={{title: 'Menu'}}/>
+      {/* <Drawer.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Screen_ViewImportedCards'}}/> */}
+      {/* <Drawer.Screen name="Screen View Imported Cards" component={Screen_ViewImportedCards} initialParams={{valor:0}}/> */}
+      <Drawer.Screen name='Screen Flatlist' component={Screen_Flatlist} options={{title: 'Tarjetas Importadas'}}/>
+      <Drawer.Screen name='Screen Recycle' component={Screen_Recycle} options={{title: 'Papelera de Reciclaje'}}/>
+    </Drawer.Navigator>
+    </NavigationContainer> 
    
 
 

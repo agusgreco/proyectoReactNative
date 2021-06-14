@@ -32,7 +32,7 @@ async storeData(){
     //setStringStorage
     try{
         const jsonUsuarios = JSON.stringify(this.state.usuarios);
-        await AsyncStorage.setItem("Usuarios", jsonUsuarios)
+        await AsyncStorage.setItem('Usuarios', jsonUsuarios)
         console.log("Datos almacenados")
     }catch(error){
       console.log(error);
@@ -54,11 +54,14 @@ render(){
                 <View><Text>GUARDAR DATOS</Text></View>
             </TouchableOpacity>
             <Text style={styles.texto}
-              onPress={ () => this.props.navigation.navigate('Screen View Imported Cards', {valor:123})}
-            >VIEW IMPORTED CARDS</Text>
+              onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
+            >TARJETAS IMPORTADAS</Text>
             <Text style={styles.texto}
-              onPress={ () => this.props.navigation.navigate('Screen FlatList')}
-            >FLATLIST</Text>
+              onPress={ () => this.props.navigation.navigate('Screen Recycle')}
+            >PAPELERA DE RECICLAJE</Text>
+            <Text style={styles.texto}
+              onPress={ () => this.props.navigation.navigate('Screen Menu')}
+            >MENU</Text>
             {/* no se si esta bien */}
 
             {/* <View style={styles.botonmenu}>

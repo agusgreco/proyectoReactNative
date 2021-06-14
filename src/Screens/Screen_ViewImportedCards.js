@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import {styles} from '../styles/styles';
 
 class Screen_ViewImportedCards extends Component {
     constructor(props){
@@ -36,7 +37,7 @@ async getData(){
         try{
           const resultado = await AsyncStorage.getItem('Usuarios');
           if(item !== null){
-            this.setState({usuariosImportaddos: JSON.parse(resultado)});
+            this.setState({usuariosImportados: JSON.parse(resultado)});
           }else{
             console.log('no encontre el key')
           }
