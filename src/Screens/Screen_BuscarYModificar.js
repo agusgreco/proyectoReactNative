@@ -16,11 +16,12 @@ import {
     StyleSheet
 } from 'react-native';
 
- export class Screen_Recycle extends Component {
+ export class Screen_BuscarYModificar extends Component {
      constructor(){
          super();
          this.state = {
-            usuariosBorrados: [],
+            usuariosImportados: [],
+            value: "",
          }
      }
 
@@ -28,7 +29,7 @@ import {
         this.setState({activity: true});
         let usuarios = await getData();
         console.log(usuarios)
-        this.setState({usuariosBorrados: usuarios, activity: false})
+        this.setState({usuariosImportados: usuarios, activity: false})
     }
 
     renderItem = ({item}) => {
@@ -57,6 +58,27 @@ import {
         )
     }
 
+    
+// filtrarPorNombre(evento){
+//     if (evento.target.value.length !== 0) {
+//       var escrito = evento.target.value
+//       let usuariosImportados = this.state.usuariosImportados
+//       let filtrado = usuariosImportados.filter((dato) => {
+//         let itemData = dato.name.first.toUpperCase()
+//         let textData = escrito.toUpperCase()
+//         return itemData.indexOf(textData) >= 0
+//       })
+//       this.setState({ usuariosImportados: filtrado})
+//     } else {
+//       fetch("https://randomuser.me/api/?results=12")
+//       .then(result => result.json())
+//       .then(data => {
+//         this.setState({usuariosImportados: data.results})
+//         console.log(data)
+//       })
+//     }
+//   }
+
     keyExtractor = (item, idx) => idx.toString()
 
     separator = () => <View style={styles.separator}/>
@@ -71,9 +93,14 @@ import {
 
             <View style={styles.container}>
                 <View style={styles.headerBorder}>
-                    <Text>PAPELERA DE RECICLAJE</Text>
+                    <Text>Buscar y Modificar:</Text>
                 </View>
             {/* {valores} */}
+
+            {/* <form className="acomodar enblanco">
+                    <Text>Nombre:</Text>
+                    <input type="text" onChange={(escrito) => this.filtrarPorNombre(escrito)} value={this.state.escrito} className="input" id="header-search" placeholder="FILTRAR"  />
+                </form> */}
 
                 <View style={styles.listContainer}>
                     { this.state.activity 
@@ -81,7 +108,7 @@ import {
                             size={60}/>
 
                         :<FlatList
-                            data={this.state.usuariosBorrados}
+                            data={this.state.usuariosImportados}
                             keyExtractor={this.keyExtractor}
                             renderItem={this.renderItem}
                             // numberColumns= {2}
@@ -90,22 +117,17 @@ import {
                     }
                 </View>
 
-                <Button title="Obtener tarjetas borradas" onPress={() => this.getDataFromApi()}/>
-              
-              
-                <TouchableOpacity onPress={() => this.setState({usuariosBorrados:[]})}>
-                    <View><Text>BORRAR DEFINITIVAMENTE LOS DATOS</Text></View>
-                </TouchableOpacity>
-            
+                <Button title="Obtener tarjetas importadas" onPress={() => this.getDataFromApi()}/>
+
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Import')}
             >IMPORTAR TARJETAS</Text>
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
-            >TARJETAS IMPORTADAS</Text>
-            <Text style={styles.texto}
-              onPress={ () => this.props.navigation.navigate('Screen BuscarYModificar')}
-            >BUSCAR Y MODIFICAR</Text> 
+            >TARJETAS IMPORTADAS</Text> 
+           <Text style={styles.texto}
+              onPress={ () => this.props.navigation.navigate('Screen Recycle')}
+            >PAPELERA DE RECICLAJE</Text> 
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Menu')}
             >MENU</Text>

@@ -62,25 +62,6 @@ import {
 //         }
 //  }
 
-// filtrarPorNombre(evento){
-//     if (evento.target.value.length !== 0) {
-//       var escrito = evento.target.value
-//       let usuariosImportados = this.state.usuariosImportados
-//       let filtrado = usuariosImportados.filter((dato) => {
-//         let itemData = dato.name.first.toUpperCase()
-//         let textData = escrito.toUpperCase()
-//         return itemData.indexOf(textData) >= 0
-//       })
-//       this.setState({ usuariosImportados: filtrado})
-//     } else {
-//       fetch("https://randomuser.me/api/?results=12")
-//       .then(result => result.json())
-//       .then(data => {
-//         this.setState({usuariosImportados: data.results})
-//         console.log(data)
-//       })
-//     }
-//   }
 
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});
@@ -130,10 +111,6 @@ import {
                 </View>
             {/* {valores} */}
 
-            {/* <form className="acomodar enblanco">
-                    Nombre: 
-                    <input type="text" onChange={(escrito) => this.filtrarPorNombre(escrito)} value={this.state.escrito} className="input" id="header-search" placeholder="FILTRAR"  />
-                </form> */}
 
                 <View style={styles.listContainer}>
                     { this.state.activity 
@@ -197,6 +174,9 @@ import {
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Recycle')}
             >PAPELERA DE RECICLAJE</Text>
+            <Text style={styles.texto}
+              onPress={ () => this.props.navigation.navigate('Screen BuscarYModificar')}
+            >BUSCAR Y MODIFICAR</Text>
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Menu')}
             >MENU</Text>
