@@ -22,6 +22,8 @@ import {
          this.state = {
             usuariosImportados: [],
             value: "",
+            text: "",
+            textHandler:"",
          }
      }
 
@@ -39,6 +41,15 @@ import {
             <View style={styles.card}> 
                 <Image style={styles.image} source={{uri: item.picture.thumbnail}}/> 
                 <Text style={styles.texto}> {item.name.last}, {item.name.first} </Text>
+{/*                 
+                <Text style={styles.texto}> {this.state.textHandler} </Text>
+                <Text style={styles.texto}> Agregar informacion: {this.state.text} </Text>
+                <TextInput secureTextEntry={true} onChangeText={text => this.setState({textHandler:text})}/>
+                <TouchableWithoutFeedback onPress={() => this.setState({text: this.state.textHandler})}>
+                    <View>
+                       <Text>Agregar</Text>
+                    </View>
+                </TouchableWithoutFeedback> */}
             </View>
             </TouchableOpacity>
 
