@@ -28,6 +28,7 @@ import {
              showModal: false,
              selectedItem: null,
              usuariosBorrados: [],
+             usuariosVisualizados: [],
              informacionadicional: "",
              text: "",
              textHandler:"",
@@ -65,13 +66,11 @@ import {
     async storeBorrarData(){
         //obtener usuarios de mi storage bajo la key usuarios. 
         //los guardamos bajo otra key (keyBorrados) en el storage y los que estaban sobre la key usuarios se sobreescribe con un array vacio. 
-        let usuariosImportados = this.state.usuariosImportados
-        let usuariosBorrados = this.state.usuariosBorrados
-
-
+        // let usuariosImportados = this.state.usuariosImportados
+        // let usuariosBorrados = this.state.usuariosBorrados
         try{
-            const jsonUsuarios = JSON.stringify(this.state.usuarios);
-            await AsyncStorage.setItem('UsuariosBorrados', jsonUsuarios)
+            const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosBorrados);
+            await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
             this.setState({ usuariosImportados: []})
             
         }catch(error){
@@ -275,7 +274,11 @@ import {
                 <Button title="Obtener resultados" onPress={() => this.getData()}/>
               
               
-                <TouchableOpacity onPress={() => this.setState({usuariosImportados:[]})}>
+                {/* <TouchableOpacity onPress={() => this.setState({usuariosImportados:[]})}>
+                    <View><Text>ELIMINAR DATOS IMPORTADOS</Text></View>
+                </TouchableOpacity> */}
+
+                <TouchableOpacity onPress={() => this.storeBorrarData()}>
                     <View><Text>ELIMINAR DATOS IMPORTADOS</Text></View>
                 </TouchableOpacity>
                 

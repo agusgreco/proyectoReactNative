@@ -20,7 +20,7 @@ import {
      constructor(){
          super();
          this.state = {
-            userBorrado: [],
+            usuariosBorrado: [],
          }
      }
 
@@ -30,13 +30,26 @@ import {
         //     this.setState({userBorrado: resultadoBorrado})
         // })
     }
+
+    async getDataBorrada(){
+        try{
+          const resultado = await AsyncStorage.getItem('UsuariosBorrados');
+          if(resultado !== null){
+            this.setState({usuariosBorrados: JSON.parse(resultado)});
+          }else{
+            console.log('no encontre el key')
+          }
+        }catch(error){
+          console.log(error);
+        }
+ }
     
-     async getDataFromApi() {
-        this.setState({activity: true});
-        let usuarios = await getData();
-        console.log(usuarios)
-        this.setState({usuariosBorrados: usuarios, activity: false})
-    }
+    //  async getDataFromApi() {
+    //     this.setState({activity: true});
+    //     let usuarios = await getData();
+    //     console.log(usuarios)
+    //     this.setState({usuariosBorrados: usuarios, activity: false})
+    // }
 
     renderItem = ({item}) => {
         return(
@@ -97,7 +110,7 @@ import {
                     }
                 </View>
 
-                <Button title="Obtener tarjetas borradas" onPress={() => this.getDataFromApi()}/>
+                <Button title="Obtener tarjetas borradas" onPress={() => this.getDataBorrada()}/>
               
               
                 <TouchableOpacity onPress={() => this.setState({usuariosBorrados:[]})}>
