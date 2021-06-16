@@ -104,6 +104,29 @@ import {
         }
       }
 
+    //   async filtrarPorNombre(texto){
+    //     if (texto.length !== 0) {
+    //       var escrito = texto
+    //       let usuariosImportados = this.state.usuariosImportados
+    //       this.setState({ usuariosVisualizados: usuariosImportados})
+
+
+    //       let filtrado = usuariosVisualizados.filter(dato => {
+    //         let itemData = dato.name.first.toUpperCase()
+    //         let textData = escrito.toUpperCase()  
+    //         if(itemData.includes(textData)) return dato
+            
+    //       })
+    //       console.log(texto)
+    //       this.setState({ usuariosVisualizados: filtrado})
+    //     } 
+    //     else {
+    //        await this.getData()
+    //         console.log(texto)
+
+    //     }
+    //   }
+
       async filtrarPorApellido(texto){
         if (texto.length !== 0) {
           var escrito = texto
