@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
 modal: {
     height: "70%",
     width: "100%",
-    backgroundColor: 'rgba(0,0,0,0.3)', //'white', 
+    backgroundColor: 'white', //'rgba(0,0,0,0.3)'
     justifyContent: 'center',
     alignItems:'center',
     borderTopLeftRadius: 20,
@@ -39,7 +39,7 @@ modal: {
 },
 modalText: {
     fontSize: 20,
-    color: 'white',
+    color: 'black',
 },
 imageModal: {
     width: 100,
@@ -81,7 +81,7 @@ card: {
     borderRadius: 10,
     margin: 5,
     width: 250,
-    height: 100,
+    height: 300,
     padding: 10
 },
 image: {
