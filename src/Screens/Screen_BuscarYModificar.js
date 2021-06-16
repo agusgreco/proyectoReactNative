@@ -15,6 +15,7 @@ import {
     Button,
     StyleSheet
 } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
  export class Screen_BuscarYModificar extends Component {
      constructor(){
@@ -70,25 +71,25 @@ import {
     }
 
     
-// filtrarPorNombre(evento){
-//     if (evento.target.value.length !== 0) {
-//       var escrito = evento.target.value
-//       let usuariosImportados = this.state.usuariosImportados
-//       let filtrado = usuariosImportados.filter((dato) => {
-//         let itemData = dato.name.first.toUpperCase()
-//         let textData = escrito.toUpperCase()
-//         return itemData.indexOf(textData) >= 0
-//       })
-//       this.setState({ usuariosImportados: filtrado})
-//     } else {
-//       fetch("https://randomuser.me/api/?results=12")
-//       .then(result => result.json())
-//       .then(data => {
-//         this.setState({usuariosImportados: data.results})
-//         console.log(data)
-//       })
-//     }
-//   }
+filtrarPorNombre(evento){
+    if (evento.target.value.length !== 0) {
+      var escrito = evento.target.value
+      let usuariosImportados = this.state.usuariosImportados
+      let filtrado = usuariosImportados.filter((dato) => {
+        let itemData = dato.name.first.toUpperCase()
+        let textData = escrito.toUpperCase()
+        return itemData.indexOf(textData) >= 0
+      })
+      this.setState({ usuariosImportados: filtrado})
+    } else {
+      fetch("https://randomuser.me/api/?results=12")
+      .then(result => result.json())
+      .then(data => {
+        this.setState({usuariosImportados: data.results})
+        console.log(data)
+      })
+    }
+  }
 
     keyExtractor = (item, idx) => idx.toString()
 
@@ -96,22 +97,28 @@ import {
 
 
     render() {
-        // const valores = this.state.usuariosImportados.map(item =>
-        //     <Text key={item.login.uuid}
-        //     style={{fontSize:22}}>{item.name.first} {item.name.last}</Text>
-        //     )
+        const valores = this.state.usuariosImportados.map(item =>
+            <Text key={item.login.uuid}
+            style={{fontSize:22}}>{item.name.first} {item.name.last}</Text>
+            )
         return (
 
             <View style={styles.container}>
                 <View style={styles.headerBorder}>
                     <Text>Buscar y Modificar:</Text>
                 </View>
-            {/* {valores} */}
+            {valores}
 
             {/* <form className="acomodar enblanco">
                     <Text>Nombre:</Text>
                     <input type="text" onChange={(escrito) => this.filtrarPorNombre(escrito)} value={this.state.escrito} className="input" id="header-search" placeholder="FILTRAR"  />
-                </form> */}
+                </form>
+                 */}
+
+                <TextInput onChangeText={(escrito) => this.filtrarPorNombre(escrito)} value={this.state.escrito}>
+                     <Text>Nombre:</Text>
+
+                </TextInput> 
 
                 <View style={styles.listContainer}>
                     { this.state.activity 

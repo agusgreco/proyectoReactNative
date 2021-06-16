@@ -20,11 +20,18 @@ import {
      constructor(){
          super();
          this.state = {
-            usuariosBorrados: [],
+            userBorrado: [],
          }
      }
 
-    async getDataFromApi() {
+    componentDidMount(){
+        // getDataPersonaBorrada()
+        // .then(resultadoBorrado => {
+        //     this.setState({userBorrado: resultadoBorrado})
+        // })
+    }
+    
+     async getDataFromApi() {
         this.setState({activity: true});
         let usuarios = await getData();
         console.log(usuarios)

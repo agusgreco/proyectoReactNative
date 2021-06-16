@@ -47,12 +47,14 @@ render(){
         )
 
     return(
-        <View style={styles.container}>
+       
+       <View style={styles.container}>
             <Text style={styles.title}>Las n tarjetas para importar</Text>
             {valores}
             <TouchableOpacity onPress={this.storeData.bind(this)}>
                 <View><Text>GUARDAR DATOS</Text></View>
             </TouchableOpacity>
+            
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
             >TARJETAS IMPORTADAS</Text>
