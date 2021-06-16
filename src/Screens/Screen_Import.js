@@ -2,17 +2,21 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
+  Animated,
+  Button,
   TouchableOpacity
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {styles} from '../styles/styles';
+import { Easing } from 'react-native-reanimated';
 
 class Screen_Import extends Component {
     constructor(props){
       super(props);
       this.state = {
-        usuarios: []
+        usuarios: [],
+        toValue: 1.2,
       }
     }
 
@@ -39,6 +43,16 @@ async storeData(){
     }
   }
 
+  topDown= () => {
+    Animated.timing(this.position, {
+      toValue: this.state.toValue,
+      duration: 800, 
+      easing: Easing.elastic(4),
+      useNativeDriver: false
+    }).start();
+    this.setState({toValue: this.position==1? 1.2 :1})
+  }
+
 render(){
 
     const valores = this.state.usuarios.map(item =>
@@ -54,6 +68,15 @@ render(){
             <TouchableOpacity onPress={this.storeData.bind(this)}>
                 <View><Text>GUARDAR DATOS</Text></View>
             </TouchableOpacity>
+
+            {/* <Button title="Apreta para animar!" onPress={this.topDown}>
+              <Animated.View style={{
+                top: this.position,
+                width: 150,
+                height: 300,
+                backgroundColor: 'red',
+              }}></Animated.View>
+            </Button> */}
 
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
