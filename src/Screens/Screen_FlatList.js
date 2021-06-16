@@ -27,30 +27,12 @@ import {
              showModal: false,
              selectedItem: null,
              usuariosBorrados: [],
+             informacionadicional: "",
+             text: "",
+             textHandler:"",
          }
      }
 
-    componentDidMount() {
-        // getData()
-        // .then( resultado => {
-        //     this.setState({users: resultado, activity: false})
-        // })
-        // this.getDataFromApi()
-    }
-
-    // async getDataFromApi() {
-    //     this.setState({activity: true});
-    //     let usuarios = await getData();
-    //     console.log(usuarios)
-    //     this.setState({usuariosImportados: usuarios, activity: false})
-    // }
-
-    // async getDataFromApi() {
-    //     this.setState({activity: true});
-    //     let usuarios = await AsyncStorage.getItem('Usuarios');
-    //     console.log(usuarios)
-    //     this.setState({users: JSON.parse(usuarios)})
-    // }
 
     async getData(){
         try{
@@ -163,6 +145,59 @@ import {
         }
       }
 
+      async filtrarPorPaisOEstado(texto){
+        if (texto.length !== 0) {
+          var escrito = texto
+          let usuariosImportados = this.state.usuariosImportados
+
+          let filtrado = usuariosImportados.filter(dato => {
+            let itemData = dato.location.city.toUpperCase() && dato.location.state.toUpperCase()
+            let textData = escrito.toUpperCase()  
+            if(itemData.includes(textData)) return dato
+            
+          })
+          console.log(texto)
+          this.setState({ usuariosImportados: filtrado})
+        } 
+        else {
+           await this.getData()
+            console.log(texto)
+
+        }
+      }
+
+    //   async adicionar(texto){
+    //     if (texto.length !== 0) {
+    //       var escrito = texto
+    //       let informacionadicional = this.state.informacionadicional
+
+    //       let filtrado = informacionadicional.filter(dato => {
+    //         let itemData = dato.location.city.toUpperCase() && dato.location.state.toUpperCase()
+    //         let textData = escrito.toUpperCase()  
+    //         if(itemData.includes(textData)) return dato
+            
+    //       })
+    //       console.log(texto)
+    //       this.setState({ informacionadicional: filtrado})
+    //     } 
+    //     else {
+    //        await this.getData()
+    //         console.log(texto)
+
+    //     }
+    //   }
+    //   async storeData(){
+    //     //setStringStorage
+    //     try{
+    //         const jsonUsuarios = JSON.stringify(this.state.usuarios);
+    //         await AsyncStorage.setItem('Usuarios', jsonUsuarios)
+    //         console.log("Datos almacenados")
+    //     }catch(error){
+    //       console.log(error);
+    //     }
+    //   }
+
+
 
     renderItem = ({item}) => {
         return(
@@ -265,6 +300,16 @@ import {
                            </Text>
                            <Text style={styles.modalText}> 
                                Datos adicionales: {}
+                               {/* <TextInput onChangeText={(escrito) => this.adicionar(escrito)}> </TextInput>  */}
+                               {/* <Text style={styles.texto}> {this.state.textHandler} </Text>
+                               <TextInput secureTextEntry={true} onChangeText={text => this.setState({textHandler:text})}/>
+                                <TouchableWithoutFeedback onPress={() => this.setState({text: this.state.textHandler})}>
+                                    <View>
+                                    <Text>Agregar</Text>
+                                    </View>
+                                </TouchableWithoutFeedback> */}
+
+                               
                            </Text>
                            </> 
                        }
@@ -282,9 +327,6 @@ import {
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Recycle')}
             >PAPELERA DE RECICLAJE</Text>
-            <Text style={styles.texto}
-              onPress={ () => this.props.navigation.navigate('Screen BuscarYModificar')}
-            >BUSCAR Y MODIFICAR</Text>
             <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Menu')}
             >MENU</Text>

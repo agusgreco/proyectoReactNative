@@ -111,9 +111,6 @@ import {
               onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
             >TARJETAS IMPORTADAS</Text>
             <Text style={styles.texto}
-              onPress={ () => this.props.navigation.navigate('Screen BuscarYModificar')}
-            >BUSCAR Y MODIFICAR</Text> 
-            <Text style={styles.texto}
               onPress={ () => this.props.navigation.navigate('Screen Menu')}
             >MENU</Text>
             

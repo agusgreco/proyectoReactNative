@@ -21,7 +21,6 @@ import {Screen_Import} from './Screens/Screen_Import'
 import {Screen_Flatlist} from './Screens/Screen_FlatList'
 import {Screen_Menu} from './Screens/Screen_Menu'
 import {Screen_Recycle} from './Screens/Screen_Recycle'
-import {Screen_BuscarYModificar} from './Screens/Screen_BuscarYModificar'
 import {Screen_AcercaDe} from './Screens/Screen_AcercaDe'
 
 
@@ -74,7 +73,6 @@ export default class App extends Component {
       {/* <Drawer.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Screen_ViewImportedCards'}}/> */}
       {/* <Drawer.Screen name="Screen View Imported Cards" component={Screen_ViewImportedCards} initialParams={{valor:0}}/> */}
       <Drawer.Screen name='Screen Flatlist' component={Screen_Flatlist} options={{title: 'Tarjetas Importadas'}}/>
-      <Drawer.Screen name='Screen BuscarYModificar' component={Screen_BuscarYModificar} options={{title: 'Buscar y Modificar'}}/>
       <Drawer.Screen name='Screen Recycle' component={Screen_Recycle} options={{title: 'Papelera de Reciclaje'}}/>
       <Drawer.Screen name='Screen AcercaDe' component={Screen_AcercaDe} options={{title: 'Acerca De'}}/>
 
