@@ -14,6 +14,7 @@ import {
     TextInput,
     FlatList, 
     TouchableOpacity, 
+    TouchableWithoutFeedback,
     Button,
     StyleSheet
 } from 'react-native';
@@ -59,14 +60,20 @@ import {
         
     //      storeDataBorrado
     //     }
+
+
     async storeBorrarData(){
         //obtener usuarios de mi storage bajo la key usuarios. 
         //los guardamos bajo otra key (keyBorrados) en el storage y los que estaban sobre la key usuarios se sobreescribe con un array vacio. 
-    
+        let usuariosImportados = this.state.usuariosImportados
+        let usuariosBorrados = this.state.usuariosBorrados
+
+
         try{
             const jsonUsuarios = JSON.stringify(this.state.usuarios);
-            await AsyncStorage.setItem('Usuarios', jsonUsuarios)
-            console.log("Datos almacenados")
+            await AsyncStorage.setItem('UsuariosBorrados', jsonUsuarios)
+            this.setState({ usuariosImportados: []})
+            
         }catch(error){
           console.log(error);
         }
@@ -75,12 +82,7 @@ import {
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});
     } 
-
-
-
-
-        keyExtractor = (item, index) => item.login.uuid;
-
+    keyExtractor = (item, index) => item.login.uuid;
 
     async filtrarPorNombre(texto){
         if (texto.length !== 0) {
@@ -112,7 +114,7 @@ import {
             let itemData = dato.name.last.toUpperCase()
             let textData = escrito.toUpperCase()  
             if(itemData.includes(textData)) return dato
-            
+    
           })
           console.log(texto)
           this.setState({ usuariosImportados: filtrado})
@@ -128,12 +130,10 @@ import {
         if (texto.length !== 0) {
           var escrito = texto
           let usuariosImportados = this.state.usuariosImportados
-
           let filtrado = usuariosImportados.filter(dato => {
             let itemData = dato.location.city.toUpperCase() && dato.location.state.toUpperCase()
             let textData = escrito.toUpperCase()  
             if(itemData.includes(textData)) return dato
-            
           })
           console.log(texto)
           this.setState({ usuariosImportados: filtrado})
@@ -205,7 +205,9 @@ import {
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
                 <Image style={styles.image} source={{uri: item.picture.thumbnail}}/> 
-                <Text style={styles.texto}> {item.name.last}, {item.name.first} </Text>
+                <Text style={styles.modalText}> {item.name.last}, {item.name.first} </Text>
+                <Text style={styles.modalText}> {item.email}</Text>
+                <Text style={styles.modalText}> {item.dob.age} ys</Text>
             </View>
             </TouchableOpacity>
 
@@ -290,6 +292,12 @@ import {
                                Nombre: {this.state.selectedItem && this.state.selectedItem.name.first + ' ' + this.state.selectedItem.name.last}
                            </Text> 
                            <Text style={styles.modalText}> 
+                               Email: {this.state.selectedItem && this.state.selectedItem.email}
+                           </Text>
+                           <Text style={styles.modalText}> 
+                               Age: {this.state.selectedItem && this.state.selectedItem.dob.age}
+                           </Text>
+                           <Text style={styles.modalText}> 
                                Direccion: {this.state.selectedItem && this.state.selectedItem.location.street.name + ' ' + this.state.selectedItem.location.street.number + ' ' + this.state.selectedItem.location.city + ' ' + this.state.selectedItem.location.state + ' ' + this.state.selectedItem.location.postcode}
                            </Text>
                            <Text style={styles.modalText}> 
@@ -301,16 +309,16 @@ import {
                            <Text style={styles.modalText}> 
                                Datos adicionales: {}
                                {/* <TextInput onChangeText={(escrito) => this.adicionar(escrito)}> </TextInput>  */}
-                               {/* <Text style={styles.texto}> {this.state.textHandler} </Text>
-                               <TextInput secureTextEntry={true} onChangeText={text => this.setState({textHandler:text})}/>
-                                <TouchableWithoutFeedback onPress={() => this.setState({text: this.state.textHandler})}>
+                               
+                           </Text>
+                           <Text style={styles.texto}> {this.state.textHandler} </Text>
+                               <TextInput style={styles.inputstyle} secureTextEntry={true} onChangeText={text => this.setState({textHandler:text})}/>
+                                <TouchableOpacity onPress={() => this.setState({text: this.state.textHandler})}>
                                     <View>
                                     <Text>Agregar</Text>
                                     </View>
-                                </TouchableWithoutFeedback> */}
+                                </TouchableOpacity>
 
-                               
-                           </Text>
                            </> 
                        }
                            <Text style={styles.closeButtonModal} 

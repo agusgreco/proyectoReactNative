@@ -27,7 +27,8 @@ import {
                     <Text>ACERCA DE</Text>
                 </View>
 
-                    <Text href="https://www.instagram.com/agusgreco_/">Agustina Greco</Text>
+                    <Text>Agustina Greco</Text>
+            
                     <Text>Ema Juarez</Text>
 
 

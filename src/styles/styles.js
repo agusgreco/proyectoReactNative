@@ -73,6 +73,13 @@ texto: {
     fontSize: 20,
     margin: 10
 },
+
+inputstyle: {
+    fontSize: 20,
+    margin: 10,
+    borderWidth: 2, 
+    
+},
 card: {
     flexDirection: 'row',
     backgroundColor: '#aabbcc',
