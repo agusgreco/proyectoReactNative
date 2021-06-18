@@ -64,35 +64,36 @@ import {
       }
 
 
-      async storeBorrarUnData(useridx){
-        if (useridx !== this.state.usuariosImportados.login.uuid){
-          
-      }
-      // //   try{
-      // //       const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
-      // //       await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
-      // //       this.setState({ usuariosImportados: []})
-      // //       console.log(jsonUsuariosBorrados)
-      // //   }catch(error){
-      // //     console.log(error);
-      // //   }
-      }
-
-
-    borrarUser(useridx){
-        let res = this.state.usuariosImportados.filter((usuariosImportados) => {
-            return( useridx!== usuariosImportados.login.uuid)
-        })
-        let borrado = this.state.usuariosImportados.filter((usuariosImportados) => {
-            return( useridx== usuariosImportados.login.uuid)
-        })
-         let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
-         this.setState(usuariosImportados= res, usuariosBorrados= arrayBorrado)
-        
-         storeDataBorrado
-        }
+    // borrarUser(useridx){
+    //     let res = this.state.usuariosImportados.filter((usuariosImportados) => {
+    //         return( useridx!== usuariosImportados.login.uuid)
+    //     })
+    //     let borrado = this.state.usuariosImportados.filter((usuariosImportados) => {
+    //         return( useridx== usuariosImportados.login.uuid)
+    //     })
+    //     //  let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
+    //      this.setState(usuariosImportados= res, usuariosBorrados= borrado)
+    //      //antes decia arrayBorrado en vez de borrado
+    //      storeDataBorrado
+    //     }
 
     
+    borrarUser(usuario){
+      let usuariosImportados = this.state.usuariosImportados
+      let res = usuariosImportados.filter((usuariosImportados) => {
+          return( usuario.login.uuid!== usuariosImportados.login.uuid)
+      })
+      let borrado = usuariosImportados.filter((usuariosImportados) => {
+          return( usuario.login.uuid== usuariosImportados.login.uuid)
+      })
+      //  let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
+       this.setState(usuariosImportados= res, usuariosBorrados= borrado)
+       //antes decia arrayBorrado en vez de borrado
+      
+       storeDataBorrado
+      }
+
+      
     // async filtrarPorNombre(texto){
     //   if (texto.length !== 0) {
     //     var escrito = texto
@@ -114,10 +115,28 @@ import {
     //   }
     // }
 
+      // borrarUser(usuario){
+      //   let usuariosImportados = this.state.usuariosImportados
+      //   let res = usuariosImportados.filter((usuariosImportados) => {
+      //       return( usuario!== usuariosImportados.login.uuid)
+      //   })
+      //   let borrado = usuariosImportados.filter((usuariosImportados) => {
+      //       return( usuario== usuariosImportados.login.uuid)
+      //   })
+      //   //  let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
+      //    this.setState(usuariosImportados= res, usuariosBorrados= borrado)
+      //    //antes decia arrayBorrado en vez de borrado
+        
+      //    storeDataBorrado
+      //   }
+        
+
+
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});
     } 
     keyExtractor = (item, index) => item.login.uuid;
+    
 
     async filtrarPorNombre(texto){
         if (texto.length !== 0) {
@@ -285,7 +304,7 @@ import {
         )
     }
 
-    keyExtractor = (item, idx) => idx.toString()
+    // keyExtractor = (item, idx) => idx.toString()
 
     separator = () => <View style={styles.separator}/>
 
@@ -380,6 +399,9 @@ import {
                                     <Text>Agregar</Text>
                                     </View>
                                 </TouchableOpacity>
+
+                                <Button title="BORRAR USUARIO" onPress={() => this.borrarUser()}/>
+
 
                            </> 
                        }
