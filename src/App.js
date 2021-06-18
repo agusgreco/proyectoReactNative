@@ -22,8 +22,6 @@ import {Screen_Flatlist} from './Screens/Screen_FlatList'
 import {Screen_Menu} from './Screens/Screen_Menu'
 import {Screen_Recycle} from './Screens/Screen_Recycle'
 import {Screen_AcercaDe} from './Screens/Screen_AcercaDe'
-
-
 import {createDrawerNavigator} from '@react-navigation/drawer'
 
 // const Stack= createStackNavigator();
@@ -67,7 +65,16 @@ export default class App extends Component {
       // </NavigationContainer>
 
     <NavigationContainer>
-    <Drawer.Navigator initialRouteName='Screen Menu' drawerPosition='left' drawerType='slide' overlayColor='grey'>
+    <Drawer.Navigator 
+        initialRouteName='Screen Menu' 
+        drawerPosition='left'
+        drawerType='slide' 
+        overlayColor='grey'
+        drawerStyle={{
+               backgroundColor: "white",
+               width: 250
+             }}
+        >
       <Drawer.Screen name='Screen Menu' component={Screen_Menu} options={{title: 'Menu'}}/>
       <Drawer.Screen name='Screen Import' component={Screen_Import} options={{title: 'Importar Tarjetas'}}/>
       {/* <Drawer.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Screen_ViewImportedCards'}}/> */}
@@ -78,6 +85,34 @@ export default class App extends Component {
 
     </Drawer.Navigator>
     </NavigationContainer> 
+
+
+      // <NavigationContainer>
+      //   <Drawer.Navigator initialRouteName="Screen_Menu"
+      //     drawerPosition="left"
+      //     drawerType="slide"
+      //     overlayColor="grey"
+      //     drawerStyle={{
+      //       backgroundColor: "white",
+      //       width: 250
+      //     }}
+      //     drawerContentOptions={{
+      //       activeTintColor: "white",
+      //       activeBackgroundColor: "blue",
+      //       inactiveTintColor: 'black',
+      //       itemStyle: {borderRadius: 100, borderWidth: 3},
+      //       labelStyle: { fontWeight: 'bold', fontSize: 15},
+      //       style: { }
+      //     }}
+      //   > 
+      //     <Drawer.Screen name="Screen_Menu" component={Screen_Menu} options={{title: "Menu"}}/>
+      //     <Drawer.Screen name="Screen_Import" component={Screen_Import} options={{title: "Importar", headerTintColor: 'red'}}/>
+      //     <Drawer.Screen name="Screen_Flatlist" component={Screen_Flatlist} options={{title: "Tarjetas Importadas"}}/>
+      //     <Drawer.Screen name='Screen_Recycle' component={Screen_Recycle} options={{title: 'Papelera de Reciclaje'}}/>
+      //     <Drawer.Screen name="Screen_AcercaDe" componente={Screen_AcercaDe} options={{title: "Acerca de"}} />
+
+      //   </Drawer.Navigator>
+      // </NavigationContainer>
    
 
 
