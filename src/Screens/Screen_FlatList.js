@@ -49,6 +49,33 @@ import {
         }
  }
 
+
+
+
+    async storeBorrarData(){
+        try{
+            const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
+            await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
+            this.setState({ usuariosImportados: []})
+            console.log(jsonUsuariosBorrados)
+        }catch(error){
+          console.log(error);
+        }
+      }
+
+
+      async storeBorrarUnData(){
+      //   try{
+      //       const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
+      //       await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
+      //       this.setState({ usuariosImportados: []})
+      //       console.log(jsonUsuariosBorrados)
+      //   }catch(error){
+      //     console.log(error);
+      //   }
+      }
+
+
     // borrarUser(useridx){
     //     let res = this.state.usuariosImportados.filter((usuariosImportados) => {
     //         return( useridx!== usuariosImportados.login.uuid)
@@ -61,22 +88,6 @@ import {
         
     //      storeDataBorrado
     //     }
-
-
-    async storeBorrarData(){
-        //obtener usuarios de mi storage bajo la key usuarios. 
-        //los guardamos bajo otra key (keyBorrados) en el storage y los que estaban sobre la key usuarios se sobreescribe con un array vacio. 
-        // let usuariosImportados = this.state.usuariosImportados
-        // let usuariosBorrados = this.state.usuariosBorrados
-        try{
-            const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosBorrados);
-            await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
-            this.setState({ usuariosImportados: []})
-            
-        }catch(error){
-          console.log(error);
-        }
-      }
 
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});

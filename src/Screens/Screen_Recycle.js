@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {getData} from '../api/RandomUsers';
 import {styles} from '../styles/styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import {ModalInfo} from '../Components/ModalInfo'
 import { 
@@ -20,7 +21,7 @@ import {
      constructor(){
          super();
          this.state = {
-            usuariosBorrado: [],
+            usuariosBorrados: [],
          }
      }
 
@@ -36,8 +37,9 @@ import {
           const resultado = await AsyncStorage.getItem('UsuariosBorrados');
           if(resultado !== null){
             this.setState({usuariosBorrados: JSON.parse(resultado)});
+            console.log(resultado)
           }else{
-            console.log('no encontre el key')
+            console.log('no se encontro')
           }
         }catch(error){
           console.log(error);
