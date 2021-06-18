@@ -64,30 +64,55 @@ import {
       }
 
 
-      async storeBorrarUnData(){
-      //   try{
-      //       const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
-      //       await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
-      //       this.setState({ usuariosImportados: []})
-      //       console.log(jsonUsuariosBorrados)
-      //   }catch(error){
-      //     console.log(error);
-      //   }
+      async storeBorrarUnData(useridx){
+        if (useridx !== this.state.usuariosImportados.login.uuid){
+          
+      }
+      // //   try{
+      // //       const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
+      // //       await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
+      // //       this.setState({ usuariosImportados: []})
+      // //       console.log(jsonUsuariosBorrados)
+      // //   }catch(error){
+      // //     console.log(error);
+      // //   }
       }
 
 
-    // borrarUser(useridx){
-    //     let res = this.state.usuariosImportados.filter((usuariosImportados) => {
-    //         return( useridx!== usuariosImportados.login.uuid)
-    //     })
-    //     let borrado = this.state.usuariosImportados.filter((usuariosImportados) => {
-    //         return( useridx== usuariosImportados.login.uuid)
-    //     })
-    //      let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
-    //      this.setState(usuariosImportados: res, usuariosBorrados: arrayBorrado)
+    borrarUser(useridx){
+        let res = this.state.usuariosImportados.filter((usuariosImportados) => {
+            return( useridx!== usuariosImportados.login.uuid)
+        })
+        let borrado = this.state.usuariosImportados.filter((usuariosImportados) => {
+            return( useridx== usuariosImportados.login.uuid)
+        })
+         let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
+         this.setState(usuariosImportados= res, usuariosBorrados= arrayBorrado)
         
-    //      storeDataBorrado
-    //     }
+         storeDataBorrado
+        }
+
+    
+    // async filtrarPorNombre(texto){
+    //   if (texto.length !== 0) {
+    //     var escrito = texto
+    //     let usuariosImportados = this.state.usuariosImportados
+
+    //     let filtrado = usuariosImportados.filter(dato => {
+    //       let itemData = dato.name.first.toUpperCase()
+    //       let textData = escrito.toUpperCase()  
+    //       if(itemData.includes(textData)) return dato
+          
+    //     })
+    //     console.log(texto)
+    //     this.setState({ usuariosImportados: filtrado})
+    //   } 
+    //   else {
+    //      await this.getData()
+    //       console.log(texto)
+
+    //   }
+    // }
 
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});
