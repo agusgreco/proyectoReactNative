@@ -285,27 +285,24 @@ import {
 
     renderItem = ({item}) => {
         return(
-         <View style={styles.container}> 
+      //     <View style={styles.container}> 
+      //     <TouchableOpacity onPress={ () => this.showModal(item)}> 
+      //     <View style={styles.card}> 
+      //     <Image style={styles.image} source={{uri: item.picture.thumbnail}}/> 
+      //         <Text style={styles.modalText}> {item.name.last}, {item.name.first} </Text>
+      //     </View>
+      //     </TouchableOpacity>
+
+      //  </View>
+         <View style={styles.itemContainer}> 
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
-                <Image style={styles.image} source={{uri: item.picture.thumbnail}}/> 
-                <Text style={styles.modalText}> {item.name.last}, {item.name.first} </Text>
-                <Text style={styles.modalText}> {item.email}</Text>
-                <Text style={styles.modalText}> {item.dob.age} ys</Text>
+                <Image style={styles.imageModal} source={{uri: item.picture.thumbnail}}/> 
+                <Text style={styles.itemText}> 
+                    {item.name.last}, {item.name.first} 
+                </Text>
             </View>
             </TouchableOpacity>
-
-            {/* <Text>Valor: {this.props.route.params.valor}</Text> */}
-            
-            {/* <Text style={styles.texto}
-                  onPress={ () => this.props.navigation.goBack()}
-            >GO BACK</Text>
-            <Text style={styles.texto}
-              onPress={ () => this.props.navigation.navigate('Screen Import')}
-            >SCREEN IMPORT</Text>
-            <Text style={styles.texto}
-              onPress={ () => this.props.navigation.navigate('Screen View Imported Cards')}
-            >VIEW IMPORTED CARDS</Text> */}
          </View>
 
         )
@@ -317,31 +314,30 @@ import {
 
 
     render() {
-        // const valores = this.state.usuariosImportados.map(item =>
-        //     <Text key={item.login.uuid}
-        //     style={{fontSize:22}}>{item.name.first} {item.name.last}</Text>
-        //     )
+
         return (
 
             <View style={styles.container}>
                 <View style={styles.headerBorder}>
-                    <Text> TARJETAS IMPORTADAS </Text>
+                    <Text style={styles.headerText}> TARJETAS IMPORTADAS </Text>
                 </View>
 
-                
-            {/* {valores} */}
-
-            <Text>Nombre:</Text>
-            <TextInput onChangeText={(escrito) => this.filtrarPorNombre(escrito)}>
+          <View style={styles.buscar}>
+            <Text style={styles.buscarTextNombre}>Nombre:</Text>
+            <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorNombre(escrito)}>
             </TextInput> 
 
-            <Text>Apellido:</Text>
-            <TextInput onChangeText={(escrito) => this.filtrarPorApellido(escrito)}>
+            <Text style={styles.buscarText} >Apellido:</Text>
+            <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorApellido(escrito)}>
             </TextInput> 
 
-            <Text>Pais o Ciudad:</Text>
-            <TextInput onChangeText={(escrito) => this.filtrarPorPaisOEstado(escrito)}>
+            <Text style={styles.buscarText}>Pais o Ciudad:</Text>
+            <TextInput style={styles.buscarSquarePais} onChangeText={(escrito) => this.filtrarPorPaisOEstado(escrito)}>
             </TextInput> 
+          </View>
+
+
+          
 
                 <View style={styles.listContainer}>
                     { this.state.activity 
@@ -358,17 +354,20 @@ import {
                     }
                 </View>
 
-                <Button title="Obtener resultados" onPress={() => this.getData()}/>
-              
+          <View style={styles.botonBackground}>
+                {/* <Button style={styles.guardarDatos} title="Obtener resultados" onPress={() => this.getData()}/> */}
+                <TouchableOpacity style={styles.botones} onPress={() => this.getData()}>
+                <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
+            </TouchableOpacity>
               
                 {/* <TouchableOpacity onPress={() => this.setState({usuariosImportados:[]})}>
                     <View><Text>ELIMINAR DATOS IMPORTADOS</Text></View>
                 </TouchableOpacity> */}
 
-                <TouchableOpacity onPress={() => this.storeBorrarData()}>
-                    <View><Text>ELIMINAR DATOS IMPORTADOS</Text></View>
+                <TouchableOpacity style={styles.botones} onPress={() => this.storeBorrarData()}>
+                    <View><Text style={styles.recycleTexto}>ELIMINAR DATOS IMPORTADOS</Text></View>
                 </TouchableOpacity>
-                
+         </View> 
                 <Modal visible={this.state.showModal}
                    transparent={true}
                    animationType="fade" //slide o fade
@@ -402,10 +401,10 @@ import {
                                
                            </Text>
                            <Text style={styles.texto}> {this.state.textHandler} </Text>
-                               <TextInput style={styles.inputstyle} secureTextEntry={true} onChangeText={text => this.setState({textHandler:text})}/>
-                                <TouchableOpacity onPress={() => this.setState({text: this.state.textHandler})}>
+                               <TextInput style={styles.adicional} secureTextEntry={true} onChangeText={text => this.setState({textHandler:text})}/>
+                                <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}>
                                     <View>
-                                    <Text>Agregar</Text>
+                                    <Text style={styles.agregarTexto}>AGREGAR</Text>
                                     </View>
                                 </TouchableOpacity>
 
@@ -413,8 +412,13 @@ import {
                                 {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(UsuarioBorrado, results)}/> */}
                                 {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData()}/> */}
 
-                                <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(item)}/>
+                                {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(item)}/> */}
 
+                                <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarUnData(item)}>
+                                    <View>
+                                    <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
+                                    </View>
+                                </TouchableOpacity>
 
 
 

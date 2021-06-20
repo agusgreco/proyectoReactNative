@@ -65,12 +65,14 @@ render(){
        <View style={styles.container}>
      <View style={styles.headerBorder}>
 
-            <Text style={styles.headerText}>Las n tarjetas para importar</Text>
+            <Text style={styles.headerText}>LAS TARJETAS PARA IMPORTAR</Text>
     </View>
+    <View style={styles.importScreen}>
             {valores}
             <TouchableOpacity style={styles.guardarDatos} onPress={this.storeData.bind(this)}>
                 <View><Text style={styles.guardarDatosTexto} >GUARDAR DATOS</Text></View>
             </TouchableOpacity>
+            </View>
 
             {/* <Button title="Apreta para animar!" onPress={this.topDown}>
               <Animated.View style={{

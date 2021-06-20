@@ -20,6 +20,7 @@ import {
      constructor(){
          super();
          this.state = {
+           
          }
      }
 
@@ -36,16 +37,16 @@ import {
             {/* {valores} */}
 
                 <View >
-                <Text style={styles.textoMenu}
+                <Text style={styles.textoDeMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Import')}
                 >IMPORTAR TARJETAS</Text>
-                <Text style={styles.textoMenu}
+                <Text style={styles.textoDeMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
                 >TARJETAS IMPORTADAS</Text>
-                <Text style={styles.textoMenu}
+                <Text style={styles.textoDeMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Recycle')}
                 >PAPELERA DE RECICLAJE</Text>
-                <Text style={styles.textoMenuAcercaDe}
+                <Text style={styles.textoDeMenu}
                   onPress={ () => this.props.navigation.navigate('Screen AcercaDe')}
                 >ACERCA DE</Text>
                 </View>
