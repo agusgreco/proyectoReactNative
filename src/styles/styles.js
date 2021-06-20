@@ -53,7 +53,7 @@ closeButtonModal: {
 },
 headerBorder: {
    flex: 1,
-   //  height: 500,
+   height: 500,
     backgroundColor: 'blue',
     justifyContent: 'center',
     alignItems: 'center'
