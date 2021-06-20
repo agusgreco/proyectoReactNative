@@ -53,11 +53,79 @@ closeButtonModal: {
 },
 headerBorder: {
    flex: 1,
-   height: 500,
-    backgroundColor: 'blue',
+   height: 100,
+    backgroundColor: '#111010',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
 },
+
+menuHeaderText:{
+    color: "#A9A9A9",
+    // fontFamily: "calibri",
+    fontWeight: "bold",
+    fontSize:30,
+
+},
+
+headerText:{
+    color: "#A9A9A9",
+    // fontFamily: "calibri",
+    fontWeight: "bold",
+    fontSize: 20,
+},
+
+importTexto:{
+fontSize: 25,
+paddingVertical: 10,
+textAlign: "center",
+
+
+},
+
+guardarDatosTexto:{
+    fontSize: 20,
+    textAlign: "center",
+    paddingVertical: 10,
+
+
+
+},
+
+headerStyle:{
+    flex: 1,
+    height: 10,
+    paddingVertical:0,
+    marginVertical:0,
+    backgroundColor: '#212816',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+
+
+},
+
+textoMenu:{
+    fontSize:20,
+    // fontWeight:'bold',
+    color:'#A9A9A9',
+    textAlign: "center",
+    backgroundColor: "#111010",
+    paddingVertical: 20,
+    
+},
+
+textoMenuAcercaDe:{
+    fontSize:20,
+    // fontWeight:'bold',
+    color:'#A9A9A9',
+    textAlign: "center",
+    backgroundColor: "#111010",
+    paddingTop: 20,
+    paddingBottom: 50,
+},
+
+
+
 container: {
     flex: 1,
    //  justifyContent: 'center',

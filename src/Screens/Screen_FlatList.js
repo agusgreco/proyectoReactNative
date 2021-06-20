@@ -327,6 +327,8 @@ import {
                 <View style={styles.headerBorder}>
                     <Text> TARJETAS IMPORTADAS </Text>
                 </View>
+
+                
             {/* {valores} */}
 
             <Text>Nombre:</Text>
@@ -426,13 +428,13 @@ import {
                    </View>
                 </Modal>
 
-            <Text style={styles.texto}
+            <Text style={styles.textoMenu}
               onPress={ () => this.props.navigation.navigate('Screen Import')}
             >IMPORTAR TARJETAS</Text>
-            <Text style={styles.texto}
+            <Text style={styles.textoMenu}
               onPress={ () => this.props.navigation.navigate('Screen Recycle')}
             >PAPELERA DE RECICLAJE</Text>
-            <Text style={styles.texto}
+            <Text style={styles.textoMenu}
               onPress={ () => this.props.navigation.navigate('Screen Menu')}
             >MENU</Text>
             

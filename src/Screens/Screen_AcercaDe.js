@@ -33,19 +33,19 @@ import {
 
 
                 <View >
-                <Text style={styles.texto}
+                <Text style={styles.textoMenu}
                   onPress={ () => this.props.navigation.goBack()}
                 >GO BACK</Text>
-                <Text style={styles.texto}
+                <Text style={styles.textoMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Import')}
                 >IMPORTAR TARJETAS</Text>
-                <Text style={styles.texto}
+                <Text style={styles.textoMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
                 >TARJETAS IMPORTADAS</Text>
-                <Text style={styles.texto}
+                <Text style={styles.textoMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Recycle')}
                 >PAPELERA DE RECICLAJE</Text>
-                <Text style={styles.texto}
+                <Text style={styles.textoMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Menu')}
                 >MENU</Text>
                 </View>

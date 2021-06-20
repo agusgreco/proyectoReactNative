@@ -177,13 +177,13 @@ keyExtractor = (item, index) => item.login.uuid;
                     <View><Text>BORRAR DEFINITIVAMENTE LOS DATOS</Text></View>
                 </TouchableOpacity>
             
-            <Text style={styles.texto}
+            <Text style={styles.textoMenu}
               onPress={ () => this.props.navigation.navigate('Screen Import')}
             >IMPORTAR TARJETAS</Text>
-            <Text style={styles.texto}
+            <Text style={styles.textoMenu}
               onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
             >TARJETAS IMPORTADAS</Text>
-            <Text style={styles.texto}
+            <Text style={styles.textoMenu}
               onPress={ () => this.props.navigation.navigate('Screen Menu')}
             >MENU</Text>
             

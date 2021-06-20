@@ -57,16 +57,19 @@ render(){
 
     const valores = this.state.usuarios.map(item =>
         <Text key={item.login.uuid}
-        style={{fontSize:22}}>{item.name.first} {item.name.last}</Text>
+        style={styles.importTexto}>{item.name.first} {item.name.last}</Text>
         )
 
     return(
        
        <View style={styles.container}>
-            <Text style={styles.title}>Las n tarjetas para importar</Text>
+     <View style={styles.headerBorder}>
+
+            <Text style={styles.headerText}>Las n tarjetas para importar</Text>
+    </View>
             {valores}
-            <TouchableOpacity onPress={this.storeData.bind(this)}>
-                <View><Text>GUARDAR DATOS</Text></View>
+            <TouchableOpacity style={styles.guardarDatos} onPress={this.storeData.bind(this)}>
+                <View><Text style={styles.guardarDatosTexto} >GUARDAR DATOS</Text></View>
             </TouchableOpacity>
 
             {/* <Button title="Apreta para animar!" onPress={this.topDown}>
@@ -78,13 +81,13 @@ render(){
               }}></Animated.View>
             </Button> */}
 
-            <Text style={styles.texto}
+            <Text style={styles.textoMenu}
               onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
             >TARJETAS IMPORTADAS</Text>
-            <Text style={styles.texto}
+            <Text style={styles.textoMenu}
               onPress={ () => this.props.navigation.navigate('Screen Recycle')}
             >PAPELERA DE RECICLAJE</Text>
-            <Text style={styles.texto}
+            <Text style={styles.textoMenu}
               onPress={ () => this.props.navigation.navigate('Screen Menu')}
             >MENU</Text>
             {/* no se si esta bien */}
