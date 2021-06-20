@@ -22,6 +22,11 @@ import {
          super();
          this.state = {
             usuariosBorrados: [],
+            usuarioBorrado: [],
+            showModal: false,
+            activity: false,
+
+
          }
      }
 
@@ -45,42 +50,58 @@ import {
           console.log(error);
         }
  }
+
+
+ async getUnDataBorrada(){
+  try{
+    const resultado = await AsyncStorage.getItem('UsuarioBorrado');
+    if(resultado !== null){
+      this.setState({usuarioBorrado: JSON.parse(resultado)});
+      console.log(resultado)
+    }else{
+      console.log('no se encontro')
+    }
+  }catch(error){
+    console.log(error);
+  }
+}
+
+//  async getDataUnBorrada(){
+//   try{
+//     const resultado = await AsyncStorage.getItem('UsuarioBorrados');
+//     if(resultado !== null){
+//       this.setState({usuarioBorrado: JSON.parse(resultado)});
+//       console.log(resultado)
+//     }else{
+//       console.log('no se encontro')
+//     }
+//   }catch(error){
+//     console.log(error);
+//   }
+// }
     
-    //  async getDataFromApi() {
-    //     this.setState({activity: true});
-    //     let usuarios = await getData();
-    //     console.log(usuarios)
-    //     this.setState({usuariosBorrados: usuarios, activity: false})
-    // }
+
+showModal (item) {
+  this.setState({selectedItem: item, showModal: true});
+} 
+keyExtractor = (item, index) => item.login.uuid;
 
     renderItem = ({item}) => {
         return(
          <View style={styles.container}> 
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
-                <Image style={styles.image} source={{uri: item.picture.thumbnail}}/> 
-                <Text style={styles.texto}> {item.name.last}, {item.name.first} </Text>
+            <Image style={styles.image} source={{uri: item.picture.thumbnail}}/> 
+                <Text style={styles.modalText}> {item.name.last}, {item.name.first} </Text>
             </View>
             </TouchableOpacity>
 
-            {/* <Text>Valor: {this.props.route.params.valor}</Text> */}
-            
-            {/* <Text style={styles.texto}
-                  onPress={ () => this.props.navigation.goBack()}
-            >GO BACK</Text>
-            <Text style={styles.texto}
-              onPress={ () => this.props.navigation.navigate('Screen Import')}
-            >SCREEN IMPORT</Text>
-            <Text style={styles.texto}
-              onPress={ () => this.props.navigation.navigate('Screen View Imported Cards')}
-            >VIEW IMPORTED CARDS</Text> */}
          </View>
 
         )
     }
 
-    keyExtractor = (item, idx) => idx.toString()
-
+    
     separator = () => <View style={styles.separator}/>
 
 
@@ -112,8 +133,45 @@ import {
                     }
                 </View>
 
-                <Button title="Obtener tarjetas borradas" onPress={() => this.getDataBorrada()}/>
-              
+                <Button title="Obtener todas las tarjetas borradas" onPress={() => this.getDataBorrada()}/>
+                <Button title="Obtener tarjetas borradas" onPress={() => this.getDataUnBorrada()}/>
+
+                <Modal visible={this.state.showModal}
+                   transparent={true}
+                   animationType="fade" //slide o fade
+                   >
+                   <View style={styles.modalContainer}> 
+                       <View style={styles.modal}>
+                       { this.state.selectedItem && 
+                       <>
+                           <Image style={styles.imageModal} source={{uri: this.state.selectedItem.picture.thumbnail}} />
+                           <Text style={styles.modalText}> 
+                               Nombre: {this.state.selectedItem && this.state.selectedItem.name.first + ' ' + this.state.selectedItem.name.last}
+                           </Text> 
+                           <Text style={styles.modalText}> 
+                               Email: {this.state.selectedItem && this.state.selectedItem.email}
+                           </Text>
+                           <Text style={styles.modalText}> 
+                               Age: {this.state.selectedItem && this.state.selectedItem.dob.age}
+                           </Text>
+                           <Text style={styles.modalText}> 
+                               Direccion: {this.state.selectedItem && this.state.selectedItem.location.street.name + ' ' + this.state.selectedItem.location.street.number + ' ' + this.state.selectedItem.location.city + ' ' + this.state.selectedItem.location.state + ' ' + this.state.selectedItem.location.postcode}
+                           </Text>
+                           <Text style={styles.modalText}> 
+                               Telefono: {this.state.selectedItem && this.state.selectedItem.phone}
+                           </Text>
+                           <Text style={styles.modalText}> 
+                               Fecha de registro: {this.state.selectedItem && this.state.selectedItem.registered.date}
+                           </Text>
+                                </> 
+                       }
+                           <Text style={styles.closeButtonModal} 
+                               onPress={() => this.setState({showModal: false})}> 
+                               X 
+                           </Text>
+                       </View>
+                   </View>
+                </Modal>
               
                 <TouchableOpacity onPress={() => this.setState({usuariosBorrados:[]})}>
                     <View><Text>BORRAR DEFINITIVAMENTE LOS DATOS</Text></View>

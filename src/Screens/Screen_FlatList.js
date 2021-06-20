@@ -28,6 +28,7 @@ import {
              showModal: false,
              selectedItem: null,
              usuariosBorrados: [],
+             usuarioBorrado: [],
              usuariosVisualizados: [],
              informacionadicional: "",
              text: "",
@@ -64,72 +65,78 @@ import {
       }
 
 
-    // borrarUser(useridx){
-    //     let res = this.state.usuariosImportados.filter((usuariosImportados) => {
-    //         return( useridx!== usuariosImportados.login.uuid)
-    //     })
-    //     let borrado = this.state.usuariosImportados.filter((usuariosImportados) => {
-    //         return( useridx== usuariosImportados.login.uuid)
-    //     })
-    //     //  let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
-    //      this.setState(usuariosImportados= res, usuariosBorrados= borrado)
-    //      //antes decia arrayBorrado en vez de borrado
-    //      storeDataBorrado
-    //     }
 
-    
-    borrarUser(usuario){
-      let usuariosImportados = this.state.usuariosImportados
-      let res = usuariosImportados.filter((usuariosImportados) => {
-          return( usuario.login.uuid!== usuariosImportados.login.uuid)
-      })
-      let borrado = usuariosImportados.filter((usuariosImportados) => {
-          return( usuario.login.uuid== usuariosImportados.login.uuid)
-      })
-      //  let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
-       this.setState(usuariosImportados= res, usuariosBorrados= borrado)
-       //antes decia arrayBorrado en vez de borrado
-      
-       storeDataBorrado
-      }
 
-      
-    // async filtrarPorNombre(texto){
-    //   if (texto.length !== 0) {
-    //     var escrito = texto
-    //     let usuariosImportados = this.state.usuariosImportados
-
-    //     let filtrado = usuariosImportados.filter(dato => {
-    //       let itemData = dato.name.first.toUpperCase()
-    //       let textData = escrito.toUpperCase()  
-    //       if(itemData.includes(textData)) return dato
-          
-    //     })
-    //     console.log(texto)
-    //     this.setState({ usuariosImportados: filtrado})
-    //   } 
-    //   else {
-    //      await this.getData()
-    //       console.log(texto)
-
+    // async storeBorrarUnData(){
+    //   try{
+    //       const jsonUsuariosBorrado = JSON.stringify(this.state.usuariosImportados.login.uuid);
+    //       await AsyncStorage.setItem('UsuarioBorrado', jsonUsuariosBorrado)
+    //       // this.setState({ usuariosImportados: []})
+    //       console.log(jsonUsuariosBorrados)
+    //   }catch(error){
+    //     console.log(error);
     //   }
     // }
+
+
+    async storeBorrarUnData(item){
+      try{
+        const idx = item.login.uuid;
+          const jsonUsuarioBorrado = JSON.stringify(this.state.usuariosImportados.filter((usuariosImportados) => {
+            return(idx== usuariosImportados.login.uuid)
+        }))
+        console.log(jsonUsuarioBorrado)
+          await AsyncStorage.setItem('UsuarioBorrado', jsonUsuarioBorrado)
+
+          let res = this.state.usuariosImportados.filter((usuariosImportados) => {
+            return( idx!== usuariosImportados.login.uuid)
+        })
+          this.setState({ usuariosImportados: res})
+          // this.setState({usuarioBorrado:[]})
+      }catch(error){
+        console.log(error);
+      }
+    }
+
+
+
+    // async storeBorrarUnData(UsuarioBorrado, results){
+    //   async storeBorrarUnData(){
+    //   try{
+    //       const jsonUsuarioBorrado = JSON.stringify(this.state.usuarioBorrado.map((usuarioBorrado) => this.state.items[usuarioBorrado]));
+
+    //       console.log(jsonUsuarioBorrado)
+    //       await AsyncStorage.setItem('UsuarioBorrado', jsonUsuarioBorrado)
+    //       this.setState({ usuariosImportados: this.state.items.filter((idx) => !this.state.usuarioBorrado.includes(idx))})
+    //       // this.setState({ usuariosImportados: this.state.items.filter((tarjeta, idx) => !this.state.usuarioBorrado.includes(idx))})
+    //       this.setState({usuarioBorrado:[]})
+    //   }catch(error){
+    //     console.log(error);
+    //   }
+    // }
+
+
+
 
       // borrarUser(usuario){
       //   let usuariosImportados = this.state.usuariosImportados
       //   let res = usuariosImportados.filter((usuariosImportados) => {
       //       return( usuario!== usuariosImportados.login.uuid)
+      //           //       return( usuario.login.uuid!== usuariosImportados.login.uuid)
+
       //   })
       //   let borrado = usuariosImportados.filter((usuariosImportados) => {
       //       return( usuario== usuariosImportados.login.uuid)
+      //           //       return( usuario.login.uuid== usuariosImportados.login.uuid)
+
       //   })
-      //   //  let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
       //    this.setState(usuariosImportados= res, usuariosBorrados= borrado)
       //    //antes decia arrayBorrado en vez de borrado
         
       //    storeDataBorrado
       //   }
         
+
 
 
     showModal (item) {
@@ -400,7 +407,13 @@ import {
                                     </View>
                                 </TouchableOpacity>
 
-                                <Button title="BORRAR USUARIO" onPress={() => this.borrarUser()}/>
+                                {/* <Button title="BORRAR USUARIO" onPress={() => this.borrarUser()}/> */}
+                                {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(UsuarioBorrado, results)}/> */}
+                                {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData()}/> */}
+
+                                <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(item)}/>
+
+
 
 
                            </> 
@@ -428,3 +441,16 @@ import {
         )
     }
  }
+
+         // storeBorrarUnData(useridx){
+    //     let res = this.state.usuariosImportados.filter((usuariosImportados) => {
+    //         return( useridx!== usuariosImportados.login.uuid)
+    //     })
+    //     let borrado = this.state.usuariosImportados.filter((usuariosImportados) => {
+    //         return( useridx== usuariosImportados.login.uuid)
+    //     })
+    //     //  let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
+    //      this.setState(usuariosImportados= res, usuariosBorrados= borrado)
+    //      //antes decia arrayBorrado en vez de borrado
+    //      storeDataBorrado
+    //     }
