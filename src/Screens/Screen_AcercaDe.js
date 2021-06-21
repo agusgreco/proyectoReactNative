@@ -23,14 +23,15 @@ import {
         return (
 
             <View style={styles.container}>
-                <View style={styles.headerBorder}>
-                    <Text>ACERCA DE</Text>
+                <View style={styles.headerBorderImport}>
+                    <Text style={styles.headerTextImport}>ACERCA DE</Text>
                 </View>
 
-                    <Text>Agustina Greco</Text>
+                <View style={styles.acercaDe}> 
+                    <Text style={styles.acercaDeText} >Agustina Greco</Text>
             
-                    <Text>Ema Juarez</Text>
-
+                    <Text style={styles.acercaDeText} >Ema Juarez</Text>
+                </View>
 
                 <View >
                 <Text style={styles.textoMenu}

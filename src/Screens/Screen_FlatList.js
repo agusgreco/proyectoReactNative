@@ -318,8 +318,8 @@ import {
         return (
 
             <View style={styles.container}>
-                <View style={styles.headerBorder}>
-                    <Text style={styles.headerText}> TARJETAS IMPORTADAS </Text>
+                <View style={styles.headerBorderImport}>
+                    <Text style={styles.headerTextImport}> TARJETAS IMPORTADAS </Text>
                 </View>
 
           <View style={styles.buscar}>

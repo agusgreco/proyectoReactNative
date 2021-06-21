@@ -113,7 +113,7 @@ keyExtractor = (item, index) => item.login.uuid;
         return (
 
             <View style={styles.container}>
-                <View style={styles.headerBorder}>
+                <View style={styles.headerBorderImport}>
                     <Text style={styles.headerText}>PAPELERA DE RECICLAJE</Text>
                 </View>
             {/* {valores} */}

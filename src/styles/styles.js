@@ -77,6 +77,7 @@ adicional:{
     marginTop:10,
     height: 30,
     borderColor: 'black',
+    paddingHorizontal: 20,
 },
 
 agregar:{
@@ -134,6 +135,41 @@ headerText:{
     // fontFamily: "calibri",
     fontWeight: "bold",
     fontSize: 20,
+},
+
+headerTextImport:{
+    color: "#A9A9A9",
+    // fontFamily: "calibri",
+    fontWeight: "bold",
+    fontSize: 20,
+
+},
+
+headerBorderImport:{
+    paddingVertical: 15,
+    flex: 1,
+    height: 200,
+     backgroundColor: '#111010',
+     justifyContent: 'center',
+     alignItems: 'center',
+},
+
+acercaDe:{
+    backgroundColor: '#111010',
+    height: 500,
+    alignItems: "center",
+    justifyContent: 'center',
+
+},
+
+acercaDeText:{
+    color: "#A9A9A9",
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: 'center',
+    fontSize: 30,   
+    paddingVertical: 30, 
+
 },
 
 importTexto:{
