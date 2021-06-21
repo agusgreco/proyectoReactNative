@@ -116,7 +116,7 @@ keyExtractor = (item, index) => item.login.uuid;
                 <View style={styles.headerBorderImport}>
                     <Text style={styles.headerText}>PAPELERA DE RECICLAJE</Text>
                 </View>
-            {/* {valores} */}
+              {/* {valores} */}
 
                 <View style={styles.listContainer}>
                     { this.state.activity 
@@ -136,16 +136,16 @@ keyExtractor = (item, index) => item.login.uuid;
                 {/* <Button title="Obtener todas las tarjetas borradas" onPress={() => this.getDataBorrada()}/>
                 <Button title="Obtener tarjetas borradas" onPress={() => this.getDataUnBorrada()}/> */}
 
-<View style={styles.botonBackground}>
+                <View style={styles.botonBackground}>
 
-                <TouchableOpacity style={styles.botones} onPress={() => this.getDataBorrada()}>
-                    <View><Text style={styles.recycleTexto}>OBTENER LAS TARJETAS BORRADAS</Text></View>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.botones} onPress={() => this.getDataBorrada()}>
+                        <View><Text style={styles.recycleTexto}>OBTENER LAS TARJETAS BORRADAS</Text></View>
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={styles.botones} onPress={() => this.getDataUnBorrada()}>
-                    <View><Text style={styles.recycleTexto}>OBTENER TARJETAS BORRADAS</Text></View>
-                </TouchableOpacity>
-</View>
+                    {/* <TouchableOpacity style={styles.botones} onPress={() => this.getDataUnBorrada()}>
+                        <View><Text style={styles.recycleTexto}>OBTENER TARJETAS BORRADAS</Text></View>
+                    </TouchableOpacity> */}
+                </View>
                 <Modal visible={this.state.showModal}
                    transparent={true}
                    animationType="fade" //slide o fade
@@ -182,24 +182,31 @@ keyExtractor = (item, index) => item.login.uuid;
                        </View>
                    </View>
                 </Modal>
-              
-                <View style={styles.botonBackground}>
-                <TouchableOpacity style={styles.botones} onPress={() => this.setState({usuariosBorrados:[]})}>
-                    <View><Text style={styles.recycleTexto}>BORRAR DEFINITIVAMENTE LOS DATOS</Text></View>
-                </TouchableOpacity>
-                </View>
-
-            <Text style={styles.textoMenu}
-              onPress={ () => this.props.navigation.navigate('Screen Import')}
-            >IMPORTAR TARJETAS</Text>
-            <Text style={styles.textoMenu}
-              onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
-            >TARJETAS IMPORTADAS</Text>
-            <Text style={styles.textoMenu}
-              onPress={ () => this.props.navigation.navigate('Screen Menu')}
-            >MENU</Text>
             
-            </View>
+                <View style={styles.botonBackground}>
+                  <TouchableOpacity style={styles.botones} onPress={() => this.setState({usuariosBorrados:[]})}>
+                      <View><Text style={styles.recycleTexto}>BORRAR DEFINITIVAMENTE LOS DATOS</Text></View>
+                  </TouchableOpacity>
+                </View>
+              
+              <View style={styles.touchbarContainer}>
+                <TouchableOpacity  style={styles.menu}>
+                  <Text style={styles.textoMenu}
+                    onPress={ () => this.props.navigation.navigate('Screen Menu')}
+                  >MENU</Text>
+                </TouchableOpacity>   
+                <TouchableOpacity style={styles.icons}>
+                  <Text style={styles.textoMenu}
+                    onPress={ () => this.props.navigation.navigate('Screen Import')}
+                  >IMPORTAR TARJETAS</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.icons}>
+                  <Text style={styles.textoMenu}
+                    onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
+                  > IMPORTADAS</Text>
+                </TouchableOpacity>                   
+              </View>
+           </View>
         )
     }
  }

@@ -50,9 +50,6 @@ import {
         }
  }
 
-
-
-
     async storeBorrarData(){
         try{
             const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
@@ -63,9 +60,6 @@ import {
           console.log(error);
         }
       }
-
-
-
 
     // async storeBorrarUnData(){
     //   try{
@@ -117,7 +111,6 @@ import {
 
 
 
-
       // borrarUser(usuario){
       //   let usuariosImportados = this.state.usuariosImportados
       //   let res = usuariosImportados.filter((usuariosImportados) => {
@@ -136,8 +129,6 @@ import {
       //    storeDataBorrado
       //   }
         
-
-
 
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});
@@ -297,14 +288,16 @@ import {
          <View style={styles.itemContainer}> 
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
-                <Image style={styles.imageModal} source={{uri: item.picture.thumbnail}}/> 
+                <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
                 <Text style={styles.itemText}> 
                     {item.name.last}, {item.name.first} 
+                </Text>
+                <Text style={styles.itemText}> 
+                    ({item.dob.age} years old)
                 </Text>
             </View>
             </TouchableOpacity>
          </View>
-
         )
     }
 
@@ -317,130 +310,132 @@ import {
 
         return (
 
-            <View style={styles.container}>
-                <View style={styles.headerBorderImport}>
-                    <Text style={styles.headerTextImport}> TARJETAS IMPORTADAS </Text>
-                </View>
+          <View style={styles.container}>
+              <View style={styles.headerBorderImport}>
+                  <Text style={styles.headerTextImport}> TARJETAS IMPORTADAS </Text>
+              </View>
 
-          <View style={styles.buscar}>
-            <Text style={styles.buscarTextNombre}>Nombre:</Text>
-            <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorNombre(escrito)}>
-            </TextInput> 
+              <View style={styles.buscar}>
+                <Text style={styles.buscarTextNombre}>Nombre:</Text>
+                  <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorNombre(escrito)}>
+                </TextInput> 
 
-            <Text style={styles.buscarText} >Apellido:</Text>
-            <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorApellido(escrito)}>
-            </TextInput> 
+                <Text style={styles.buscarText} >Apellido:</Text>
+                  <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorApellido(escrito)}>
+                </TextInput> 
 
-            <Text style={styles.buscarText}>Pais o Ciudad:</Text>
-            <TextInput style={styles.buscarSquarePais} onChangeText={(escrito) => this.filtrarPorPaisOEstado(escrito)}>
-            </TextInput> 
-          </View>
+                <Text style={styles.buscarText}>Pais o Ciudad:</Text>
+                  <TextInput style={styles.buscarSquarePais} onChangeText={(escrito) => this.filtrarPorPaisOEstado(escrito)}>
+                </TextInput> 
+              </View>
 
-
-          
-
-                <View style={styles.listContainer}>
-                    { this.state.activity 
-                        ?<ActivityIndicator color="blue"
-                            size={60}/>
-
-                        :<FlatList
-                            data={this.state.usuariosImportados}
-                            keyExtractor={this.keyExtractor}
-                            renderItem={this.renderItem}
-                            // numberColumns= {2}
-                            ItemSeparatorComponent={this.separator}
-                         />
+              <View style={styles.listContainer}>
+                  { this.state.activity 
+                    ?<ActivityIndicator color="blue"
+                        size={60}/>
+                    :<FlatList
+                        data={this.state.usuariosImportados}
+                        keyExtractor={this.keyExtractor}
+                        renderItem={this.renderItem}
+                        // numberColumns= {2}
+                        ItemSeparatorComponent={this.separator}
+                      />
                     }
-                </View>
+              </View>
 
-          <View style={styles.botonBackground}>
-                {/* <Button style={styles.guardarDatos} title="Obtener resultados" onPress={() => this.getData()}/> */}
-                <TouchableOpacity style={styles.botones} onPress={() => this.getData()}>
-                <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
-            </TouchableOpacity>
-              
-                {/* <TouchableOpacity onPress={() => this.setState({usuariosImportados:[]})}>
-                    <View><Text>ELIMINAR DATOS IMPORTADOS</Text></View>
-                </TouchableOpacity> */}
+              <View style={styles.botonBackground}>
+                 {/* <Button style={styles.guardarDatos} title="Obtener resultados" onPress={() => this.getData()}/> */}
+                 <TouchableOpacity style={styles.botones} onPress={() => this.getData()}>
+                   <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
+                  </TouchableOpacity>
 
-                <TouchableOpacity style={styles.botones} onPress={() => this.storeBorrarData()}>
+                    {/* <TouchableOpacity onPress={() => this.setState({usuariosImportados:[]})}>
+                        <View><Text>ELIMINAR DATOS IMPORTADOS</Text></View>
+                    </TouchableOpacity> */}
+
+                 <TouchableOpacity style={styles.botones} onPress={() => this.storeBorrarData()}>
                     <View><Text style={styles.recycleTexto}>ELIMINAR DATOS IMPORTADOS</Text></View>
-                </TouchableOpacity>
-         </View> 
-                <Modal visible={this.state.showModal}
-                   transparent={true}
-                   animationType="fade" //slide o fade
-                   >
-                   <View style={styles.modalContainer}> 
-                       <View style={styles.modal}>
-                       { this.state.selectedItem && 
-                       <>
-                           <Image style={styles.imageModal} source={{uri: this.state.selectedItem.picture.thumbnail}} />
-                           <Text style={styles.modalText}> 
-                               Nombre: {this.state.selectedItem && this.state.selectedItem.name.first + ' ' + this.state.selectedItem.name.last}
-                           </Text> 
-                           <Text style={styles.modalText}> 
-                               Email: {this.state.selectedItem && this.state.selectedItem.email}
-                           </Text>
-                           <Text style={styles.modalText}> 
-                               Age: {this.state.selectedItem && this.state.selectedItem.dob.age}
-                           </Text>
-                           <Text style={styles.modalText}> 
-                               Direccion: {this.state.selectedItem && this.state.selectedItem.location.street.name + ' ' + this.state.selectedItem.location.street.number + ' ' + this.state.selectedItem.location.city + ' ' + this.state.selectedItem.location.state + ' ' + this.state.selectedItem.location.postcode}
-                           </Text>
-                           <Text style={styles.modalText}> 
-                               Telefono: {this.state.selectedItem && this.state.selectedItem.phone}
-                           </Text>
-                           <Text style={styles.modalText}> 
-                               Fecha de registro: {this.state.selectedItem && this.state.selectedItem.registered.date}
-                           </Text>
-                           <Text style={styles.modalText}> 
-                               Datos adicionales: {}
-                               {/* <TextInput onChangeText={(escrito) => this.adicionar(escrito)}> </TextInput>  */}
-                               
-                           </Text>
-                           <Text style={styles.texto}> {this.state.textHandler} </Text>
-                               <TextInput style={styles.adicional} secureTextEntry={true} onChangeText={text => this.setState({textHandler:text})}/>
-                                <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}>
-                                    <View>
-                                    <Text style={styles.agregarTexto}>AGREGAR</Text>
-                                    </View>
-                                </TouchableOpacity>
+                  </TouchableOpacity>
+               </View> 
 
-                                {/* <Button title="BORRAR USUARIO" onPress={() => this.borrarUser()}/> */}
-                                {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(UsuarioBorrado, results)}/> */}
-                                {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData()}/> */}
+              <Modal 
+                 visible={this.state.showModal}
+                 transparent={true}
+                 animationType="fade" //slide o fade
+                >
+                 <View style={styles.modalContainer}> 
+                    <View style={styles.modal}>
+                     { this.state.selectedItem && 
+                     <>
+                      <Image style={styles.imageModal} source={{uri: this.state.selectedItem.picture.thumbnail}} />
+                      <Text style={styles.modalText}> 
+                          Nombre: {this.state.selectedItem && this.state.selectedItem.name.first + ' ' + this.state.selectedItem.name.last}
+                      </Text> 
+                      <Text style={styles.modalText}> 
+                          Email: {this.state.selectedItem && this.state.selectedItem.email}
+                      </Text>
+                      <Text style={styles.modalText}> 
+                          Age: {this.state.selectedItem && this.state.selectedItem.dob.age}
+                      </Text>
+                      <Text style={styles.modalText}> 
+                          Direccion: {this.state.selectedItem && this.state.selectedItem.location.street.name + ' ' + this.state.selectedItem.location.street.number + ' ' + this.state.selectedItem.location.city + ' ' + this.state.selectedItem.location.state + ' ' + this.state.selectedItem.location.postcode}
+                      </Text>
+                      <Text style={styles.modalText}> 
+                          Telefono: {this.state.selectedItem && this.state.selectedItem.phone}
+                      </Text>
+                      <Text style={styles.modalText}> 
+                          Fecha de registro: {this.state.selectedItem && this.state.selectedItem.registered.date}
+                      </Text>
+                      <Text style={styles.modalText}> 
+                          Datos adicionales: {}
+                          {/* <TextInput onChangeText={(escrito) => this.adicionar(escrito)}> </TextInput>  */}
+                      </Text>
+                      <Text style={styles.texto}> {this.state.textHandler} </Text>
+                      <TextInput style={styles.adicional} secureTextEntry={true} onChangeText={text => this.setState({textHandler:text})}/>
+                      <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}>
+                        <View>
+                          <Text style={styles.agregarTexto}>AGREGAR</Text>
+                        </View>
+                      </TouchableOpacity>
+                              {/* <Button title="BORRAR USUARIO" onPress={() => this.borrarUser()}/> */}
+                              {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(UsuarioBorrado, results)}/> */}
+                              {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData()}/> */}
+                              {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(item)}/> */}
+                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarUnData(item)}>
+                        <View>
+                          <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
+                        </View>
+                      </TouchableOpacity>
+                         </> 
+                     }
+                      <Text style={styles.closeButtonModal} onPress={() => this.setState({showModal: false})}> 
+                         X 
+                      </Text>
+                     </View>
+                    </View>
+               </Modal>
 
-                                {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(item)}/> */}
+               <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#A9A9A9', height: 100}}>
+                 <TouchableOpacity style={{height: 100, width: 100}}>
+                   <Text style={styles.textoMenu}
+                      onPress={ () => this.props.navigation.navigate('Screen Menu')}
+                    > MENU </Text>
+                 </TouchableOpacity>
+                 <TouchableOpacity style={styles.icons}>
+                 <Text style={styles.textoMenu}
+                    onPress={ () => this.props.navigation.navigate('Screen Import')}
+                  >IMPORTAR </Text>
+                 </TouchableOpacity>
+                 <TouchableOpacity style={styles.icons}>
+                 <Text style={styles.textoMenu}
+                    onPress={ () => this.props.navigation.navigate('Screen Recycle')}
+                  >PAPELERA </Text>
+                 </TouchableOpacity>
+                 
+                 
+               </View>
 
-                                <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarUnData(item)}>
-                                    <View>
-                                    <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
-                                    </View>
-                                </TouchableOpacity>
-
-
-
-                           </> 
-                       }
-                           <Text style={styles.closeButtonModal} 
-                               onPress={() => this.setState({showModal: false})}> 
-                               X 
-                           </Text>
-                       </View>
-                   </View>
-                </Modal>
-
-            <Text style={styles.textoMenu}
-              onPress={ () => this.props.navigation.navigate('Screen Import')}
-            >IMPORTAR TARJETAS</Text>
-            <Text style={styles.textoMenu}
-              onPress={ () => this.props.navigation.navigate('Screen Recycle')}
-            >PAPELERA DE RECICLAJE</Text>
-            <Text style={styles.textoMenu}
-              onPress={ () => this.props.navigation.navigate('Screen Menu')}
-            >MENU</Text>
+                
             
             </View>
 

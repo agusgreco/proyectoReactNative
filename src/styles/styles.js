@@ -51,11 +51,7 @@ recycleModal: {
     borderStyle: 'solid',
     borderColor: 'black'
 },
-itemText: {
-    fontSize: 20,
-    color: 'white',
-    paddingLeft: 30,
-},
+
 modalText: {
     fontSize: 20,
     color: 'black',
@@ -103,11 +99,6 @@ borrar:{
     width: "50%"
 },
 
-imageModal: {
-    width: 150,
-    height: 150,
-    alignItems: 'center',
-},
 closeButtonModal: {
     position: 'absolute',
     right: 20,
@@ -173,12 +164,10 @@ acercaDeText:{
 },
 
 importTexto:{
-fontSize: 23,
-paddingVertical: 10,
-textAlign: "center",
-color: "#A9A9A9"
-
-
+    fontSize: 23,
+    paddingVertical: 10,
+    textAlign: "center",
+    color: "#A9A9A9"
 },
 
 importScreen:{
@@ -188,10 +177,7 @@ backgroundColor: "#111010"
 buscar:{
     backgroundColor: "#111010" 
     
-
 },
-
-
 
 guardarDatosTexto:{
     fontSize: 20,
@@ -222,10 +208,6 @@ guardarDatos:{
     alignItems: 'center',
     marginHorizontal:30,
     marginVertical:20,
-
-
-
-
 },
 
 botones:{
@@ -253,19 +235,46 @@ headerStyle:{
     backgroundColor: '#212816',
     justifyContent: 'center',
     alignItems: 'center',
+},
 
-
+touchbarContainer: {
+    flex: 1, 
+    flexDirection: 'row', 
+    backgroundColor: '#A9A9A9',
+    height: 50
 
 },
 
 textoMenu:{
-    fontSize:18,
+    fontSize:15,
     // fontWeight:'bold',
-    color:'#A9A9A9',
+    color: 'black', 
     textAlign: "center",
-    backgroundColor: "#111010",
+    // backgroundColor: '#A9A9A9', 
     paddingVertical: 13,
-    
+    height: 50,
+},
+
+icons: {
+    width: 160,
+    height: 50,
+    left: 15,
+    backgroundColor: '#A9A9A9',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // borderColor: 'black',
+},
+
+menu: {
+    width: 70,
+    height: 50,
+    left: 5,
+    right: 10,
+    backgroundColor: '#A9A9A9',
+    alignItems: 'center',
+    justifyContent: 'center'
+    // borderWidth: 2,
+    // borderColor: 'black',
 },
 
 textoDeMenu:{
@@ -290,9 +299,6 @@ buscarTextNombre:{
     marginTop: 15,
     fontWeight: "bold",
     color: "white"
-
-
-
 },
 
 
@@ -357,23 +363,41 @@ inputstyle: {
     borderWidth: 2, 
     
 },
+
+imageModal: {
+    width: 200,
+    height: 200,
+    // alignItems: 'center',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 5,
+    paddingBottom: 5,
+},
+
 card: {
-    flexDirection: 'row',
-    backgroundColor: 'black',
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#A9A9A9',
     borderStyle: 'solid',
     borderWidth: 1,
     borderRadius: 10,
     margin: 5,
-    width: 370,
-    height: 200,
+    width: 300,
+    height: 300,
     alignItems: "center",
     padding: 10,
-    // justifyContent: 'center',
-    // // shadowColor: 'black',
+    justifyContent: 'center',
+    // shadowColor: 'black',
     flex: 1,
-    // justifyContent: 'flex-end',
-    alignItems: 'center',
+},
 
+itemText: {
+    fontSize: 17,
+    color: 'black',
+    // alignItems: "center",
+    // justifyContent: 'center',
+    paddingTop: 5,
 },
 
 separator: {

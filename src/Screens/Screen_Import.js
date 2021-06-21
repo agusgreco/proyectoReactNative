@@ -63,16 +63,18 @@ render(){
     return(
        
        <View style={styles.container}>
-     <View style={styles.headerBorderImport}>
-
+          <View style={styles.headerBorderImport}>
             <Text style={styles.headerText}>LAS TARJETAS PARA IMPORTAR</Text>
-    </View>
-    <View style={styles.importScreen}>
+          </View>
+
+          <View style={styles.importScreen}>
             {valores}
             <TouchableOpacity style={styles.guardarDatos} onPress={this.storeData.bind(this)}>
-                <View><Text style={styles.guardarDatosTexto} >GUARDAR DATOS</Text></View>
+                {/* <View> */}
+                  <Text style={styles.guardarDatosTexto} >GUARDAR DATOS</Text>
+                  {/* </View> */}
             </TouchableOpacity>
-            </View>
+           </View>
 
             {/* <Button title="Apreta para animar!" onPress={this.topDown}>
               <Animated.View style={{
@@ -83,16 +85,25 @@ render(){
               }}></Animated.View>
             </Button> */}
 
-            <Text style={styles.textoMenu}
-              onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
-            >TARJETAS IMPORTADAS</Text>
-            <Text style={styles.textoMenu}
-              onPress={ () => this.props.navigation.navigate('Screen Recycle')}
-            >PAPELERA DE RECICLAJE</Text>
-            <Text style={styles.textoMenu}
-              onPress={ () => this.props.navigation.navigate('Screen Menu')}
-            >MENU</Text>
-            {/* no se si esta bien */}
+            <View style={styles.touchbarContainer}>
+              <TouchableOpacity style={styles.menu}>
+                <Text style={styles.textoMenu}
+                    onPress={ () => this.props.navigation.navigate('Screen Menu')}
+                  > MENU</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.icons}>
+                <Text style={styles.textoMenu}
+                    onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
+                  > IMPORTADAS</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.icons}>
+                <Text style={styles.icons}
+                    onPress={ () => this.props.navigation.navigate('Screen Recycle')}
+                  > PAPELERA </Text>
+              </TouchableOpacity>
+            </View>
+              
+              {/* no se si esta bien */}
 
             {/* <View style={styles.botonmenu}>
               <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
