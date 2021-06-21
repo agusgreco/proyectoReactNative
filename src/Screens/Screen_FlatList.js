@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {getData} from '../api/RandomUsers';
 import {styles} from '../styles/styles';
+import { Card } from '../Components/Card';
 
 // import {ModalInfo} from '../Components/ModalInfo'
 import { 
@@ -16,14 +17,15 @@ import {
     TouchableOpacity, 
     TouchableWithoutFeedback,
     Button,
-    StyleSheet
+    StyleSheet,
+    Animated
 } from 'react-native';
 
  export class Screen_Flatlist extends Component {
      constructor(){
          super();
          this.state = {
-            usuariosImportados: [],
+             usuariosImportados: [],
              activity: false,
              showModal: false,
              selectedItem: null,
@@ -272,21 +274,19 @@ import {
     //     }
     //   }
 
+    // renderItem = ({item}) => {
+    renderItem = () => {
 
+      const valores = this.state.usuariosImportados
+      const cards = valores.map((item, id) => <Card key={id} value={item}/> )
 
-    renderItem = ({item}) => {
         return(
-      //     <View style={styles.container}> 
-      //     <TouchableOpacity onPress={ () => this.showModal(item)}> 
-      //     <View style={styles.card}> 
-      //     <Image style={styles.image} source={{uri: item.picture.thumbnail}}/> 
-      //         <Text style={styles.modalText}> {item.name.last}, {item.name.first} </Text>
-      //     </View>
-      //     </TouchableOpacity>
-
-      //  </View>
+        //ESTE ES EL ORIGINAL:
          <View style={styles.itemContainer}> 
-            <TouchableOpacity onPress={ () => this.showModal(item)}> 
+          
+          {cards}
+
+            {/* <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
                 <Text style={styles.itemText}> 
@@ -296,8 +296,19 @@ import {
                     ({item.dob.age} years old)
                 </Text>
             </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
          </View>
+
+
+      //     <View style={styles.container}> 
+      //     <TouchableOpacity onPress={ () => this.showModal(item)}> 
+      //     <View style={styles.card}> 
+      //     <Image style={styles.image} source={{uri: item.picture.thumbnail}}/> 
+      //         <Text style={styles.modalText}> {item.name.last}, {item.name.first} </Text>
+      //     </View>
+      //     </TouchableOpacity>
+      //  </View>
+
         )
     }
 
