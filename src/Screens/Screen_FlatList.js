@@ -274,19 +274,19 @@ import {
     //     }
     //   }
 
-    // renderItem = ({item}) => {
-    renderItem = () => {
+    renderItem = ({item}) => {
+    // renderItem = () => {
 
-      const valores = this.state.usuariosImportados
-      const cards = valores.map((item, id) => <Card key={id} value={item}/> )
+      // const valores = this.state.usuariosImportados
+      // const cards = valores.map((item, id) => <Card key={id} value={item}/> )
 
         return(
         //ESTE ES EL ORIGINAL:
          <View style={styles.itemContainer}> 
           
-          {cards}
+          {/* {cards} */}
 
-            {/* <TouchableOpacity onPress={ () => this.showModal(item)}> 
+            <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
                 <Text style={styles.itemText}> 
@@ -296,7 +296,7 @@ import {
                     ({item.dob.age} years old)
                 </Text>
             </View>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
          </View>
 
 
@@ -372,7 +372,7 @@ import {
               <Modal 
                  visible={this.state.showModal}
                  transparent={true}
-                 animationType="fade" //slide o fade
+                 animationType="slide" //slide o fade
                 >
                  <View style={styles.modalContainer}> 
                     <View style={styles.modal}>
