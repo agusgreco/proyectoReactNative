@@ -176,16 +176,17 @@ importTexto:{
 fontSize: 23,
 paddingVertical: 10,
 textAlign: "center",
+color: "#A9A9A9"
 
 
 },
 
 importScreen:{
-backgroundColor: "#A9A9A9" 
+backgroundColor: "#111010" 
 },
 
 buscar:{
-    backgroundColor: "#808080" 
+    backgroundColor: "#111010" 
     
 
 },
@@ -239,7 +240,7 @@ botones:{
 },
 
 botonBackground:{
-    backgroundColor: "#A9A9A9"
+    backgroundColor: "#111010"
 
 
 },
@@ -280,6 +281,7 @@ textoDeMenu:{
 buscarText:{
     textAlign: "center",
     fontWeight: "bold",
+    color: "white"
 
 },
 
@@ -287,6 +289,8 @@ buscarTextNombre:{
     textAlign: "center",
     marginTop: 15,
     fontWeight: "bold",
+    color: "white"
+
 
 
 },
@@ -339,7 +343,7 @@ listContainer: {
    // height: 500,
    justifyContent: 'center',
    alignItems: 'center',
-   backgroundColor:'#A9A9A9',
+   backgroundColor:'#111010',
 
 },
 texto: {
