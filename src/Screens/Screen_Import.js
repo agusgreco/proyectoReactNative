@@ -43,14 +43,21 @@ async storeData(){
     }
   }
 
-  topDown= () => {
+  position = new Animated.Value(0);
+  rotacion = this.position.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+   })
+
+  flip = () => {
     Animated.timing(this.position, {
-      toValue: this.state.toValue,
-      duration: 800, 
-      easing: Easing.elastic(4),
+      toValue: 1,
+      duration: 4000,
+      friction: 3,
+      easing: Easing.elastic(3),
       useNativeDriver: false
-    }).start();
-    this.setState({toValue: this.position==1? 1.2 :1})
+     }).start()
+    // this.setState({toValue: this.position==1? 1.2 :1})
   }
 
 render(){
@@ -68,13 +75,23 @@ render(){
           </View>
 
           <View style={styles.importScreen}>
-            {valores}
-            <TouchableOpacity style={styles.guardarDatos} onPress={this.storeData.bind(this)}>
+          {valores}
+          <Animated.View style={{
+            backgroundColor: '#111010',
+            left: this.position,
+            transform: [
+              {rotateX: this.rotacion}
+            ]
+          }}>
+            <TouchableOpacity style={styles.guardarDatos} onPress={this.storeData.bind(this), this.flip}>
                 {/* <View> */}
                   <Text style={styles.guardarDatosTexto} >GUARDAR DATOS</Text>
                   {/* </View> */}
             </TouchableOpacity>
-           </View>
+            </Animated.View>
+          </View>
+          
+            
 
             {/* <Button title="Apreta para animar!" onPress={this.topDown}>
               <Animated.View style={{
