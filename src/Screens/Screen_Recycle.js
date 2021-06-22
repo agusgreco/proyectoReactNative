@@ -25,7 +25,7 @@ import {
             usuarioBorrado: [],
             showModal: false,
             activity: false,
-
+            selectedItem: null,
 
          }
      }
@@ -52,19 +52,37 @@ import {
  }
 
 
- async getUnDataBorrada(){
+//  async getUnDataBorrada(){
+//   try{
+//     const resultado = await AsyncStorage.getItem('UsuarioBorrado');
+//     if(resultado !== null){
+//       this.setState({usuarioBorrado: JSON.parse(resultado)});
+//       console.log(resultado)
+//     }else{
+//       console.log('no se encontro')
+//     }
+//   }catch(error){
+//     console.log(error);
+//   }
+// }
+
+
+async borrarDefinitivo(seleccionado){
   try{
-    const resultado = await AsyncStorage.getItem('UsuarioBorrado');
-    if(resultado !== null){
-      this.setState({usuarioBorrado: JSON.parse(resultado)});
-      console.log(resultado)
-    }else{
-      console.log('no se encontro')
-    }
+
+    let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
+      return( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+  })
+//   let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
+//     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
+// })
+       
+      this.setState({ usuariosBorrados: res})
   }catch(error){
     console.log(error);
   }
 }
+
 
 //  async getDataUnBorrada(){
 //   try{
@@ -175,6 +193,14 @@ keyExtractor = (item, index) => item.login.uuid;
                            </Text>
                                 </> 
                        }
+
+                       
+                      <TouchableOpacity style={styles.borrar} onPress={() => this.borrarDefinitivo(this.state.selectedItem)}>
+                          <View>
+                            <Text style={styles.agregarTexto}>BORRAR DEFINITIVAMENTE USUARIO</Text>
+                          </View>
+                          </TouchableOpacity>
+
                            <Text style={styles.closeButtonModal} 
                                onPress={() => this.setState({showModal: false})}> 
                                X 
@@ -183,11 +209,11 @@ keyExtractor = (item, index) => item.login.uuid;
                    </View>
                 </Modal>
             
-                <View style={styles.botonBackground}>
+                {/* <View style={styles.botonBackground}>
                   <TouchableOpacity style={styles.botones} onPress={() => this.setState({usuariosBorrados:[]})}>
                       <View><Text style={styles.recycleTexto}>BORRAR DEFINITIVAMENTE LOS DATOS</Text></View>
                   </TouchableOpacity>
-                </View>
+                </View> */}
               
               <View style={styles.touchbarContainer}>
                 <TouchableOpacity  style={styles.menu}>

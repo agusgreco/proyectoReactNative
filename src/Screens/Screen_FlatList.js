@@ -75,6 +75,7 @@ import {
       })
             // const seleccionado=this.state.seleccionado
             const jsonUsuariosBorrados2 = JSON.stringify(notres);
+            
             // const jsonUsuariosBorrados2 = JSON.stringify(this.state.seleccionado.map((seleccionado) => this.state.usuariosImportados[seleccionado]));
             // const jsonUsuariosBorrados2 = JSON.stringify(notres.map((seleccionado) =>  <Text key={seleccionado.login.uuid}  style={styles.importTexto}>{seleccionado.name.first} {seleccionado.name.last}</Text>));
 
@@ -82,6 +83,25 @@ import {
             //   <Text key={seleccionado.login.uuid}
             //   style={styles.importTexto}>{seleccionado.name.first} {seleccionado.name.last}</Text>
             //   )
+
+            // agregarTarjetas(){
+            //   console.log("se agregaron 6 tarjetas")
+            //   fetch("https://randomuser.me/api/?results=6")
+            //   .then(result => result.json())
+            //   .then(data => {
+            //     {data.results.map((unaTarjeta) =>{
+            //       this.state.datos.push(unaTarjeta)
+            //   })}
+            //   this.setState({datos:this.state.datos});
+            //   })
+            // }
+
+
+            // {this.state.datos.map((unaTarjeta, idx) =>(
+            //   <div className="unaTarjeta" key={idx}>
+            //     <Tarjeta tarjetaAMostrar={unaTarjeta} onBorrar={this.borrarItem.bind(this)}/>
+            //   </div>
+            //   )) }
 
             await AsyncStorage.setItem('UsuariosBorrados2', jsonUsuariosBorrados2)
              
