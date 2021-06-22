@@ -53,16 +53,16 @@ import {
         }
  }
 
-    async storeBorrarData(){
-        try{
-            const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
-            await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
-            this.setState({ usuariosImportados: []})
-            console.log(jsonUsuariosBorrados)
-        }catch(error){
-          console.log(error);
-        }
-      }
+    // async storeBorrarData(){
+    //     try{
+    //         const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
+    //         await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
+    //         this.setState({ usuariosImportados: []})
+    //         console.log(jsonUsuariosBorrados)
+    //     }catch(error){
+    //       console.log(error);
+    //     }
+    //   }
 
       async storeBorrarData2(seleccionado){
         try{
@@ -75,6 +75,14 @@ import {
       })
             // const seleccionado=this.state.seleccionado
             const jsonUsuariosBorrados2 = JSON.stringify(notres);
+            // const jsonUsuariosBorrados2 = JSON.stringify(this.state.seleccionado.map((seleccionado) => this.state.usuariosImportados[seleccionado]));
+            // const jsonUsuariosBorrados2 = JSON.stringify(notres.map((seleccionado) =>  <Text key={seleccionado.login.uuid}  style={styles.importTexto}>{seleccionado.name.first} {seleccionado.name.last}</Text>));
+
+            // const valores = this.state.usuarios.map(item =>
+            //   <Text key={seleccionado.login.uuid}
+            //   style={styles.importTexto}>{seleccionado.name.first} {seleccionado.name.last}</Text>
+            //   )
+
             await AsyncStorage.setItem('UsuariosBorrados2', jsonUsuariosBorrados2)
              
             this.setState({ usuariosImportados: res})
@@ -85,15 +93,6 @@ import {
         }
       }
 
-
-           
-     borrarItem(idTarjeta){
-      let resultado = this.state.datos.filter( (dato) => {
-        return dato.id !== idTarjeta
-      });
-      this.setState({datos: resultado});
-      console.log(this.state.datos)
-   }
 
     // async storeBorrarUnData(){
     //   try{
@@ -395,10 +394,10 @@ import {
                     {/* <TouchableOpacity onPress={() => this.setState({usuariosImportados:[]})}>
                         <View><Text>ELIMINAR DATOS IMPORTADOS</Text></View>
                     </TouchableOpacity> */}
-
+{/* 
                  <TouchableOpacity style={styles.botones} onPress={() => this.storeBorrarData()}>
                     <View><Text style={styles.recycleTexto}>ELIMINAR DATOS IMPORTADOS</Text></View>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                </View> 
 
               <Modal 
