@@ -7,9 +7,7 @@ import {
     View,
     Text,
     Animated,
-    Easing,
-    TouchableOpacity,
-    TouchableWithoutFeedback
+    Easing
 } from 'react-native';
 
  export class Screen_Menu extends Component {
@@ -19,6 +17,7 @@ import {
            
         }
       }
+
 
      position = new Animated.Value(0);
      
