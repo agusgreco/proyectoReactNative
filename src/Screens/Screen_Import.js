@@ -85,7 +85,7 @@ render(){
               }}></Animated.View>
             </Button> */}
 
-            <View style={styles.touchbarContainer}>
+            {/* <View style={styles.touchbarContainer}>
               <TouchableOpacity style={styles.menu}>
                 <Text style={styles.textoMenu}
                     onPress={ () => this.props.navigation.navigate('Screen Menu')}
@@ -101,7 +101,7 @@ render(){
                     onPress={ () => this.props.navigation.navigate('Screen Recycle')}
                   > PAPELERA </Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
               
               {/* no se si esta bien */}
 
