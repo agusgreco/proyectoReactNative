@@ -258,7 +258,7 @@ headerStyle:{
 },
 
 touchbarContainer: {
-    flex: 1, 
+    flex: 3, 
     flexDirection: 'row', 
     backgroundColor: '#A9A9A9',
     height: 50
