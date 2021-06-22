@@ -58,7 +58,7 @@ textoDeMenu:{
     // backgroundColor:'rgba(0,0,0,0.3)'
 },
 modal: {
-    height: "85%",
+    height: 700, // "85%",
     width: "100%",
     backgroundColor: '#A9A9A9', //'rgba(0,0,0,0.3)'
     justifyContent: 'center',
