@@ -76,20 +76,18 @@ export default class App extends Component {
         }}
         drawerContentOptions={{
         activeTintColor: "white",
-        // activeBackgroundColor: "blue",
         inactiveTintColor: 'black',
-        //itemStyle: {borderRadius: 10, borderWidth: 1},
         labelStyle: {fontSize: 15},
         // style: { }
         }}
         >
       <Drawer.Screen name='Screen Menu' component={Screen_Menu} options={{title: 'MENU'}}/>
-      <Drawer.Screen name='Screen Import' component={Screen_Import} options={{title: 'Importar Tarjetas'}}/>
+      <Drawer.Screen name='Screen Import' component={Screen_Import} options={{title: 'IMPORTAR'}}/>
       {/* <Drawer.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Screen_ViewImportedCards'}}/> */}
       {/* <Drawer.Screen name="Screen View Imported Cards" component={Screen_ViewImportedCards} initialParams={{valor:0}}/> */}
-      <Drawer.Screen name='Screen Flatlist' component={Screen_Flatlist} options={{title: 'Tarjetas Importadas'}}/>
-      <Drawer.Screen name='Screen Recycle' component={Screen_Recycle} options={{title: 'Papelera de Reciclaje'}}/>
-      <Drawer.Screen name='Screen AcercaDe' component={Screen_AcercaDe} options={{title: 'Acerca De'}}/>
+      <Drawer.Screen name='Screen Flatlist' component={Screen_Flatlist} options={{title: 'IMPORTADAS'}}/>
+      <Drawer.Screen name='Screen Recycle' component={Screen_Recycle} options={{title: 'PAPELERA'}}/>
+      <Drawer.Screen name='Screen AcercaDe' component={Screen_AcercaDe} options={{title: 'ACERCA DE'}}/>
 
     </Drawer.Navigator>
     </NavigationContainer> 
