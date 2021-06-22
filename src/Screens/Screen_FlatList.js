@@ -29,6 +29,7 @@ import {
              activity: false,
              showModal: false,
              selectedItem: null,
+             seleccionado: [],
              usuariosBorrados: [],
              usuarioBorrado: [],
              usuariosVisualizados: [],
@@ -57,6 +58,21 @@ import {
             const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
             await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
             this.setState({ usuariosImportados: []})
+            console.log(jsonUsuariosBorrados)
+        }catch(error){
+          console.log(error);
+        }
+      }
+
+      async storeBorrarData2(seleccionado){
+        try{
+         const seleccionado=this.state.seleccionado
+            const jsonUsuariosBorrados = JSON.stringify(this.state.seleccionado);
+            await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
+            let res = this.state.usuariosImportados.filter((usuariosImportados) => {
+              return( seleccionado.login.uuid!== usuariosImportados.login.uuid)
+          })
+            this.setState({ usuariosImportados: res})
             console.log(jsonUsuariosBorrados)
         }catch(error){
           console.log(error);
@@ -412,11 +428,18 @@ import {
                               {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(UsuarioBorrado, results)}/> */}
                               {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData()}/> */}
                               {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(item)}/> */}
-                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarUnData(item)}>
+                      {/* <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarUnData(item)}>
+                        <View>
+                          <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
+                        </View>
+                      </TouchableOpacity> */}
+
+                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarData2(seleccionado)}>
                         <View>
                           <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
                         </View>
                       </TouchableOpacity>
+
                          </> 
                      }
                       <Text style={styles.closeButtonModal} onPress={() => this.setState({showModal: false})}> 
