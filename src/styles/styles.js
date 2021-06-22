@@ -99,6 +99,7 @@ modalText: {
 },
 
 adicional:{
+    fontSize: 20,
     borderRadius: 30,
     backgroundColor: "white",
     marginHorizontal: 30,

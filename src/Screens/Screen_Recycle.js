@@ -109,10 +109,22 @@ keyExtractor = (item, index) => item.login.uuid;
     renderItem = ({item}) => {
         return(
          <View style={styles.container}> 
+            {/* <TouchableOpacity onPress={ () => this.showModal(item)}> 
+            <View style={styles.card}> 
+            <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
+                <Text style={styles.itemText}> {item.name.last}, {item.name.first} </Text>
+            </View>
+            </TouchableOpacity> */}
+
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
-            <Image style={styles.imageModal} source={{uri: item.picture.thumbnail}}/> 
-                <Text style={styles.itemText}> {item.name.last}, {item.name.first} </Text>
+                <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
+                <Text style={styles.itemText}> 
+                    {item.name.last}, {item.name.first} 
+                </Text>
+                <Text style={styles.itemText}> 
+                    ({item.dob.age} years old)
+                </Text>
             </View>
             </TouchableOpacity>
 
@@ -174,7 +186,7 @@ keyExtractor = (item, index) => item.login.uuid;
                        <View style={styles.modal}>
                        { this.state.selectedItem && 
                        <>
-                           <Image style={styles.imageModal} source={{uri: this.state.selectedItem.picture.thumbnail}} />
+                           <Image style={styles.imageModal} source={{uri: this.state.selectedItem.picture.large}} />
                            <Text style={styles.modalText}> 
                                Nombre: {this.state.selectedItem && this.state.selectedItem.name.first + ' ' + this.state.selectedItem.name.last}
                            </Text> 

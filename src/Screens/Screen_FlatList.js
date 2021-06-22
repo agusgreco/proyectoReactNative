@@ -470,8 +470,6 @@ import {
                       </TouchableOpacity> */}
 
                       <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarData2(this.state.selectedItem)}>
-
-
                         <View>
                           <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
                         </View>
