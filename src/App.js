@@ -69,13 +69,21 @@ export default class App extends Component {
         initialRouteName='Screen Menu' 
         drawerPosition='left'
         drawerType='slide' 
-        overlayColor='grey'
+        overlayColor='black'
         drawerStyle={{
-               backgroundColor: "white",
-               width: 250
-             }}
+               backgroundColor: "grey",
+               width: 220
+        }}
+        drawerContentOptions={{
+        activeTintColor: "white",
+        // activeBackgroundColor: "blue",
+        inactiveTintColor: 'black',
+        //itemStyle: {borderRadius: 10, borderWidth: 1},
+        labelStyle: {fontSize: 15},
+        // style: { }
+        }}
         >
-      <Drawer.Screen name='Screen Menu' component={Screen_Menu} options={{title: 'Menu'}}/>
+      <Drawer.Screen name='Screen Menu' component={Screen_Menu} options={{title: 'MENU'}}/>
       <Drawer.Screen name='Screen Import' component={Screen_Import} options={{title: 'Importar Tarjetas'}}/>
       {/* <Drawer.Screen name='Screen View Imported Cards' component={Screen_ViewImportedCards} options={{title: 'Screen_ViewImportedCards'}}/> */}
       {/* <Drawer.Screen name="Screen View Imported Cards" component={Screen_ViewImportedCards} initialParams={{valor:0}}/> */}
