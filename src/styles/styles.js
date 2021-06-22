@@ -156,6 +156,15 @@ headerTextImport:{
 
 },
 
+headerTextAcercaDe:{
+    color: "#A9A9A9",
+    // fontFamily: "calibri",
+    fontWeight: "bold",
+    fontSize: 35,
+    marginTop: 60,
+
+},
+
 headerBorderImport:{
     paddingVertical: 15,
     flex: 1,
@@ -266,6 +275,8 @@ touchbarContainer: {
 },
 
 textoMenu:{
+    backgroundColor: "#111010",
+
     fontSize:15,
     // fontWeight:'bold',
     color: 'black', 
@@ -273,6 +284,28 @@ textoMenu:{
     // backgroundColor: '#A9A9A9', 
     paddingVertical: 13,
     height: 50,
+},
+
+
+
+// goBack:{
+//     fontSize:15,
+//     // fontWeight:'bold',
+//     color: '#A9A9A9', 
+//     textAlign: "center",
+//     // backgroundColor: '#A9A9A9', 
+//     paddingVertical: 13,
+//     height: 50,
+// },
+goBack:{
+    fontSize:15,
+    // fontWeight:'bold',
+    color: '#A9A9A9', 
+    textAlign: "center",
+    backgroundColor: '#111010', 
+    paddingVertical: 13,
+    height: 100,
+    fontSize: 20,
 },
 
 icons: {

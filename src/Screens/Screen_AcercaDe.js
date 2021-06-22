@@ -24,7 +24,7 @@ import {
 
             <View style={styles.container}>
                 <View style={styles.headerBorderImport}>
-                    <Text style={styles.headerTextImport}>ACERCA DE</Text>
+                    <Text style={styles.headerTextAcercaDe}>ACERCA DE</Text>
                 </View>
 
                 <View style={styles.acercaDe}> 
@@ -33,11 +33,11 @@ import {
                     <Text style={styles.acercaDeText} >Ema Juarez</Text>
                 </View>
 
-                <View >
-                <Text style={styles.textoMenu}
+                <View style={styles.goBackView}>
+                <Text style={styles.goBack}
                   onPress={ () => this.props.navigation.goBack()}
                 >GO BACK</Text>
-                <Text style={styles.textoMenu}
+                {/* <Text style={styles.textoMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Import')}
                 >IMPORTAR TARJETAS</Text>
                 <Text style={styles.textoMenu}
@@ -48,7 +48,7 @@ import {
                 >PAPELERA DE RECICLAJE</Text>
                 <Text style={styles.textoMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Menu')}
-                >MENU</Text>
+                >MENU</Text> */}
                 </View>
 
 

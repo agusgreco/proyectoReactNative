@@ -486,7 +486,7 @@ import {
                     </View>
                </Modal>
 
-               <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#A9A9A9', height: 100}}>
+               {/* <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#A9A9A9', height: 100}}>
                  <TouchableOpacity style={{height: 100, width: 100}}>
                    <Text style={styles.textoMenu}
                       onPress={ () => this.props.navigation.navigate('Screen Menu')}
@@ -504,7 +504,7 @@ import {
                  </TouchableOpacity>
                  
                  
-               </View>
+               </View> */}
 
                 
             

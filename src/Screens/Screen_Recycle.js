@@ -78,6 +78,8 @@ async borrarDefinitivo(seleccionado){
 // })
        
       this.setState({ usuariosBorrados: res})
+      // this.setState({selectedItem: null})
+      
   }catch(error){
     console.log(error);
   }
@@ -215,7 +217,7 @@ keyExtractor = (item, index) => item.login.uuid;
                   </TouchableOpacity>
                 </View> */}
               
-              <View style={styles.touchbarContainer}>
+              {/* <View style={styles.touchbarContainer}>
                 <TouchableOpacity  style={styles.menu}>
                   <Text style={styles.textoMenu}
                     onPress={ () => this.props.navigation.navigate('Screen Menu')}
@@ -231,7 +233,7 @@ keyExtractor = (item, index) => item.login.uuid;
                     onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
                   > IMPORTADAS</Text>
                 </TouchableOpacity>                   
-              </View>
+              </View> */}
            </View>
         )
     }
