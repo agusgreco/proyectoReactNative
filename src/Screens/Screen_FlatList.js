@@ -66,18 +66,30 @@ import {
 
       async storeBorrarData2(seleccionado){
         try{
-         const seleccionado=this.state.seleccionado
-            const jsonUsuariosBorrados = JSON.stringify(this.state.seleccionado);
-            await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
-            let res = this.state.usuariosImportados.filter((usuariosImportados) => {
-              return( seleccionado.login.uuid!== usuariosImportados.login.uuid)
-          })
+
+          let res = this.state.usuariosImportados.filter((usuariosImportados) => {
+            return( usuariosImportados.login.uuid !== seleccionado.login.uuid)
+        })
+            // const seleccionado=this.state.seleccionado
+            // const jsonUsuariosBorrados = JSON.stringify(this.state.seleccionado);
+            // await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
+             
             this.setState({ usuariosImportados: res})
             console.log(jsonUsuariosBorrados)
         }catch(error){
           console.log(error);
         }
       }
+
+
+           
+     borrarItem(idTarjeta){
+      let resultado = this.state.datos.filter( (dato) => {
+        return dato.id !== idTarjeta
+      });
+      this.setState({datos: resultado});
+      console.log(this.state.datos)
+   }
 
     // async storeBorrarUnData(){
     //   try{
@@ -434,7 +446,9 @@ import {
                         </View>
                       </TouchableOpacity> */}
 
-                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarData2(seleccionado)}>
+                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarData2(this.state.selectedItem)}>
+
+
                         <View>
                           <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
                         </View>
