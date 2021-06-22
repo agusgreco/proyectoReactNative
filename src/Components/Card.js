@@ -27,7 +27,7 @@ class Card extends Component {
     flip = () => {
         Animated.timing(this.rotation, {
             toValue: 1,
-            duration: 1000,
+            duration: 1500,
             useNativeDriver: true
         }).start()
     }

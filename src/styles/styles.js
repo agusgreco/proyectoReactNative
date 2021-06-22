@@ -7,6 +7,40 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   }, 
+  containerMenu: {
+    flex: 1,
+    backgroundColor: '#111010', // '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }, 
+
+  headerBorder: {
+    backgroundColor: 'white', // '#111010',
+    height: 60,
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // position: 'absolute',
+    // top: 100
+},
+
+menuHeaderText:{
+    color: "#A9A9A9",
+    // fontFamily: "calibri",
+    fontWeight: "bold",
+    fontSize: 30,
+},
+
+textoDeMenu:{
+    fontSize:20,
+    // fontWeight:'bold',
+    color:'#A9A9A9',
+    textAlign: "center",
+    backgroundColor: "#111010",
+    paddingVertical: 20,
+    
+},
+
   title:{
       fontSize:20,
       fontWeight:'bold',
@@ -105,21 +139,7 @@ closeButtonModal: {
     top: 10,
     fontSize: 20
 },
-headerBorder: {
-   flex: 1,
-   height: 100,
-    backgroundColor: '#111010',
-    justifyContent: 'center',
-    alignItems: 'center',
-},
 
-menuHeaderText:{
-    color: "#A9A9A9",
-    // fontFamily: "calibri",
-    fontWeight: "bold",
-    fontSize:30,
-
-},
 
 headerText:{
     color: "#A9A9A9",
@@ -277,15 +297,7 @@ menu: {
     // borderColor: 'black',
 },
 
-textoDeMenu:{
-    fontSize:20,
-    // fontWeight:'bold',
-    color:'#A9A9A9',
-    textAlign: "center",
-    backgroundColor: "#111010",
-    paddingVertical: 20,
-    
-},
+
 
 buscarText:{
     textAlign: "center",
