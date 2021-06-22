@@ -70,9 +70,12 @@ import {
           let res = this.state.usuariosImportados.filter((usuariosImportados) => {
             return( usuariosImportados.login.uuid !== seleccionado.login.uuid)
         })
+        let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
+          return( usuariosImportados.login.uuid == seleccionado.login.uuid)
+      })
             // const seleccionado=this.state.seleccionado
-            // const jsonUsuariosBorrados = JSON.stringify(this.state.seleccionado);
-            // await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
+            const jsonUsuariosBorrados2 = JSON.stringify(notres);
+            await AsyncStorage.setItem('UsuariosBorrados2', jsonUsuariosBorrados2)
              
             this.setState({ usuariosImportados: res})
             console.log(jsonUsuariosBorrados)

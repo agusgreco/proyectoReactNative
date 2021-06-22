@@ -39,7 +39,7 @@ import {
 
     async getDataBorrada(){
         try{
-          const resultado = await AsyncStorage.getItem('UsuariosBorrados');
+          const resultado = await AsyncStorage.getItem('UsuariosBorrados2');
           if(resultado !== null){
             this.setState({usuariosBorrados: JSON.parse(resultado)});
             console.log(resultado)
