@@ -429,7 +429,7 @@ import {
                     <View style={styles.modal}>
                      { this.state.selectedItem && 
                      <>
-                      <Image style={styles.imageModal} source={{uri: this.state.selectedItem.picture.thumbnail}} />
+                      <Image style={styles.imageModal} source={{uri: this.state.selectedItem.picture.large}} />
                       <Text style={styles.modalText}> 
                           Nombre: {this.state.selectedItem && this.state.selectedItem.name.first + ' ' + this.state.selectedItem.name.last}
                       </Text> 
