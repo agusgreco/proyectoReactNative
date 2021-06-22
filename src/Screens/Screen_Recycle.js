@@ -109,13 +109,6 @@ keyExtractor = (item, index) => item.login.uuid;
     renderItem = ({item}) => {
         return(
          <View style={styles.container}> 
-            {/* <TouchableOpacity onPress={ () => this.showModal(item)}> 
-            <View style={styles.card}> 
-            <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
-                <Text style={styles.itemText}> {item.name.last}, {item.name.first} </Text>
-            </View>
-            </TouchableOpacity> */}
-
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
@@ -127,7 +120,6 @@ keyExtractor = (item, index) => item.login.uuid;
                 </Text>
             </View>
             </TouchableOpacity>
-
          </View>
 
         )
