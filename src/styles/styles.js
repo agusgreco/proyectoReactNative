@@ -204,11 +204,6 @@ importScreen:{
 backgroundColor: "#111010" 
 },
 
-buscar:{
-    backgroundColor: "#111010" 
-    
-},
-
 guardarDatosTexto:{
     fontSize: 20,
     textAlign: "center",
@@ -331,28 +326,45 @@ menu: {
     // borderColor: 'black',
 },
 
-
+buscar:{
+    backgroundColor: "#111010",
+    width: '100%',
+    height: 200,
+    paddingBottom: 50,
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+},
 
 buscarText:{
+    justifyContent: 'center',
     textAlign: "center",
     fontWeight: "bold",
-    color: "white"
-
+    color: "white",
+    marginTop: 5,
+    left: 5
 },
 
 buscarTextNombre:{
+    justifyContent: 'center',
     textAlign: "center",
-    marginTop: 15,
+    marginTop: 5,
     fontWeight: "bold",
-    color: "white"
+    color: "white", 
+    left: 5,
+    // width: 100
 },
-
 
 buscarSquare:{
     borderRadius: 30,
+    borderColor: 'black',
+    borderWidth: 1,
     backgroundColor: "white",
-    marginHorizontal: 30,
-
+    // marginHorizontal: 30,
+    width: 300,
+    left: 10,
+    bottom: 5,
+    opacity: 0.75
 },
 
 buscarSquarePais:{
@@ -361,8 +373,12 @@ buscarSquarePais:{
     backgroundColor: "white",
     marginHorizontal: 30,
     marginBottom: 20,
-},
+    borderColor: 'black',
+    borderWidth: 1,
+    width: 250,
+    opacity: 0.75
 
+},
 
 textoMenuAcercaDe:{
     fontSize:20,
@@ -395,7 +411,7 @@ listContainer: {
    // height: 500,
    justifyContent: 'center',
    alignItems: 'center',
-   backgroundColor:'#111010',
+   backgroundColor: '#111010',
 
 },
 texto: {

@@ -380,13 +380,13 @@ import {
               <View style={styles.buscar}>
                 <Text style={styles.buscarTextNombre}>Nombre:</Text>
                   <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorNombre(escrito)}>
-                </TextInput> 
+                </TextInput>                 
 
                 <Text style={styles.buscarText} >Apellido:</Text>
                   <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorApellido(escrito)}>
                 </TextInput> 
 
-                <Text style={styles.buscarText}>Pais o Ciudad:</Text>
+                <Text style={styles.buscarText}>Pais/Ciudad:</Text>
                   <TextInput style={styles.buscarSquarePais} onChangeText={(escrito) => this.filtrarPorPaisOEstado(escrito)}>
                 </TextInput> 
               </View>
