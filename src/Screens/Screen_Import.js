@@ -70,7 +70,7 @@ render(){
     return(
        
        <View style={styles.container}>
-          <View style={styles.headerBorderImport}>
+          <View style={styles.headerBorderImportDos}>
             <Text style={styles.headerText}>LAS TARJETAS PARA IMPORTAR</Text>
           </View>
 

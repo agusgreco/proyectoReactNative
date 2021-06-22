@@ -58,7 +58,7 @@ textoDeMenu:{
     // backgroundColor:'rgba(0,0,0,0.3)'
 },
 modal: {
-    height: 700, // "85%",
+    height: 700, 
     width: "100%",
     backgroundColor: '#A9A9A9', //'rgba(0,0,0,0.3)'
     justifyContent: 'center',
@@ -71,6 +71,22 @@ modal: {
     borderStyle: 'solid',
     borderColor: 'black'
 },
+
+modalBorrar: {
+    height: 550, 
+    width: "100%",
+    backgroundColor: '#A9A9A9', //'rgba(0,0,0,0.3)'
+    justifyContent: 'center',
+    alignItems:'center',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    // elevation: 20,
+    // shadowColor: 'black',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'black'
+},
+
 recycleModal: {
     height: "60%",
     width: "100%",
@@ -133,6 +149,17 @@ borrar:{
     marginTop:5,
     width: "50%"
 },
+borrarDef:{
+    paddingVertical: 0,
+    borderRadius:30,
+    backgroundColor: "black",
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal:30,
+    marginBottom:5,
+    marginTop:20,
+    width: "65%"
+},
 
 closeButtonModal: {
     position: 'absolute',
@@ -175,6 +202,15 @@ headerBorderImport:{
      alignItems: 'center',
 },
 
+headerBorderImportDos:{
+    paddingVertical: 15,
+    flex: 1,
+    height: 100,
+    backgroundColor: '#111010',
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+
 acercaDe:{
     backgroundColor: '#111010',
     height: 500,
@@ -201,14 +237,7 @@ importTexto:{
 },
 
 importScreen:{
-backgroundColor: "#111010" 
-},
-
-guardarDatosTexto:{
-    fontSize: 20,
-    textAlign: "center",
-    paddingVertical: 10,
-    color: "#A9A9A9"
+    backgroundColor: "#111010" ,
 },
 
 agregarTexto:{
@@ -216,6 +245,13 @@ agregarTexto:{
     textAlign: "center",
     paddingVertical: 10,
     color: "#A9A9A9"
+},
+agregarTextoDos:{
+    fontSize: 15,
+    textAlign: "center",
+    paddingVertical: 10,
+    color: "#A9A9A9",
+    width: 300
 },
 
 recycleTexto:{
@@ -228,11 +264,18 @@ recycleTexto:{
 guardarDatos:{
     paddingVertical: 5,
     borderRadius:30,
-    backgroundColor: "black",
+    backgroundColor:  'grey', // "black",
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal:30,
     marginVertical:20,
+    // position: 'relative'
+},
+guardarDatosTexto:{
+    fontSize: 20,
+    textAlign: "center",
+    paddingVertical: 10,
+    color: 'black' // "#A9A9A9"
 },
 
 botones:{

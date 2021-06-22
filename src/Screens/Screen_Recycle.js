@@ -175,7 +175,7 @@ keyExtractor = (item, index) => item.login.uuid;
                    animationType="fade" //slide o fade
                    >
                    <View style={styles.modalContainer}> 
-                       <View style={styles.modal}>
+                       <View style={styles.modalBorrar}>
                        { this.state.selectedItem && 
                        <>
                            <Image style={styles.imageModal} source={{uri: this.state.selectedItem.picture.large}} />
@@ -201,9 +201,9 @@ keyExtractor = (item, index) => item.login.uuid;
                        }
 
                        
-                      <TouchableOpacity style={styles.borrar} onPress={() => this.borrarDefinitivo(this.state.selectedItem)}>
+                      <TouchableOpacity style={styles.borrarDef} onPress={() => this.borrarDefinitivo(this.state.selectedItem)}>
                           <View>
-                            <Text style={styles.agregarTexto}>BORRAR DEFINITIVAMENTE USUARIO</Text>
+                            <Text style={styles.agregarTextoDos}>BORRAR DEFINITIVAMENTE</Text>
                           </View>
                           </TouchableOpacity>
 
