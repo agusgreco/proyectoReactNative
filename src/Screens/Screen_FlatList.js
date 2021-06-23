@@ -40,18 +40,32 @@ import {
      }
 
 
-    async getData(){
-        try{
-          const resultado = await AsyncStorage.getItem('Usuarios');
-          if(resultado !== null){
-            this.setState({usuariosImportados: JSON.parse(resultado)});
-          }else{
-            console.log('no encontre el key')
-          }
-        }catch(error){
-          console.log(error);
+    // async getData(){
+    //     try{
+    //       const resultado = await AsyncStorage.getItem('Usuarios');
+    //       if(resultado !== null){
+    //         this.setState({usuariosImportados: JSON.parse(resultado)});
+    //       }else{
+    //         console.log('no encontre el key')
+    //       }
+    //     }catch(error){
+    //       console.log(error);
+    //     }
+    // }
+
+    async getDataFromApi() {
+      try{
+        this.setState({activity: true});
+        const usuarios = await AsyncStorage.getItem('Usuarios');
+        if(usuarios !== null){
+          this.setState({usuariosImportados: JSON.parse(usuarios), activity: false});
+        }else{
+          console.log('no encontre el key')
         }
- }
+      }catch(e){
+        console.log(e);
+      }
+    }
 
     // async storeBorrarData(){
     //     try{
@@ -72,7 +86,7 @@ import {
         })
         let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
           return( usuariosImportados.login.uuid == seleccionado.login.uuid)
-      })
+        })
             // const seleccionado=this.state.seleccionado
             const jsonUsuariosBorrados2 = JSON.stringify(notres);
             
@@ -337,6 +351,8 @@ import {
           
           {/* {cards} */}
 
+          {/* <Card/> */}
+
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
@@ -348,6 +364,7 @@ import {
                 </Text>
             </View>
             </TouchableOpacity>
+
          </View>
 
 
@@ -407,7 +424,7 @@ import {
 
               <View style={styles.botonBackground}>
                  {/* <Button style={styles.guardarDatos} title="Obtener resultados" onPress={() => this.getData()}/> */}
-                 <TouchableOpacity style={styles.botones} onPress={() => this.getData()}>
+                 <TouchableOpacity style={styles.botones} onPress={() => this.getDataFromApi()}>
                    <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
                   </TouchableOpacity>
 
