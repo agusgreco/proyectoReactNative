@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import {getData} from '../api/RandomUsers';
 import {styles} from '../styles/styles';
 import { Card } from '../Components/Card';
@@ -38,14 +37,6 @@ import {
              textHandler:"",
          }
      }
-
-     componentDidMount() {
-      getData()
-      // .then( (usuarios) => {
-      //     this.setState({users: usuarios})
-      // })
-      // this.getDataFromApi()
-    }
 
     // async getData(){
     //     try{
@@ -408,7 +399,8 @@ import {
 
               <View style={styles.listContainer}>
                   { this.state.activity 
-                    ?<ActivityIndicator color="blue"
+                    ?<ActivityIndicator 
+                        color="blue"
                         size={60}/>
                     :<FlatList
                         data={this.state.usuariosImportados}
