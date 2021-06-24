@@ -275,7 +275,7 @@ guardarDatosTexto:{
     fontSize: 20,
     textAlign: "center",
     paddingVertical: 10,
-    color: 'black' // "#A9A9A9"
+    color: 'black', // "#A9A9A9",
 },
 
 botones:{
@@ -290,9 +290,7 @@ botones:{
 },
 
 botonBackground:{
-    backgroundColor: "#111010"
-
-
+    backgroundColor: 'grey' // "#111010"
 },
 
 headerStyle:{
@@ -437,8 +435,10 @@ textoMenuAcercaDe:{
 
 container: {
     flex: 1,
+    backgroundColor: 'black'
    //  justifyContent: 'center',
    //  alignItems: 'center'
+
 },
 
 itemcontainer: {

@@ -27,7 +27,6 @@ import Animated from 'react-native-reanimated';
             showModal: false,
             activity: false,
             selectedItem: null,
-
          }
      }
 
@@ -152,17 +151,14 @@ async storeDatosParaRecuperar2(seleccionado){
 
 async borrarDefinitivo(seleccionado){
   try{
-
     let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
-      return( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
-  })
+      return ( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+    })
 //   let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
 //     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
-// })
-       
-      this.setState({ usuariosBorrados: res})
-      // this.setState({selectedItem: null})
-      
+// })       
+    this.setState({ usuariosBorrados: res})
+      // this.setState({selectedItem: null})      
   }catch(error){
     console.log(error);
   }
@@ -321,11 +317,19 @@ keyExtractor = (item, index) => item.login.uuid;
                         </View>
                       </TouchableOpacity>
 
-                      <TouchableOpacity style={styles.borrarDef} onPress={() => this.borrarDefinitivo(this.state.selectedItem)}>
+                      <TouchableOpacity style={styles.borrarDef} 
+                      onPressIn={() => this.borrarDefinitivo(this.state.selectedItem)}
+                      onPress={() => this.setState({showModal: false})}>
                           <View>
                             <Text style={styles.agregarTextoDos}>BORRAR DEFINITIVAMENTE</Text>
                           </View>
                           </TouchableOpacity>
+
+                      {/* <TouchableOpacity style={styles.borrarDef} onPress={() => this.borrarDefinitivo(this.state.selectedItem)}>
+                          <View>
+                            <Text style={styles.agregarTextoDos}>BORRAR DEFINITIVAMENTE</Text>
+                          </View>
+                          </TouchableOpacity> */}
 
                            <Text style={styles.closeButtonModal} 
                                onPress={() => this.setState({showModal: false})}> 

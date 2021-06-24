@@ -17,7 +17,8 @@ import {
     TouchableWithoutFeedback,
     Button,
     StyleSheet,
-    Animated
+    Animated,
+    Easing
 } from 'react-native';
 
  export class Screen_Flatlist extends Component {
@@ -386,6 +387,22 @@ async getDatosParaRecuperar(){
     // keyExtractor = (item, idx) => idx.toString()
 
     separator = () => <View style={styles.separator}/>
+    position = new Animated.Value(0);
+  rotacion = this.position.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+   })
+
+  flip = () => {
+    Animated.timing(this.position, {
+      toValue: 1,
+      duration: 4000,
+      friction: 3,
+      easing: Easing.elastic(3),
+      useNativeDriver: false
+     }).start()
+    // this.setState({toValue: this.position==1? 1.2 :1})
+  }
 
 
     render() {
@@ -445,11 +462,18 @@ async getDatosParaRecuperar(){
                       />
               </View>
 
-
-
-              <View style={styles.botonBackground}>
+              <Animated.View style={styles.botonBackground, {
+                // backgroundColor: 'black', //'#111010',
+                left: this.position,
+                transform: [
+                  {rotateX: this.rotacion}
+                ]
+              }}>
                  {/* <Button style={styles.guardarDatos} title="Obtener resultados" onPress={() => this.getData()}/> */}
-                 <TouchableOpacity style={styles.botones} onPress={() => this.getData()}>
+                 <TouchableOpacity style={styles.botones} 
+                 onPress={() => this.getData()}
+                 onPressIn={this.flip}
+                 >
                    <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
                   </TouchableOpacity>
 
@@ -476,11 +500,11 @@ async getDatosParaRecuperar(){
                  <TouchableOpacity style={styles.botones} onPress={() => this.storeBorrarData()}>
                     <View><Text style={styles.recycleTexto}>ELIMINAR DATOS IMPORTADOS</Text></View>
                   </TouchableOpacity> */}
-               </View> 
+               </Animated.View> 
 
               <Modal 
                  visible={this.state.showModal}
-                 transparent={true}
+                 transparent= {true}
                  animationType="slide" //slide o fade
                 >
                  <View style={styles.modalContainer}> 
@@ -527,7 +551,9 @@ async getDatosParaRecuperar(){
                         </View>
                       </TouchableOpacity> */}
 
-                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarData2(this.state.selectedItem)}>
+                      <TouchableOpacity style={styles.borrar}
+                      onPressIn={() => this.storeBorrarData2(this.state.selectedItem)}
+                      onPress={() => this.setState({showModal: false})}>
                         <View>
                           <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
                         </View>
