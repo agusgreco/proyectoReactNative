@@ -30,7 +30,6 @@ import {
              selectedItem: null,
              seleccionado: [],
              usuariosBorrados: [],
-             usuarioBorrado: [],
              usuariosVisualizados: [],
              informacionadicional: "",
              text: "",
@@ -61,56 +60,15 @@ import {
       }
     }
 
-    // async storeBorrarData(){
-    //     try{
-    //         const jsonUsuariosBorrados = JSON.stringify(this.state.usuariosImportados);
-    //         await AsyncStorage.setItem('UsuariosBorrados', jsonUsuariosBorrados)
-    //         this.setState({ usuariosImportados: []})
-    //         console.log(jsonUsuariosBorrados)
-    //     }catch(error){
-    //       console.log(error);
-    //     }
-    //   }
-
       async storeBorrarData2(seleccionado){
         try{
 
           let res = this.state.usuariosImportados.filter((usuariosImportados) => {
             return( usuariosImportados.login.uuid !== seleccionado.login.uuid)
         })
-        let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
-          return( usuariosImportados.login.uuid == seleccionado.login.uuid)
-        })
-            // const seleccionado=this.state.seleccionado
-            const jsonUsuariosBorrados2 = JSON.stringify(notres);
-            
-            // const jsonUsuariosBorrados2 = JSON.stringify(this.state.seleccionado.map((seleccionado) => this.state.usuariosImportados[seleccionado]));
-            // const jsonUsuariosBorrados2 = JSON.stringify(notres.map((seleccionado) =>  <Text key={seleccionado.login.uuid}  style={styles.importTexto}>{seleccionado.name.first} {seleccionado.name.last}</Text>));
-
-            // const valores = this.state.usuarios.map(item =>
-            //   <Text key={seleccionado.login.uuid}
-            //   style={styles.importTexto}>{seleccionado.name.first} {seleccionado.name.last}</Text>
-            //   )
-
-            // agregarTarjetas(){
-            //   console.log("se agregaron 6 tarjetas")
-            //   fetch("https://randomuser.me/api/?results=6")
-            //   .then(result => result.json())
-            //   .then(data => {
-            //     {data.results.map((unaTarjeta) =>{
-            //       this.state.datos.push(unaTarjeta)
-            //   })}
-            //   this.setState({datos:this.state.datos});
-            //   })
-            // }
-
-
-            // {this.state.datos.map((unaTarjeta, idx) =>(
-            //   <div className="unaTarjeta" key={idx}>
-            //     <Tarjeta tarjetaAMostrar={unaTarjeta} onBorrar={this.borrarItem.bind(this)}/>
-            //   </div>
-            //   )) }
-
+          this.state.usuariosBorrados.push(seleccionado)
+            const jsonUsuariosBorrados2 = JSON.stringify(this.state.usuariosBorrados);
+ 
             await AsyncStorage.setItem('UsuariosBorrados2', jsonUsuariosBorrados2)
              
             this.setState({ usuariosImportados: res})
@@ -121,75 +79,6 @@ import {
         }
       }
 
-
-    // async storeBorrarUnData(){
-    //   try{
-    //       const jsonUsuariosBorrado = JSON.stringify(this.state.usuariosImportados.login.uuid);
-    //       await AsyncStorage.setItem('UsuarioBorrado', jsonUsuariosBorrado)
-    //       // this.setState({ usuariosImportados: []})
-    //       console.log(jsonUsuariosBorrados)
-    //   }catch(error){
-    //     console.log(error);
-    //   }
-    // }
-
-
-    async storeBorrarUnData(item){
-      try{
-        const idx = item.login.uuid;
-          const jsonUsuarioBorrado = JSON.stringify(this.state.usuariosImportados.filter((usuariosImportados) => {
-            return(idx== usuariosImportados.login.uuid)
-        }))
-        console.log(jsonUsuarioBorrado)
-          await AsyncStorage.setItem('UsuarioBorrado', jsonUsuarioBorrado)
-
-          let res = this.state.usuariosImportados.filter((usuariosImportados) => {
-            return( idx!== usuariosImportados.login.uuid)
-        })
-          this.setState({ usuariosImportados: res})
-          // this.setState({usuarioBorrado:[]})
-      }catch(error){
-        console.log(error);
-      }
-    }
-
-
-
-    // async storeBorrarUnData(UsuarioBorrado, results){
-    //   async storeBorrarUnData(){
-    //   try{
-    //       const jsonUsuarioBorrado = JSON.stringify(this.state.usuarioBorrado.map((usuarioBorrado) => this.state.items[usuarioBorrado]));
-
-    //       console.log(jsonUsuarioBorrado)
-    //       await AsyncStorage.setItem('UsuarioBorrado', jsonUsuarioBorrado)
-    //       this.setState({ usuariosImportados: this.state.items.filter((idx) => !this.state.usuarioBorrado.includes(idx))})
-    //       // this.setState({ usuariosImportados: this.state.items.filter((tarjeta, idx) => !this.state.usuarioBorrado.includes(idx))})
-    //       this.setState({usuarioBorrado:[]})
-    //   }catch(error){
-    //     console.log(error);
-    //   }
-    // }
-
-
-
-      // borrarUser(usuario){
-      //   let usuariosImportados = this.state.usuariosImportados
-      //   let res = usuariosImportados.filter((usuariosImportados) => {
-      //       return( usuario!== usuariosImportados.login.uuid)
-      //           //       return( usuario.login.uuid!== usuariosImportados.login.uuid)
-
-      //   })
-      //   let borrado = usuariosImportados.filter((usuariosImportados) => {
-      //       return( usuario== usuariosImportados.login.uuid)
-      //           //       return( usuario.login.uuid== usuariosImportados.login.uuid)
-
-      //   })
-      //    this.setState(usuariosImportados= res, usuariosBorrados= borrado)
-      //    //antes decia arrayBorrado en vez de borrado
-        
-      //    storeDataBorrado
-      //   }
-        
 
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});
