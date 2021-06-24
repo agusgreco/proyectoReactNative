@@ -39,7 +39,7 @@ async storeData(){
         const jsonUsuarios = JSON.stringify(this.state.usuarios);
         await AsyncStorage.setItem('Usuarios', jsonUsuarios)
         console.log("Datos almacenados")
-        Alert.alert("Los datos fueron guardados!")
+        // Alert.alert("Los datos fueron guardados!")
     }catch(error){
       console.log(error);
     }
@@ -85,7 +85,7 @@ render(){
               {rotateX: this.rotacion}
             ]
           }}>
-            <TouchableOpacity style={styles.guardarDatos} onPress={this.storeData.bind(this)}>
+            <TouchableOpacity style={styles.guardarDatos} onPress={this.storeData.bind(this)} onPressIn={this.flip} >
                 {/* <View> */}
                   <Text style={styles.guardarDatosTexto} >GUARDAR DATOS</Text>
                   {/* </View> */}
