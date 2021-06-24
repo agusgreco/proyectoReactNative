@@ -309,15 +309,15 @@ keyExtractor = (item, index) => item.login.uuid;
                                 </> 
                        }
 
-                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeDatosParaRecuperar(this.state.selectedItem)}>
+                      {/* <TouchableOpacity style={styles.borrar} onPress={() => this.storeDatosParaRecuperar(this.state.selectedItem)}>
                         <View>
                           <Text style={styles.agregarTexto}>RECUPERAR USUARIO</Text>
                         </View>
-                      </TouchableOpacity>
+                      </TouchableOpacity> */}
 
                       <TouchableOpacity style={styles.borrar} onPress={() => this.storeDatosParaRecuperar2(this.state.selectedItem)}>
                         <View>
-                          <Text style={styles.agregarTexto}>RECUPERAR USUARIO 2</Text>
+                          <Text style={styles.agregarTexto}>RECUPERAR USUARIO</Text>
                         </View>
                       </TouchableOpacity>
 

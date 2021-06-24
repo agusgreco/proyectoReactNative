@@ -419,6 +419,7 @@ async getDatosParaRecuperar(){
               </View>
 
               <View style={styles.listContainer}>
+                
                   { this.state.activity 
                     ?<ActivityIndicator 
                         color="blue"
@@ -452,21 +453,19 @@ async getDatosParaRecuperar(){
                    <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
                   </TouchableOpacity>
 
-                  <TouchableOpacity 
+                  {/* <TouchableOpacity 
                     style={styles.botones} 
                     onPress={() => this.getDatosParaRecuperar()} 
                      >
-                      {/* <View> */}
-                        <Text style={styles.recycleTexto}>RECUPERAR LAS TARJETAS BORRADAS</Text>
-                        {/* </View> */}
-                  </TouchableOpacity>
+                        <Text style={styles.recycleTexto}>RECUPERAR LAS TARJETAS BORRADAS</Text> */}
+                  {/* </TouchableOpacity> */}
 
                   <TouchableOpacity 
                     style={styles.botones} 
                     onPress={() => this.getDatosParaRecuperar2()} 
                      >
                       {/* <View> */}
-                        <Text style={styles.recycleTexto}>RECUPERAR LAS TARJETAS BORRADAS 2</Text>
+                        <Text style={styles.recycleTexto}>RECUPERAR LAS TARJETAS BORRADAS</Text>
                         {/* </View> */}
                   </TouchableOpacity>
 
