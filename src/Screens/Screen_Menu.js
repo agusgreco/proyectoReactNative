@@ -20,20 +20,32 @@ import {
 
 
      position = new Animated.Value(0);
-     
      rotacion = this.position.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '360deg']
      })
-
+     pos = new Animated.Value(0);
+     hang = this.pos.interpolate({
+       inputRange: [0, 1],
+       outputRange: [0, 25]
+     })
+ 
      slide = () => {
-       Animated.timing(this.position, {
-        toValue: 1,
-        duration: 4000,
-        friction: 3,
-        easing: Easing.elastic(3),
-        useNativeDriver: false
-       }).start()
+       Animated.parallel([
+        Animated.timing(this.position, {
+          toValue: 1,
+          duration: 4000,
+          friction: 3,
+          easing: Easing.elastic(3),
+          useNativeDriver: false
+         }),
+         Animated.timing(this.pos, {
+           toValue: 1,
+           duration: 4000,
+           easing: Easing.elastic(3),
+           useNativeDriver: false
+         })
+       ]).start()
      }
 
      componentDidMount(){
@@ -44,9 +56,10 @@ import {
         return (
           <View style={styles.containerMenu}>
             <Animated.View style={styles.headerBorder, {
-                  left: this.position,
+                  right: 25,
                   transform: [
-                    {rotateZ: this.rotacion}
+                    {rotateZ: this.rotacion},
+                    {translateX: this.hang}
                   ]}}>
               <Text style={styles.menuHeaderText}> MENU </Text>
             </Animated.View>
