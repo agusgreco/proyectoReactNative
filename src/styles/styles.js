@@ -481,7 +481,7 @@ imageModal: {
 },
 
 card: {
-    // flex: 1,
+    flex: 1,
     flexDirection: 'column',
     backgroundColor: '#A9A9A9',
     borderStyle: 'solid',
