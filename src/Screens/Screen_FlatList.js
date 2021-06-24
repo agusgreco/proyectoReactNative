@@ -372,7 +372,9 @@ import {
                         </View>
                       </TouchableOpacity> */}
 
-                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarData2(this.state.selectedItem)}>
+                      <TouchableOpacity style={styles.borrar}
+                      onPressIn={() => this.storeBorrarData2(this.state.selectedItem)}
+                      onPress={() => this.setState({showModal: false})}>
                         <View>
                           <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
                         </View>

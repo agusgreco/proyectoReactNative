@@ -26,7 +26,6 @@ import Animated from 'react-native-reanimated';
             showModal: false,
             activity: false,
             selectedItem: null,
-
          }
      }
 
@@ -227,7 +226,9 @@ keyExtractor = (item, index) => item.login.uuid;
                        }
 
                        
-                      <TouchableOpacity style={styles.borrarDef} onPress={() => this.borrarDefinitivo(this.state.selectedItem)}>
+                      <TouchableOpacity style={styles.borrarDef} 
+                      onPressIn={() => this.borrarDefinitivo(this.state.selectedItem)}
+                      onPress={() => this.setState({showModal: false})}>
                           <View>
                             <Text style={styles.agregarTextoDos}>BORRAR DEFINITIVAMENTE</Text>
                           </View>
