@@ -238,6 +238,12 @@ import {
                     {item.name.last}, {item.name.first} 
                 </Text>
                 <Text style={styles.itemText}> 
+                    {item.email} 
+                </Text>
+                <Text style={styles.itemText}> 
+                    Fecha de nacimiento: {item.dob.date}
+                </Text>
+                <Text style={styles.itemText}> 
                     ({item.dob.age} years old)
                 </Text>
             </View>
