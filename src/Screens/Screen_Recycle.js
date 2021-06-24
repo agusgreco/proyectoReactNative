@@ -22,7 +22,8 @@ import Animated from 'react-native-reanimated';
          super();
          this.state = {
             usuariosBorrados: [],
-            usuarioBorrado: [],
+            usuariosParaRecuperar: [],
+            usuariosImportados: [],
             showModal: false,
             activity: false,
             selectedItem: null,
@@ -50,6 +51,88 @@ import Animated from 'react-native-reanimated';
           console.log(error);
         }
  }
+
+//  async storeDatosParaRecuperar(seleccionado){
+//   try{
+
+//     let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
+//       return( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+//   })
+//     // this.state.usuariosParaRecuperar.push(seleccionado)
+//     this.state.usuariosParaRecuperar.push(seleccionado)
+//     const jsonUsuariosRecuperados = JSON.stringify(this.state.usuariosParaRecuperar);
+//     // const jsonUsuariosParaRecuperar = JSON.stringify(this.state.usuariosParaRecuperar);
+//       // await AsyncStorage.setItem('UsuariosParaRecuperar', jsonUsuariosParaRecuperar)
+//       await AsyncStorage.setItem('UsuariosRecuperados', jsonUsuariosRecuperados)
+//      this.setState({ usuariosBorrados: res})
+//   }catch(error){
+//     console.log(error);
+//   }
+// }
+
+
+
+async storeDatosParaRecuperar(seleccionado){
+  try{
+
+    let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
+      return( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+  })
+
+  this.setState({ usuariosBorrados: res})
+    const jsonUsuariosBorrados2 = JSON.stringify(res);
+    await Asyncstorage.setItem( "UsuariosBorrados2" , jsonUsuariosBorrados2)
+
+    this.state.usuariosImportados.push(seleccionado)
+    const jsonUsuarios = JSON.stringify(this.state.usuariosImportados)
+    await Asyncstorage.setItem( "Usuarios" , jsonUsuarios)
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+
+// async storeDatosParaRecuperar(seleccionado){
+//   try{
+
+//     let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
+//       return( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+//   })
+//     resultadoParaRecuperar = JSON.stringify(res)
+//     await AsyncStorage.setItem('UsuariosBorrados2', resultadoParaRecuperar)
+
+//     let notres = await AsyncStorage.getItem('Usuarios');
+//     notres = JSON.parse(notres)
+//     if(notres == null) notres=[];
+//     notres.push(seleccionado)
+//     const jsonUsuariosParaRecuperar = JSON.stringify(notres)
+//     await AsyncStorage.setItem('Usuarios', jsonUsuariosParaRecuperar)
+
+
+//   }catch(error){
+//     console.log(error);
+//   }
+// }
+
+async storeDatosParaRecuperar2(seleccionado){
+  try{
+
+    let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
+      return( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+  })
+    this.state.usuariosParaRecuperar.push(seleccionado)
+      const jsonUsuariosRecuperados = JSON.stringify(this.state.usuariosParaRecuperar);
+
+      await AsyncStorage.setItem('UsuariosRecuperados', jsonUsuariosRecuperados)
+       
+      this.setState({ usuariosBorrados: res})
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
 
 
 //  async getUnDataBorrada(){
@@ -226,7 +309,18 @@ keyExtractor = (item, index) => item.login.uuid;
                                 </> 
                        }
 
-                       
+                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeDatosParaRecuperar(this.state.selectedItem)}>
+                        <View>
+                          <Text style={styles.agregarTexto}>RECUPERAR USUARIO</Text>
+                        </View>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeDatosParaRecuperar2(this.state.selectedItem)}>
+                        <View>
+                          <Text style={styles.agregarTexto}>RECUPERAR USUARIO 2</Text>
+                        </View>
+                      </TouchableOpacity>
+
                       <TouchableOpacity style={styles.borrarDef} onPress={() => this.borrarDefinitivo(this.state.selectedItem)}>
                           <View>
                             <Text style={styles.agregarTextoDos}>BORRAR DEFINITIVAMENTE</Text>

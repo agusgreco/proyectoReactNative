@@ -30,9 +30,12 @@ import {
              selectedItem: null,
              seleccionado: [],
              usuariosBorrados: [],
+             usuariosRecuperados: [],
              usuariosVisualizados: [],
+             usuariosParaRecuperar: [],
              informacionadicional: "",
              text: "",
+             contactosOriginales: [],
              textHandler:"",
          }
      }
@@ -53,12 +56,31 @@ import {
     async getData() {
       try{
           const usuarios = await AsyncStorage.getItem('Usuarios');
-          this.setState({usuariosImportados: JSON.parse(usuarios)});
+          this.setState({usuariosImportados: JSON.parse(usuarios), contactosOriginales: JSON.parse(usuarios)});
           return usuarios
       }catch(e){
         console.log(e);
       }
     }
+
+//     async getDatosParaRecuperar(){
+//       try{
+//         const resultado = await AsyncStorage.getItem('UsuariosParaRecuperar');
+//         if(resultado !== null){
+
+//           this.state.usuariosImportados.push(JSON.parse(resultado))
+
+//           // this.setState({usuariosImportados: JSON.parse(resultado)});
+//           console.log(resultado)
+//         }else{
+//           console.log('no se encontro')
+//         }
+//       }catch(error){
+//         console.log(error);
+//       }
+// }
+    
+
 
       async storeBorrarData2(seleccionado){
         try{
@@ -79,33 +101,99 @@ import {
         }
       }
 
+      
+
+async getDatosParaRecuperar(){
+  try{
+    const resultado = await AsyncStorage.getItem('UsuariosRecuperados');
+    if(resultado !== null){
+
+      const contactosRecuperados = JSON.parse(resultado);
+      // this.setState({ usuariosImportados: contactosRecuperados, usuariosOriginales: contactosRecuperados})      
+      // this.state.usuariosImportados.push(contactosRecuperados)
+      this.setState({ usuariosRecuperados: contactosRecuperados})   
+               this.state.usuariosImportados.push(usuariosRecuperados)
+
+
+
+      console.log(resultado)
+    }else{
+      console.log('no se encontro')
+    }
+  }catch(error){
+    console.log(error);
+  }
+}
+
+
+
+      async getDatosParaRecuperar2(){
+        try{
+          const resultado = await AsyncStorage.getItem('UsuariosRecuperados');
+          if(resultado !== null){
+            this.setState({usuariosParaRecuperar: JSON.parse(resultado)});
+            // this.state.usuariosImportados.push(usuariosRecuperados)
+
+            console.log(resultado)
+          }else{
+            console.log('no se encontro')
+          }
+        }catch(error){
+          console.log(error);
+        }
+ }
+
 
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});
     } 
     keyExtractor = (item, index) => item.login.uuid;
     
-
     async filtrarPorNombre(texto){
-        if (texto.length !== 0) {
-          var escrito = texto
-          let usuariosImportados = this.state.usuariosImportados
+      if (texto.length !== 0) {
+        var escrito = texto
+        let usuariosImportados = this.state.usuariosImportados
 
-          let filtrado = usuariosImportados.filter(dato => {
-            let itemData = dato.name.first.toUpperCase()
-            let textData = escrito.toUpperCase()  
-            if(itemData.includes(textData)) return dato
-            
-          })
-          console.log(texto)
-          this.setState({ usuariosImportados: filtrado})
-        } 
-        else {
-           await this.getData()
-            console.log(texto)
+        let filtrado = usuariosImportados.filter(dato => {
+          let itemData = dato.name.first.toUpperCase()
+          let textData = escrito.toUpperCase()  
+          return itemData.indexOf(textData) > -1
 
-        }
+          // if(itemData.includes(textData)) return dato
+          
+        })
+
+        this.setState({ usuariosImportados: filtrado})
+      } 
+      else {
+        this.setState({
+          usuariosImportados: this.state.contactosOriginales
+
+      })
+
       }
+    }
+
+    // async filtrarPorNombre(texto){
+    //     if (texto.length !== 0) {
+    //       var escrito = texto
+    //       let usuariosImportados = this.state.usuariosImportados
+
+    //       let filtrado = usuariosImportados.filter(dato => {
+    //         let itemData = dato.name.first.toUpperCase()
+    //         let textData = escrito.toUpperCase()  
+    //         if(itemData.includes(textData)) return dato
+            
+    //       })
+    //       console.log(texto)
+    //       this.setState({ usuariosImportados: filtrado})
+    //     } 
+    //     else {
+    //        await this.getData()
+    //         console.log(texto)
+
+    //     }
+    //   }
 
     //   async filtrarPorNombre(texto){
     //     if (texto.length !== 0) {
@@ -151,12 +239,12 @@ import {
         }
       }
 
-      async filtrarPorPaisOEstado(texto){
+      async filtrarPorCiudadOEstado(texto){
         if (texto.length !== 0) {
           var escrito = texto
           let usuariosImportados = this.state.usuariosImportados
           let filtrado = usuariosImportados.filter(dato => {
-            let itemData = dato.location.city.toUpperCase() && dato.location.state.toUpperCase()
+            let itemData = dato.location.city.toUpperCase() || dato.location.state.toUpperCase()
             let textData = escrito.toUpperCase()  
             if(itemData.includes(textData)) return dato
           })
@@ -170,26 +258,26 @@ import {
         }
       }
 
-      async filtrarPorPaisOEstado(texto){
-        if (texto.length !== 0) {
-          var escrito = texto
-          let usuariosImportados = this.state.usuariosImportados
+      // async filtrarPorCiudadOEstado(texto){
+      //   if (texto.length !== 0) {
+      //     var escrito = texto
+      //     let usuariosImportados = this.state.usuariosImportados
 
-          let filtrado = usuariosImportados.filter(dato => {
-            let itemData = dato.location.city.toUpperCase() && dato.location.state.toUpperCase()
-            let textData = escrito.toUpperCase()  
-            if(itemData.includes(textData)) return dato
+      //     let filtrado = usuariosImportados.filter(dato => {
+      //       let itemData = dato.location.city.toUpperCase() && dato.location.state.toUpperCase()
+      //       let textData = escrito.toUpperCase()  
+      //       if(itemData.includes(textData)) return dato
             
-          })
-          console.log(texto)
-          this.setState({ usuariosImportados: filtrado})
-        } 
-        else {
-           await this.getData()
-            console.log(texto)
+      //     })
+      //     console.log(texto)
+      //     this.setState({ usuariosImportados: filtrado})
+      //   } 
+      //   else {
+      //      await this.getData()
+      //       console.log(texto)
 
-        }
-      }
+      //   }
+      // }
 
     //   async adicionar(texto){
     //     if (texto.length !== 0) {
@@ -264,6 +352,37 @@ import {
         )
     }
 
+
+    renderItem2 = ({item}) => {
+  
+          return(
+           <View style={styles.itemContainer}> 
+            
+            {/* <Card/> */}
+  
+            {/* ESTE ES EL ORIGINAL: */}
+              <View style={styles.card}> 
+                  <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
+                  <Text style={styles.itemTextName}> 
+                      {item.name.last}, {item.name.first} 
+                  </Text>
+                  <Text style={styles.itemText}> 
+                      {item.email} 
+                  </Text>
+                  <Text style={styles.itemText}> 
+                      Fecha de nacimiento: {item.dob.date}
+                  </Text>
+                  <Text style={styles.itemText}> 
+                      ({item.dob.age} years old)
+                  </Text>
+              </View>
+  
+           </View>
+  
+          )
+      }
+  
+
     // keyExtractor = (item, idx) => idx.toString()
 
     separator = () => <View style={styles.separator}/>
@@ -271,9 +390,16 @@ import {
 
     render() {
 
+      const valoresParaRecuperar = this.state.usuariosParaRecuperar.map(item =>
+        <Text key={item.login.uuid}
+        style={styles.importTexto}>{item.name.first} {item.name.last}</Text>
+        )
+
         return (
 
           <View style={styles.container}>
+
+            {/* {valoresParaRecuperar} */}
               <View style={styles.headerBorderImport}>
                   <Text style={styles.headerTextImport}> TARJETAS IMPORTADAS </Text>
               </View>
@@ -287,8 +413,8 @@ import {
                   <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorApellido(escrito)}>
                 </TextInput> 
 
-                <Text style={styles.buscarText}>Pais/Ciudad:</Text>
-                  <TextInput style={styles.buscarSquarePais} onChangeText={(escrito) => this.filtrarPorPaisOEstado(escrito)}>
+                <Text style={styles.buscarText}>Estado/Ciudad:</Text>
+                  <TextInput style={styles.buscarSquarePais} onChangeText={(escrito) => this.filtrarPorCiudadOEstado(escrito)}>
                 </TextInput> 
               </View>
 
@@ -299,19 +425,49 @@ import {
                         size={60}
                         />
                     :<FlatList
+                        // data={this.state.usuariosImportados}
                         data={this.state.usuariosImportados}
                         keyExtractor={this.keyExtractor}
                         renderItem={this.renderItem}
                         // numberColumns= {2}
                         ItemSeparatorComponent={this.separator}
                       />
+
+                      
                     }
+                        <FlatList
+                        data={this.state.usuariosParaRecuperar}
+                        keyExtractor={this.keyExtractor}
+                        renderItem={this.renderItem2}
+                        // numberColumns= {2}
+                        ItemSeparatorComponent={this.separator}
+                      />
               </View>
+
+
 
               <View style={styles.botonBackground}>
                  {/* <Button style={styles.guardarDatos} title="Obtener resultados" onPress={() => this.getData()}/> */}
                  <TouchableOpacity style={styles.botones} onPress={() => this.getData()}>
                    <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity 
+                    style={styles.botones} 
+                    onPress={() => this.getDatosParaRecuperar()} 
+                     >
+                      {/* <View> */}
+                        <Text style={styles.recycleTexto}>RECUPERAR LAS TARJETAS BORRADAS</Text>
+                        {/* </View> */}
+                  </TouchableOpacity>
+
+                  <TouchableOpacity 
+                    style={styles.botones} 
+                    onPress={() => this.getDatosParaRecuperar2()} 
+                     >
+                      {/* <View> */}
+                        <Text style={styles.recycleTexto}>RECUPERAR LAS TARJETAS BORRADAS 2</Text>
+                        {/* </View> */}
                   </TouchableOpacity>
 
                     {/* <TouchableOpacity onPress={() => this.setState({usuariosImportados:[]})}>
