@@ -36,6 +36,10 @@ class Card extends Component {
         }
     }
 
+    componentDidMount(){
+        this.flip
+    }
+
     keyExtractor = (item, index) => item.login.uuid;
  
     rotation = new Animated.Value(0);
@@ -61,12 +65,13 @@ class Card extends Component {
         const valores = this.state.usuariosImportados.map(item =>  
             <Animated.View style={styles.card, { 
                 backfaceVisibility: 'true',
-                left: this.position,
+                position: this.position,
+                // left: this.position,
                 transform: [
                     {rotateY: this.rotVal}
                 ]
             }}>
-                <TouchableWithoutFeedback onPress={this.flip}>
+                {/* <TouchableWithoutFeedback onPress={this.flip}> */}
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
                 <Text style={styles.itemText}> 
                     {item.name.last}, {item.name.first} 
@@ -74,7 +79,7 @@ class Card extends Component {
                 <Text style={styles.itemText}> 
                     ({item.dob.age} years old)
                 </Text>
-                </TouchableWithoutFeedback>       
+                {/* </TouchableWithoutFeedback>        */}
             </Animated.View>         
                  
         )
@@ -82,13 +87,13 @@ class Card extends Component {
         const masValores = this.state.usuariosImportados.map(item => 
             <Animated.View style={styles.card, { 
                 backfaceVisibility: 'true',
-                position: 'absolute',
-                left: this.position,
+                position: this.position, // 'absolute',
+                // left: this.position,
                 transform: [
                     {rotateY: this.rotMasVal}
                 ]
             }}>
-                <TouchableWithoutFeedback onPress={this.flip}>
+                {/* <TouchableWithoutFeedback onPress={this.flip}> */}
                 <Text style={styles.itemText}> 
                     {item.name.last}, {item.name.first} 
                 </Text>
@@ -107,7 +112,7 @@ class Card extends Component {
                 <Text style={styles.itemText}> 
                     Fecha de registro: {item.registered.date}
                 </Text>
-            </TouchableWithoutFeedback>
+            {/* </TouchableWithoutFeedback> */}
             </Animated.View>
             
         )
