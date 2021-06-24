@@ -68,17 +68,14 @@ import Animated from 'react-native-reanimated';
 
 async borrarDefinitivo(seleccionado){
   try{
-
     let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
-      return( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
-  })
+      return ( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+    })
 //   let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
 //     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
-// })
-       
-      this.setState({ usuariosBorrados: res})
-      // this.setState({selectedItem: null})
-      
+// })       
+    this.setState({ usuariosBorrados: res})
+      // this.setState({selectedItem: null})      
   }catch(error){
     console.log(error);
   }
