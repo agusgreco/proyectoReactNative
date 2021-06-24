@@ -401,7 +401,8 @@ import {
                   { this.state.activity 
                     ?<ActivityIndicator 
                         color="blue"
-                        size={60}/>
+                        size={60}
+                        />
                     :<FlatList
                         data={this.state.usuariosImportados}
                         keyExtractor={this.keyExtractor}

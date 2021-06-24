@@ -5,7 +5,8 @@ import {
   Animated,
   Button,
   TouchableOpacity,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -18,6 +19,7 @@ class Screen_Import extends Component {
       this.state = {
         usuarios: [],
         toValue: 1.2,
+        activity: false
       }
     }
 
@@ -77,7 +79,16 @@ render(){
           </View>
 
           <View style={styles.importScreen}>
-          {valores}
+            <View>
+            { this.state.activity 
+                    ?<ActivityIndicator 
+                        color="blue"
+                        size={60}
+                        />
+                    : valores
+                    }
+            </View>
+          
           <Animated.View style={{
             backgroundColor: '#111010',
             left: this.position,
