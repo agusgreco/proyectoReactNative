@@ -39,6 +39,13 @@ import {
          }
      }
 
+     componentDidMount() {
+      getData()
+      // .then( (usuarios) => {
+      //     this.setState({users: usuarios})
+      // })
+      // this.getDataFromApi()
+    }
 
     // async getData(){
     //     try{
@@ -53,15 +60,11 @@ import {
     //     }
     // }
 
-    async getDataFromApi() {
+    async getData() {
       try{
-        this.setState({activity: true});
-        const usuarios = await AsyncStorage.getItem('Usuarios');
-        if(usuarios !== null){
-          this.setState({usuariosImportados: JSON.parse(usuarios), activity: false});
-        }else{
-          console.log('no encontre el key')
-        }
+          const usuarios = await AsyncStorage.getItem('Usuarios');
+          this.setState({usuariosImportados: JSON.parse(usuarios)});
+          return usuarios
       }catch(e){
         console.log(e);
       }
@@ -342,17 +345,12 @@ import {
     renderItem = ({item}) => {
     // renderItem = () => {
 
-      // const valores = this.state.usuariosImportados
-      // const cards = valores.map((item, id) => <Card key={id} value={item}/> )
-
         return(
-        //ESTE ES EL ORIGINAL:
          <View style={styles.itemContainer}> 
           
-          {/* {cards} */}
-
           {/* <Card/> */}
 
+          {/* ESTE ES EL ORIGINAL: */}
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
@@ -424,7 +422,7 @@ import {
 
               <View style={styles.botonBackground}>
                  {/* <Button style={styles.guardarDatos} title="Obtener resultados" onPress={() => this.getData()}/> */}
-                 <TouchableOpacity style={styles.botones} onPress={() => this.getDataFromApi()}>
+                 <TouchableOpacity style={styles.botones} onPress={() => this.getData()}>
                    <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
                   </TouchableOpacity>
 

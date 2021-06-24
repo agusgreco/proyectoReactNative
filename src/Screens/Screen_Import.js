@@ -4,7 +4,8 @@ import {
   View,
   Animated,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -38,6 +39,7 @@ async storeData(){
         const jsonUsuarios = JSON.stringify(this.state.usuarios);
         await AsyncStorage.setItem('Usuarios', jsonUsuarios)
         console.log("Datos almacenados")
+        Alert.alert("Los datos fueron guardados!")
     }catch(error){
       console.log(error);
     }
@@ -83,7 +85,7 @@ render(){
               {rotateX: this.rotacion}
             ]
           }}>
-            <TouchableOpacity style={styles.guardarDatos} onPress={this.storeData.bind(this), this.flip}>
+            <TouchableOpacity style={styles.guardarDatos} onPress={this.storeData.bind(this)}>
                 {/* <View> */}
                   <Text style={styles.guardarDatosTexto} >GUARDAR DATOS</Text>
                   {/* </View> */}

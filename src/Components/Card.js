@@ -58,8 +58,15 @@ class Card extends Component {
 
     render() {
 
-        const valores = this.state.usuariosImportados.map(item =>           
-            <TouchableWithoutFeedback onPress={this.flip}>
+        const valores = this.state.usuariosImportados.map(item =>  
+            <Animated.View style={styles.card, { 
+                backfaceVisibility: 'true',
+                left: this.position,
+                transform: [
+                    {rotateY: this.rotVal}
+                ]
+            }}>
+                <TouchableWithoutFeedback onPress={this.flip}>
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
                 <Text style={styles.itemText}> 
                     {item.name.last}, {item.name.first} 
@@ -67,12 +74,21 @@ class Card extends Component {
                 <Text style={styles.itemText}> 
                     ({item.dob.age} years old)
                 </Text>
-            </TouchableWithoutFeedback>            
+                </TouchableWithoutFeedback>       
+            </Animated.View>         
+                 
         )
         
         const masValores = this.state.usuariosImportados.map(item => 
-            <TouchableWithoutFeedback onPress={this.flip}>
-                {/* <Image style={styles.imageModal} source={{uri: this.props.value.picture.large}}/>  */}
+            <Animated.View style={styles.card, { 
+                backfaceVisibility: 'true',
+                position: 'absolute',
+                left: this.position,
+                transform: [
+                    {rotateY: this.rotMasVal}
+                ]
+            }}>
+                <TouchableWithoutFeedback onPress={this.flip}>
                 <Text style={styles.itemText}> 
                     {item.name.last}, {item.name.first} 
                 </Text>
@@ -92,6 +108,8 @@ class Card extends Component {
                     Fecha de registro: {item.registered.date}
                 </Text>
             </TouchableWithoutFeedback>
+            </Animated.View>
+            
         )
                 
             // const rotA = this.rotation.interpolate({
@@ -112,16 +130,9 @@ class Card extends Component {
                     {rotateY: this.rotA}
                     ]
                 }}>  */}
-                <Animated.View style={styles.card, { 
-                    backfaceVisibility: 'true',
-                    left: this.position,
-                    transform: [
-                        {rotateY: this.rotVal}
-                    ]
-                }}>
+                
                 {valores}
 
-                </Animated.View>
 
                     {/* <Image style={styles.imageModal} source={{uri: this.props.value.picture.large}}/> 
                     <Text style={styles.itemText}> 
@@ -143,17 +154,9 @@ class Card extends Component {
                     ]
                 }}>  */}
 
-                <Animated.View style={styles.card, { 
-                    backfaceVisibility: 'true',
-                    position: 'absolute',
-                    left: this.position,
-                    transform: [
-                        {rotateY: this.rotMasVal}
-                    ]
-                }}>
-                    {masValores}
+                
+                {masValores}
 
-                </Animated.View>
 
                     {/* <Image style={styles.imageModal} source={{uri: this.props.value.picture.large}}/> 
                     <Text style={styles.itemText}> 
