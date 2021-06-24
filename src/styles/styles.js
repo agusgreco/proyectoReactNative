@@ -489,7 +489,7 @@ card: {
     borderRadius: 10,
     margin: 5,
     width: 300,
-    height: 300,
+    height: 350,
     alignItems: "center",
     padding: 10,
     justifyContent: 'center',
@@ -503,6 +503,17 @@ itemText: {
     // alignItems: "center",
     // justifyContent: 'center',
     paddingTop: 5,
+    textAlign: 'center'
+},
+
+itemTextName: {
+    fontSize: 17,
+    color: 'black',
+    // alignItems: "center",
+    // justifyContent: 'center',
+    paddingTop: 5,
+    textAlign: 'center',
+    fontWeight: 'bold'
 },
 
 separator: {

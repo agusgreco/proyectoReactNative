@@ -234,7 +234,7 @@ import {
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
-                <Text style={styles.itemText}> 
+                <Text style={styles.itemTextName}> 
                     {item.name.last}, {item.name.first} 
                 </Text>
                 <Text style={styles.itemText}> 
