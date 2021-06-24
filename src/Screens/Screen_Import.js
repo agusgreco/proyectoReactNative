@@ -80,13 +80,13 @@ render(){
 
           <View style={styles.importScreen}>
             <View>
-            { this.state.activity 
-                    ?<ActivityIndicator 
-                        color="blue"
-                        size={60}
-                        />
-                    : valores
-                    }
+              {this.state.activity 
+                ?<ActivityIndicator 
+                    color="blue"
+                    size={60}
+                    />
+                : valores
+                }
             </View>
           
           <Animated.View style={{
