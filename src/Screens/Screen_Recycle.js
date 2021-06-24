@@ -13,9 +13,9 @@ import {
     Alert,
     FlatList, 
     TouchableOpacity, 
-    Button,
-    StyleSheet
+    Easing
 } from 'react-native';
+import Animated from 'react-native-reanimated';
 
  export class Screen_Recycle extends Component {
      constructor(){
@@ -125,15 +125,30 @@ keyExtractor = (item, index) => item.login.uuid;
         )
     }
 
-    
-    separator = () => <View style={styles.separator}/>
+  separator = () => <View style={styles.separator}/>
 
+  position = new Animated.Value(0);
+  rotacion = this.position.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+   })
+
+  fun = () => {
+    Animated.timing(this.position, {
+      toValue: 1,
+      duration: 4000,
+      friction: 3,
+      easing: Easing.elastic(3),
+      useNativeDriver: false
+     }).start()
+  }
 
     render() {
         // const valores = this.state.usuariosImportados.map(item =>
         //     <Text key={item.login.uuid}
         //     style={{fontSize:22}}>{item.name.first} {item.name.last}</Text>
-        //     )
+        //     )      
+
         return (
 
             <View style={styles.container}>
@@ -161,15 +176,26 @@ keyExtractor = (item, index) => item.login.uuid;
                 <Button title="Obtener tarjetas borradas" onPress={() => this.getDataUnBorrada()}/> */}
 
                 <View style={styles.botonBackground}>
-
-                    <TouchableOpacity style={styles.botones} onPress={() => this.getDataBorrada()}>
-                        <View><Text style={styles.recycleTexto}>OBTENER LAS TARJETAS BORRADAS</Text></View>
-                    </TouchableOpacity>
-
-                    {/* <TouchableOpacity style={styles.botones} onPress={() => this.getDataUnBorrada()}>
-                        <View><Text style={styles.recycleTexto}>OBTENER TARJETAS BORRADAS</Text></View>
-                    </TouchableOpacity> */}
+                <Animated.View style={{
+                  backgroundColor: '#111010',
+                  left: this.position,
+                  transform: [
+                    {rotateX: this.rotacion}
+                  ]
+                }}>
+                  <TouchableOpacity 
+                    style={styles.botones} 
+                    onPress={() => this.getDataBorrada()} 
+                     >
+                      {/* <View> */}
+                        <Text style={styles.recycleTexto}>OBTENER LAS TARJETAS BORRADAS</Text>
+                        {/* </View> */}
+                  </TouchableOpacity>
+                </Animated.View>
+                    
                 </View>
+
+
                 <Modal visible={this.state.showModal}
                    transparent={true}
                    animationType="fade" //slide o fade
