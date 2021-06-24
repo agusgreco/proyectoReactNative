@@ -3,9 +3,9 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
    container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#111010',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   }, 
   containerMenu: {
     flex: 1,
@@ -73,7 +73,7 @@ modal: {
 },
 
 modalBorrar: {
-    height: 550, 
+    height: 600, 
     width: "100%",
     backgroundColor: '#A9A9A9', //'rgba(0,0,0,0.3)'
     justifyContent: 'center',
@@ -174,6 +174,7 @@ headerText:{
     // fontFamily: "calibri",
     fontWeight: "bold",
     fontSize: 20,
+    paddingTop: 20
 },
 
 headerTextImport:{
@@ -181,7 +182,7 @@ headerTextImport:{
     // fontFamily: "calibri",
     fontWeight: "bold",
     fontSize: 20,
-
+    paddingTop: 20
 },
 
 headerTextAcercaDe:{
@@ -195,17 +196,19 @@ headerTextAcercaDe:{
 
 headerBorderImport:{
     paddingVertical: 15,
-    flex: 1,
-    height: 200,
-     backgroundColor: '#111010',
-     justifyContent: 'center',
-     alignItems: 'center',
+    // flex: 1,
+    // height: 100,
+    width: '100%',
+    backgroundColor: '#111010',
+    justifyContent: 'center',
+    alignItems: 'center',
 },
 
 headerBorderImportDos:{
     paddingVertical: 15,
-    flex: 1,
-    height: 100,
+    // flex: 1,
+    // height: 100,
+    width: '100%',
     backgroundColor: '#111010',
     justifyContent: 'center',
     alignItems: 'center',
@@ -237,7 +240,9 @@ importTexto:{
 },
 
 importScreen:{
-    backgroundColor: "#111010" ,
+    backgroundColor: "#111010",
+    width: '100%',
+    paddingTop: 60
 },
 
 agregarTexto:{
@@ -263,12 +268,12 @@ recycleTexto:{
 
 guardarDatos:{
     paddingVertical: 5,
-    borderRadius:30,
+    borderRadius: 30,
     backgroundColor:  'grey', // "black",
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal:30,
-    marginVertical:20,
+    marginHorizontal: 30,
+    marginVertical: 90,
     // position: 'relative'
 },
 guardarDatosTexto:{
@@ -279,9 +284,10 @@ guardarDatosTexto:{
 },
 
 botones:{
-    paddingVertical: 2,
+    // paddingVertical: 2,
     borderRadius:30,
-    backgroundColor: "black",
+    width: 280,
+    backgroundColor: "grey",
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal:30,
@@ -290,7 +296,7 @@ botones:{
 },
 
 botonBackground:{
-    backgroundColor: 'grey' // "#111010"
+    backgroundColor: 'red' // "#111010"
 },
 
 headerStyle:{
@@ -370,9 +376,9 @@ menu: {
 buscar:{
     backgroundColor: "#111010",
     width: '100%',
-    height: 200,
+    height: 110,
     paddingBottom: 50,
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap'
 },
@@ -416,7 +422,7 @@ buscarSquarePais:{
     marginBottom: 20,
     borderColor: 'black',
     borderWidth: 1,
-    width: 250,
+    width: 230,
     opacity: 0.75
 
 },
@@ -433,13 +439,13 @@ textoMenuAcercaDe:{
 
 
 
-container: {
-    flex: 1,
-    backgroundColor: 'black'
-   //  justifyContent: 'center',
-   //  alignItems: 'center'
+// container: {
+//     flex: 1,
+//     backgroundColor: 'black'
+//    //  justifyContent: 'center',
+//    //  alignItems: 'center'
 
-},
+// },
 
 itemcontainer: {
     //  justifyContent: 'center',
@@ -455,6 +461,7 @@ listContainer: {
    justifyContent: 'center',
    alignItems: 'center',
    backgroundColor: '#111010',
+   width: '100%'
 
 },
 texto: {

@@ -14,11 +14,10 @@ import {
     TextInput,
     FlatList, 
     TouchableOpacity, 
-    TouchableWithoutFeedback,
     Button,
-    StyleSheet,
     Animated,
-    Easing
+    Easing,
+    ScrollView
 } from 'react-native';
 
  export class Screen_Flatlist extends Component {
@@ -330,7 +329,7 @@ async getDatosParaRecuperar(){
                     {item.email} 
                 </Text>
                 <Text style={styles.itemText}> 
-                    Fecha de nacimiento: {item.dob.date}
+                    DOB: {item.dob.date}
                 </Text>
                 <Text style={styles.itemText}> 
                     ({item.dob.age} years old)
@@ -435,32 +434,34 @@ async getDatosParaRecuperar(){
                 </TextInput> 
               </View>
 
+            {/* <ScrollView > */}
               <View style={styles.listContainer}>
                 
-                  { this.state.activity 
-                    ?<ActivityIndicator 
-                        color="blue"
-                        size={60}
-                        />
-                    :<FlatList
-                        // data={this.state.usuariosImportados}
-                        data={this.state.usuariosImportados}
-                        keyExtractor={this.keyExtractor}
-                        renderItem={this.renderItem}
-                        // numberColumns= {2}
-                        ItemSeparatorComponent={this.separator}
+                { this.state.activity 
+                  ?<ActivityIndicator 
+                      color="blue"
+                      size={60}
                       />
+                  :<FlatList
+                      // data={this.state.usuariosImportados}
+                      data={this.state.usuariosImportados}
+                      keyExtractor={this.keyExtractor}
+                      renderItem={this.renderItem}
+                      // numberColumns= {2}
+                      ItemSeparatorComponent={this.separator}
+                    />                           
+                  }
+                  <FlatList
+                      data={this.state.usuariosParaRecuperar}
+                      keyExtractor={this.keyExtractor}
+                      renderItem={this.renderItem2}
+                      // numberColumns= {2}
+                      ItemSeparatorComponent={this.separator}
+                    />                      
+                </View>
+            {/* </ScrollView> */}
 
-                      
-                    }
-                        <FlatList
-                        data={this.state.usuariosParaRecuperar}
-                        keyExtractor={this.keyExtractor}
-                        renderItem={this.renderItem2}
-                        // numberColumns= {2}
-                        ItemSeparatorComponent={this.separator}
-                      />
-              </View>
+              
 
               <Animated.View style={styles.botonBackground, {
                 // backgroundColor: 'black', //'#111010',
@@ -489,7 +490,7 @@ async getDatosParaRecuperar(){
                     onPress={() => this.getDatosParaRecuperar2()} 
                      >
                       {/* <View> */}
-                        <Text style={styles.recycleTexto}>RECUPERAR LAS TARJETAS BORRADAS</Text>
+                        <Text style={styles.recycleTexto}>RECUPERAR TARJETAS BORRADAS</Text>
                         {/* </View> */}
                   </TouchableOpacity>
 

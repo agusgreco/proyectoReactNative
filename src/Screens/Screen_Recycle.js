@@ -191,8 +191,14 @@ keyExtractor = (item, index) => item.login.uuid;
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
-                <Text style={styles.itemText}> 
+                <Text style={styles.itemTextName}> 
                     {item.name.last}, {item.name.first} 
+                </Text>
+                <Text style={styles.itemText}> 
+                    {item.email} 
+                </Text>
+                <Text style={styles.itemText}> 
+                    DOB: {item.dob.date}
                 </Text>
                 <Text style={styles.itemText}> 
                     ({item.dob.age} years old)
@@ -249,30 +255,32 @@ keyExtractor = (item, index) => item.login.uuid;
                             ItemSeparatorComponent={this.separator}
                          />
                     }
+
+                    <View style={styles.botonBackground}>
+                      <Animated.View style={{
+                        backgroundColor: '#111010',
+                        left: this.position,
+                        transform: [
+                          {rotateX: this.rotacion}
+                        ]
+                      }}>
+                        <TouchableOpacity 
+                          style={styles.botones} 
+                          onPress={() => this.getDataBorrada()} 
+                           >
+                            {/* <View> */}
+                          <Text style={styles.recycleTexto}>OBTENER LAS TARJETAS BORRADAS</Text>
+                              {/* </View> */}
+                        </TouchableOpacity>
+                      </Animated.View>                          
+                      </View>
+
                 </View>
 
                 {/* <Button title="Obtener todas las tarjetas borradas" onPress={() => this.getDataBorrada()}/>
                 <Button title="Obtener tarjetas borradas" onPress={() => this.getDataUnBorrada()}/> */}
 
-                <View style={styles.botonBackground}>
-                <Animated.View style={{
-                  backgroundColor: '#111010',
-                  left: this.position,
-                  transform: [
-                    {rotateX: this.rotacion}
-                  ]
-                }}>
-                  <TouchableOpacity 
-                    style={styles.botones} 
-                    onPress={() => this.getDataBorrada()} 
-                     >
-                      {/* <View> */}
-                        <Text style={styles.recycleTexto}>OBTENER LAS TARJETAS BORRADAS</Text>
-                        {/* </View> */}
-                  </TouchableOpacity>
-                </Animated.View>
-                    
-                </View>
+                
 
 
                 <Modal visible={this.state.showModal}
@@ -311,7 +319,10 @@ keyExtractor = (item, index) => item.login.uuid;
                         </View>
                       </TouchableOpacity> */}
 
-                      <TouchableOpacity style={styles.borrar} onPress={() => this.storeDatosParaRecuperar2(this.state.selectedItem)}>
+                      <TouchableOpacity style={styles.borrar} 
+                        onPressIn={() => this.storeDatosParaRecuperar2(this.state.selectedItem)}
+                        onPress={() => this.setState({showModal: false})}
+                        >
                         <View>
                           <Text style={styles.agregarTexto}>RECUPERAR USUARIO</Text>
                         </View>
