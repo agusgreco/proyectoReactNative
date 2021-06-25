@@ -114,6 +114,18 @@ modalText: {
     marginBottom: 0,
 },
 
+cant: {
+    fontSize: 20,
+    color: 'grey',
+    paddingLeft: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+    paddingRight: 30,
+    marginTop: 10,
+    fontSize: 17,
+    marginBottom: 0,
+},
+
 adicional:{
     fontSize: 20,
     borderRadius: 30,
@@ -284,6 +296,26 @@ guardarDatosTexto:{
     fontWeight: "bold",
     paddingVertical: 10,
     color: 'black', // "#A9A9A9",
+},
+
+agregarNombresTexto:{
+    fontSize: 15,
+    textAlign: "center",
+    fontWeight: "bold",
+    paddingVertical: 10,
+    color: 'black', // "#A9A9A9",
+},
+
+ag:{
+    paddingVertical: 0,
+    borderRadius: 30,
+    backgroundColor:  'grey', // "black",
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 30,
+    marginVertical: 9,
+ 
+    width: "50%"
 },
 
 botones:{

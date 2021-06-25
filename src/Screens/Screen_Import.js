@@ -4,14 +4,20 @@ import {
   View,
   Animated,
   Button,
+  ScrollView,
   TouchableOpacity,
-  Alert,
+  TextInput,
+  FlatList, 
+  Modal,
+
   ActivityIndicator
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {styles} from '../styles/styles';
 import { Easing } from 'react-native-reanimated';
+import {getData} from "../api/RandomUsers"
+
 
 class Screen_Import extends Component {
     constructor(props){
@@ -19,20 +25,42 @@ class Screen_Import extends Component {
       this.state = {
         usuarios: [],
         toValue: 1.2,
-        activity: false
+        activity: false,
+        numeroDePersonas: ""
       }
     }
 
-componentDidMount(){
-  fetch("https://randomuser.me/api/?results=9")
-  .then(result => result.json())
-  .then(data => {
-    this.setState({usuarios: data.results})
-    console.log(data)
-  })
-  // cada contacto tener un boton de guardar, y que cuando lo toques llames a storeData, etc 
+    async getData() {
+      try {
+          let resultado = await fetch("https://randomuser.me/api/?results=" + this.state.numeroDePersonas);
+          let json = await resultado.json();
+          this.setState({usuarios: json.results})
+      } catch(e) {
+          console.log('Err: ' + e)
+      }
+  }
+  
 
-}
+    // componentDidMount(){
+    // fetch("https://randomuser.me/api/?results=" + this.state.numeroDePersonas)
+    // .then(result => result.json())
+    // .then(data => {
+    // this.setState({usuarios: data.results})
+    // console.log(data)
+    // })
+    
+    // }
+
+// componentDidMount(){
+//   fetch("https://randomuser.me/api/?results=9")
+//   .then(result => result.json())
+//   .then(data => {
+//     this.setState({usuarios: data.results})
+//     console.log(data)
+//   })
+//   // cada contacto tener un boton de guardar, y que cuando lo toques llames a storeData, etc 
+
+// }
 
 async storeData(){
     //setStringStorage
@@ -77,7 +105,21 @@ render(){
             <Text style={styles.headerText}>LAS TARJETAS PARA IMPORTAR</Text>
           </View>
 
+
+            <Text style={styles.cant}> 
+            CANTIDAD DE USUARIOS: {}
+            </Text>
+            <TextInput keyboardType="number-pad" style={styles.adicional}  onChangeText={text => this.setState({numeroDePersonas:text})}/>
+            <TouchableOpacity style={styles.ag} onPress={() => this.getData()}>
+            <View>
+            <Text style={styles.agregarNombresTexto}>ENTER</Text>
+            </View>
+            </TouchableOpacity>
+
+        
           <View style={styles.importScreen}>
+           
+           
             <View>
               {this.state.activity 
                 ?<ActivityIndicator 

@@ -5,7 +5,10 @@ import {
   Animated,
   Button,
   TouchableOpacity,
-  Alert,
+  TextInput,
+  FlatList, 
+  Modal,
+
   ActivityIndicator
 } from 'react-native';
 
@@ -24,7 +27,6 @@ class Screen_Import extends Component {
     }
 
 componentDidMount(){
-        // this.getData();
   fetch("https://randomuser.me/api/?results=9")
   .then(result => result.json())
   .then(data => {
