@@ -288,13 +288,14 @@ guardarDatosTexto:{
 
 botones:{
     // paddingVertical: 2,
-    borderRadius:30,
+    borderRadius: 30,
     width: 280,
     backgroundColor: "grey",
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal:30,
-    marginVertical:5,
+    marginHorizontal: 30,
+    marginVertical: 5,
+    marginTop: 10
     
 },
 
@@ -307,7 +308,7 @@ botonesAbajo:{
     alignItems: 'center',
     marginHorizontal:30,
     marginVertical:5,
-    marginBottom: 30,
+    marginBottom: 10,
     
 },
 
@@ -326,7 +327,8 @@ botonesAbajoMas:{
 },
 
 botonBackground:{
-    backgroundColor: 'red' // "#111010"
+    backgroundColor: "#111010",
+    opacity: 0.75    
 },
 
 headerStyle:{
@@ -406,7 +408,7 @@ menu: {
 buscar:{
     backgroundColor: "#111010",
     width: '100%',
-    height: 110,
+    height: 100,
     paddingBottom: 50,
     // flex: 1,
     flexDirection: 'row',
