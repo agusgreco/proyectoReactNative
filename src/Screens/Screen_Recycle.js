@@ -286,7 +286,15 @@ keyExtractor = (item, index) => item.login.uuid;
                               {/* </View> */}
                         </TouchableOpacity>
                       </Animated.View>                          
-                      </View>
+                      <TouchableOpacity style={styles.botonesAbajoMas} 
+                      onPressIn={() => this.definitivo('UsuariosBorrados2')}
+                      // onPress={() => this.setState({showModal: false})}
+                      >
+                          <View>
+                            <Text style={styles.recycleTexto}>BORRAR DEFINITIVAMENTE</Text>
+                          </View>
+                          </TouchableOpacity>
+                          </View>
 
                 </View>
 
@@ -341,14 +349,14 @@ keyExtractor = (item, index) => item.login.uuid;
                         </View>
                       </TouchableOpacity>
 
-                      <TouchableOpacity style={styles.borrarDef} 
+                      {/* <TouchableOpacity style={styles.borrarDef} 
                       // onPressIn={() => this.borrarDefinitivo(this.state.selectedItem)}
                       onPressIn={() => this.definitivo('UsuariosBorrados2')}
                       onPress={() => this.setState({showModal: false})}>
                           <View>
                             <Text style={styles.agregarTextoDos}>BORRAR DEFINITIVAMENTE</Text>
                           </View>
-                          </TouchableOpacity>
+                          </TouchableOpacity> */}
 
                       {/* <TouchableOpacity style={styles.borrarDef} onPress={() => this.borrarDefinitivo(this.state.selectedItem)}>
                           <View>

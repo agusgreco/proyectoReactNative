@@ -321,8 +321,8 @@ botonesAbajoMas:{
     alignItems: 'center',
     marginHorizontal:30,
     marginVertical:5,
-    marginBottom: 30,
-    marginTop: 30,
+    // marginBottom: 30,
+    marginTop: 10,
     
 },
 

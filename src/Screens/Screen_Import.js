@@ -24,7 +24,6 @@ class Screen_Import extends Component {
     }
 
 componentDidMount(){
-        // this.getData();
   fetch("https://randomuser.me/api/?results=9")
   .then(result => result.json())
   .then(data => {
