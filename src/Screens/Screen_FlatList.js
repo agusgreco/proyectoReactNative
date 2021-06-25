@@ -47,9 +47,6 @@ import {
           const usuarios = await AsyncStorage.getItem('Usuarios');
           this.setState({usuariosImportados: JSON.parse(usuarios), contactosOriginales: JSON.parse(usuarios)});
           return usuarios
-  
-
-
       }catch(e){
         console.log(e);
       }
