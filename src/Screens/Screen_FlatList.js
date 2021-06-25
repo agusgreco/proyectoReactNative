@@ -76,8 +76,83 @@ import {
         }
       }
 
+
+      async addData(valor){
+        try{
+          Object.assign(valor, 
+            {
+                text: this.state.text  });
+          
+                const jsonUsuarios = JSON.stringify(this.state.usuariosImportados)
+                await Asyncstorage.setItem( "Usuarios" , jsonUsuarios)
+
+
+    }catch (error){
+      console.log(error);
+    }
+
+
+  {/* <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}> */}
+
+        //   if(this.state.textHandler.length !== 0){
+        //     this.setState({text: this.state.textHandler})
+
+      
+        //   }else{
+        //     console.log('no se encontro')
+        //   }
+        // }catch(error){
+        //   console.log(error);
+        // }
+       }
+
+  //     async addData(seleccionado){
+  //       try{
+
+  //         let res = this.state.usuariosImportados.filter((usuariosImportados) => {
+  //           return( usuariosImportados.login.uuid == seleccionado.login.uuid)
+  //       })
+      
+  // {/* <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}> */}
+
+  //         if(this.state.textHandler.length !== 0){
+  //           this.setState({text: this.state.textHandler})
+
+      
+  //         }else{
+  //           console.log('no se encontro')
+  //         }
+  //       }catch(error){
+  //         console.log(error);
+  //       }
+  //      }
       
 
+
+      // async addData(textoEscrito){
+      //   try{
+
+      //   //   let res = this.state.usuariosImportados.filter((usuariosImportados) => {
+      //   //     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
+      //   // })
+      
+      //     if(textoEscrito.length !== 0){
+      //       this.state.textHandler.push(textoEscrito);
+      //       this.setState({textHandler: textHandler})
+      
+      //       const masTexto = [...this.state.text, ...this.state.textHandler]
+      //       this.setState({text: masTexto})
+      
+      //     }else{
+      //       console.log('no se encontro')
+      //     }
+      //   }catch(error){
+      //     console.log(error);
+      //   }
+      //  }
+
+       
+      
 // async getDatosParaRecuperar(){
 //   try{
 //     const resultado = await AsyncStorage.getItem('UsuariosRecuperados');
@@ -123,23 +198,7 @@ import {
  }
 
 
- async addData(textoEscrito){
-  try{
 
-    if(textoEscrito.length !== 0){
-      this.state.textHandler.push(textoEscrito);
-      this.setState({textHandler: textHandler})
-
-      const masTexto = [...this.state.text, ...this.state.textHandler]
-      this.setState({text: masTexto})
-
-    }else{
-      console.log('no se encontro')
-    }
-  }catch(error){
-    console.log(error);
-  }
- }
 
 
     showModal (item) {
@@ -378,10 +437,15 @@ import {
                       <Text style={styles.modalText}> 
                           Fecha de registro: {this.state.selectedItem && this.state.selectedItem.registered.date}
                       </Text>
+
+
                       <Text style={styles.modalText}> 
                           Datos adicionales: {}
                       </Text>
-                      <Text style={styles.texto}> {this.state.textHandler} </Text>
+                      {/* <Text style={styles.texto}> {this.state.textHandler} </Text> */}
+
+                      <Text style={styles.texto}>  {this.state.selectedItem && this.state.selectedItem.text} </Text>
+
                       <TextInput style={styles.adicional}  onChangeText={text => this.setState({textHandler:text})}/>
                       {/* <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}> */}
                       <TouchableOpacity style={styles.agregar} onPress={() => this.addData(this.state.selectedItem)}>
