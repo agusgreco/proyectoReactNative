@@ -419,7 +419,17 @@ buscarText:{
     fontWeight: "bold",
     color: "white",
     marginTop: 5,
-    left: 5
+    left: 5,
+    width: '15%'
+},
+buscarTextPais:{
+    justifyContent: 'center',
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white",
+    marginTop: 5,
+    // left: 5,
+    width: '24%'
 },
 
 buscarTextNombre:{
@@ -429,7 +439,7 @@ buscarTextNombre:{
     fontWeight: "bold",
     color: "white", 
     left: 5,
-    // width: 100
+    width: '15%'
 },
 
 buscarSquare:{
@@ -438,7 +448,7 @@ buscarSquare:{
     borderWidth: 1,
     backgroundColor: "white",
     // marginHorizontal: 30,
-    width: 300,
+    width: '80%',
     left: 10,
     bottom: 5,
     opacity: 0.75
@@ -447,12 +457,11 @@ buscarSquare:{
 buscarSquarePais:{
     borderColor: "black",
     borderRadius: 30,
-    backgroundColor: "white",
-    marginHorizontal: 30,
-    marginBottom: 20,
-    borderColor: 'black',
     borderWidth: 1,
-    width: 230,
+    backgroundColor: "white",
+    // marginHorizontal: 30,
+    // marginBottom: 20,
+    width: '73%',
     opacity: 0.75
 
 },

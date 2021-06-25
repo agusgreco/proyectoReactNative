@@ -298,7 +298,7 @@ import {
                   <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorApellido(escrito)}>
                 </TextInput> 
 
-                <Text style={styles.buscarText}>Ciudad/Pais:</Text>
+                <Text style={styles.buscarTextPais}>Ciudad/Pais:</Text>
                   <TextInput style={styles.buscarSquarePais} onChangeText={(escrito) => this.filtrarPorCiudadOPais(escrito)}>
                 </TextInput> 
               </View>
