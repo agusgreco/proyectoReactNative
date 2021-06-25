@@ -17,35 +17,90 @@ class Screen_Import extends Component {
     constructor(props){
       super(props);
       this.state = {
+        numeroPedido: "",
+        cantidadPedida: "",
+        paraAlmacenar: [],
         usuarios: [],
         toValue: 1.2,
         activity: false
       }
     }
 
-componentDidMount(){
-        // this.getData();
-  fetch("https://randomuser.me/api/?results=9")
-  .then(result => result.json())
-  .then(data => {
-    this.setState({usuarios: data.results})
-    console.log(data)
-  })
-  // cada contacto tener un boton de guardar, y que cuando lo toques llames a storeData, etc 
+// componentDidMount(){
+//         // this.getData();
+//   fetch("https://randomuser.me/api/?results=9")
+//   .then(result => result.json())
+//   .then(data => {
+//     this.setState({usuarios: data.results})
+//     console.log(data)
+//   })
+//   // cada contacto tener un boton de guardar, y que cuando lo toques llames a storeData, etc 
+
+// }
+
+async dataPedido(numeroPedido){
+  // this.getData();
+try{
+let resultado = await fetch("https://randomuser.me/api/?results=" + numeroPedido);
+let json = await resultado.json();
+console.log(json);
+return json.results;
+}catch(error){
+  console.log('error' + error)
+}
 
 }
 
-async storeData(){
-    //setStringStorage
-    try{
-        const jsonUsuarios = JSON.stringify(this.state.usuarios);
-        await AsyncStorage.setItem('Usuarios', jsonUsuarios)
-        console.log("Datos almacenados")
-        //Alert.alert("Los datos fueron guardados!")
-    }catch(error){
-      console.log(error);
-    }
+
+
+getDataFromApi(num) {
+  getData(num)
+  .then((resultado)=> {
+    this.setState({activity: true})
+    let usuariosAImportar = [...this.state.usuarios, ...resultado]
+    this.setState({usuarios: usuariosAImportar, activity: false})
+  })
+}
+
+async storeData(v){
+  try{
+    this.state.paraAlmacenar.push(v)
+      const jsonUsuarios = JSON.stringify(this.state.paraAlmacenar);
+      await AsyncStorage.setItem('Usuarios', jsonUsuarios)
+      let numeroAlmacenados = this.state.paraAlmacenar.length
+      this.setState({
+        cantidadPedida: numeroAlmacenados
+      })
+      console.log("Datos almacenados")
+      //Alert.alert("Los datos fueron guardados!")
+  }catch(error){
+    console.log(error);
   }
+}
+
+async componentDidMount(){
+  let obtenerContactos = await AsyncStorage.getItem("Usuarios")
+  obtenerContactos = JSON.parse(obtenerContactos)
+  
+  if(obtenerContactos == null) obtenerContactos = []
+  this.setState({ 
+    paraAlmacenar: obtenerContactos,
+  })}
+
+
+
+
+// async storeData(){
+//     //setStringStorage
+//     try{
+//         const jsonUsuarios = JSON.stringify(this.state.usuarios);
+//         await AsyncStorage.setItem('Usuarios', jsonUsuarios)
+//         console.log("Datos almacenados")
+//         //Alert.alert("Los datos fueron guardados!")
+//     }catch(error){
+//       console.log(error);
+//     }
+//   }
 
   position = new Animated.Value(0);
   rotacion = this.position.interpolate({
@@ -78,6 +133,11 @@ render(){
             <Text style={styles.headerText}>LAS TARJETAS PARA IMPORTAR</Text>
           </View>
 
+          <TextInput  onChangeText={ num => this.setState({numeroPedido: num})} placeholder="Cantidad de contactos..." ></TextInput>
+          <TouchableOpacity onPress = {() => this.getDataFromApi(this.state.numeroPedido)}>
+                <Text >AGREGAR</Text>
+          </TouchableOpacity >
+
           <View style={styles.importScreen}>
             <View>
               {this.state.activity 
@@ -100,7 +160,7 @@ render(){
               onPress={this.storeData.bind(this)}
               onPressIn={this.flip} >
                 {/* <View> */}
-                  <Text style={styles.guardarDatosTexto} >GUARDAR DATOS</Text>
+                  <Text style={styles.guardarDatosTexto}> GUARDAR DATOS</Text>
                   {/* </View> */}
             </TouchableOpacity>
             </Animated.View>
