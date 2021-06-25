@@ -254,7 +254,7 @@ importTexto:{
 importScreen:{
     backgroundColor: "#111010",
     width: '100%',
-    paddingTop: 60
+    paddingTop: 30
 },
 
 agregarTexto:{
@@ -309,15 +309,15 @@ agregarNombresTexto:{
 },
 
 ag:{
-    paddingVertical: 0,
+    // paddingVertical: 0,
     borderRadius: 30,
     backgroundColor:  'grey', // "black",
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 30,
     marginVertical: 9,
- 
-    width: "50%"
+    width: "50%",
+    marginBottom: 20
 },
 
 botones:{
