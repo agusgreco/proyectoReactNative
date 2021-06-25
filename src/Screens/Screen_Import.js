@@ -105,7 +105,7 @@ render(){
             <Text style={styles.headerText}>LAS TARJETAS PARA IMPORTAR</Text>
           </View>
 
-
+          
             <Text style={styles.cant}> 
             CANTIDAD DE USUARIOS: {}
             </Text>
