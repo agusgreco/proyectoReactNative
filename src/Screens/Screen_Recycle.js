@@ -265,7 +265,7 @@ keyExtractor = (item, index) => item.login.uuid;
                         ]
                       }}>
                         <TouchableOpacity 
-                          style={styles.botones} 
+                          style={styles.botonesAbajoMas} 
                           onPress={() => this.getDataBorrada()} 
                            >
                             {/* <View> */}

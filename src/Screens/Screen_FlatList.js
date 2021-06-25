@@ -37,8 +37,13 @@ import {
              text: "",
              contactosOriginales: [],
              textHandler:"",
+             todosLosUsuarios: [],
          }
      }
+
+    //  const todosLosUsuarios = [...this.state.usuariosImportados, ...this.state.usuariosParaRecuperar]
+              //  const todosUsuarios: this.state.usuariosImportados.concat(this.state.usuariosParaRecuperar)
+
 
     // async getData(){
     //     try{
@@ -58,6 +63,11 @@ import {
           const usuarios = await AsyncStorage.getItem('Usuarios');
           this.setState({usuariosImportados: JSON.parse(usuarios), contactosOriginales: JSON.parse(usuarios)});
           return usuarios
+          // const todosUsuarios: this.state.usuariosImportados.concat(this.state.usuariosParaRecuperar)
+          // this.setState({todosLosUsuarios: this.state.usuariosImportados})
+          // const interest = [...food, ...sports];
+
+
       }catch(e){
         console.log(e);
       }
@@ -113,6 +123,7 @@ async getDatosParaRecuperar(){
       // this.state.usuariosImportados.push(contactosRecuperados)
       this.setState({ usuariosRecuperados: contactosRecuperados})   
                this.state.usuariosImportados.push(usuariosRecuperados)
+               this.setState({usuariosImportados: usuariosImportados})
 
 
 
@@ -133,6 +144,15 @@ async getDatosParaRecuperar(){
           if(resultado !== null){
             this.setState({usuariosParaRecuperar: JSON.parse(resultado)});
             // this.state.usuariosImportados.push(usuariosRecuperados)
+           
+                //  const contactosRecuperados = JSON.parse(resultado);
+                // this.setState({ usuariosParaRecuperar: contactosRecuperados})   
+      //          this.state.usuariosImportados.push(usuariosParaRecuperar)
+      //          this.setState({usuariosImportados: usuariosImportados})
+
+               const todosLosUsuarios = [...this.state.usuariosImportados, ...this.state.usuariosParaRecuperar]
+              this.setState({usuariosImportados: todosLosUsuarios})
+
 
             console.log(resultado)
           }else{
@@ -443,6 +463,8 @@ async getDatosParaRecuperar(){
                       size={60}
                       />
                   :<FlatList
+                      // let todosLosUsuarios = [...this.state.usuariosImportados, ...this.state.usuariosParaRecuperar]
+
                       // data={this.state.usuariosImportados}
                       data={this.state.usuariosImportados}
                       keyExtractor={this.keyExtractor}
@@ -451,13 +473,13 @@ async getDatosParaRecuperar(){
                       ItemSeparatorComponent={this.separator}
                     />                           
                   }
-                  <FlatList
+                  {/* <FlatList
                       data={this.state.usuariosParaRecuperar}
                       keyExtractor={this.keyExtractor}
                       renderItem={this.renderItem2}
                       // numberColumns= {2}
                       ItemSeparatorComponent={this.separator}
-                    />                      
+                    />                       */}
                 </View>
             {/* </ScrollView> */}
 
@@ -486,7 +508,7 @@ async getDatosParaRecuperar(){
                   {/* </TouchableOpacity> */}
 
                   <TouchableOpacity 
-                    style={styles.botones} 
+                    style={styles.botonesAbajo} 
                     onPress={() => this.getDatosParaRecuperar2()} 
                      >
                       {/* <View> */}

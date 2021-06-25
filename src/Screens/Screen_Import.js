@@ -100,7 +100,7 @@ render(){
               onPress={this.storeData.bind(this)}
               onPressIn={this.flip} >
                 {/* <View> */}
-                  <Text style={styles.guardarDatosTexto} >GUARDAR DATOS</Text>
+                  <Text style={styles.guardarDatosTexto}> GUARDAR DATOS</Text>
                   {/* </View> */}
             </TouchableOpacity>
             </Animated.View>

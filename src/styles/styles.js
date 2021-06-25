@@ -262,8 +262,10 @@ agregarTextoDos:{
 recycleTexto:{
     fontSize: 15,
     textAlign: "center",
+    fontWeight: "bold",
+
     paddingVertical: 10,
-    color: "#A9A9A9"
+    color: "black"
 },
 
 guardarDatos:{
@@ -277,8 +279,9 @@ guardarDatos:{
     // position: 'relative'
 },
 guardarDatosTexto:{
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
+    fontWeight: "bold",
     paddingVertical: 10,
     color: 'black', // "#A9A9A9",
 },
@@ -292,6 +295,33 @@ botones:{
     alignItems: 'center',
     marginHorizontal:30,
     marginVertical:5,
+    
+},
+
+botonesAbajo:{
+    // paddingVertical: 2,
+    borderRadius:30,
+    width: 280,
+    backgroundColor: "grey",
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal:30,
+    marginVertical:5,
+    marginBottom: 30,
+    
+},
+
+botonesAbajoMas:{
+    // paddingVertical: 2,
+    borderRadius:30,
+    width: 280,
+    backgroundColor: "grey",
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal:30,
+    marginVertical:5,
+    marginBottom: 30,
+    marginTop: 30,
     
 },
 
