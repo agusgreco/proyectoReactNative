@@ -282,6 +282,7 @@ recycleTexto:{
 
 guardarDatos:{
     paddingVertical: 5,
+    marginBottom: 15,
     borderRadius: 30,
     width: 200,
     backgroundColor:  'grey', // "black",
