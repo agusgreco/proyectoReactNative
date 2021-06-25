@@ -97,7 +97,7 @@ render(){
             <View>
               {this.state.activity 
                 ?<ActivityIndicator 
-                    color="blue"
+                    color="red"
                     size={60}
                     />
                 : valores

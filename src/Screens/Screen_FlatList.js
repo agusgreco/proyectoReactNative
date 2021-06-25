@@ -218,21 +218,22 @@ import {
 
 
     separator = () => <View style={styles.separator}/>
+    
     position = new Animated.Value(0);
-  rotacion = this.position.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg']
-   })
+    rotacion = this.position.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    })
 
-  flip = () => {
-    Animated.timing(this.position, {
-      toValue: 1,
-      duration: 4000,
-      friction: 3,
-      easing: Easing.elastic(3),
-      useNativeDriver: false
-     }).start()
-  }
+    flip = () => {
+      Animated.timing(this.position, {
+        toValue: 1,
+        duration: 4000,
+        friction: 3,
+        easing: Easing.elastic(3),
+        useNativeDriver: false
+       }).start()
+    }
 
 
     render() {
