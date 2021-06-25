@@ -150,20 +150,20 @@ async storeDatosParaRecuperar2(seleccionado){
 // }
 
 
-// async borrarDefinitivo(seleccionado){
-//   try{
-//     let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
-//       return ( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
-//     })
-// //   let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
-// //     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
-// // })       
-//     this.setState({ usuariosBorrados: res})
-//       // this.setState({selectedItem: null})      
-//   }catch(error){
-//     console.log(error);
-//   }
-// }
+async borrarDefinitivo(seleccionado){
+  try{
+    let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
+      return ( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+    })
+//   let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
+//     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
+// })       
+    this.setState({ usuariosBorrados: res})
+      // this.setState({selectedItem: null})      
+  }catch(error){
+    console.log(error);
+  }
+}
 
 async definitivo (borrados){
   try{
@@ -275,10 +275,9 @@ keyExtractor = (item, index) => item.login.uuid;
                       </Animated.View>                          
                       <TouchableOpacity style={styles.botonesAbajoMas} 
                       onPressIn={() => this.definitivo('UsuariosBorrados2')}
-                      // onPress={() => this.setState({showModal: false})}
                       >
                           <View>
-                            <Text style={styles.recycleTexto}>BORRAR DEFINITIVAMENTE</Text>
+                            <Text style={styles.recycleTexto}>BORRAR TODAS DEFINITIVAMENTE</Text>
                           </View>
                           </TouchableOpacity>
                           </View>
@@ -336,14 +335,13 @@ keyExtractor = (item, index) => item.login.uuid;
                         </View>
                       </TouchableOpacity>
 
-                      {/* <TouchableOpacity style={styles.borrarDef} 
-                      // onPressIn={() => this.borrarDefinitivo(this.state.selectedItem)}
-                      onPressIn={() => this.definitivo('UsuariosBorrados2')}
+                      <TouchableOpacity style={styles.borrarDef} 
+                      onPressIn={() => this.borrarDefinitivo(this.state.selectedItem)}
                       onPress={() => this.setState({showModal: false})}>
                           <View>
                             <Text style={styles.agregarTextoDos}>BORRAR DEFINITIVAMENTE</Text>
                           </View>
-                          </TouchableOpacity> */}
+                          </TouchableOpacity>
 
                       {/* <TouchableOpacity style={styles.borrarDef} onPress={() => this.borrarDefinitivo(this.state.selectedItem)}>
                           <View>
