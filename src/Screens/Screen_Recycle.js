@@ -27,6 +27,7 @@ import Animated from 'react-native-reanimated';
             showModal: false,
             activity: false,
             selectedItem: null,
+            definitivo: []
          }
      }
 
@@ -133,18 +134,46 @@ async storeDatosParaRecuperar2(seleccionado){
 }
 
 
-async borrarDefinitivo(seleccionado){
+
+//  async getUnDataBorrada(){
+//   try{
+//     const resultado = await AsyncStorage.getItem('UsuarioBorrado');
+//     if(resultado !== null){
+//       this.setState({usuarioBorrado: JSON.parse(resultado)});
+//       console.log(resultado)
+//     }else{
+//       console.log('no se encontro')
+//     }
+//   }catch(error){
+//     console.log(error);
+//   }
+// }
+
+
+// async borrarDefinitivo(seleccionado){
+//   try{
+//     let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
+//       return ( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+//     })
+// //   let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
+// //     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
+// // })       
+//     this.setState({ usuariosBorrados: res})
+//       // this.setState({selectedItem: null})      
+//   }catch(error){
+//     console.log(error);
+//   }
+// }
+
+async definitivo (borrados){
   try{
-    let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
-      return ( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
-    })
-//   let notres = this.state.usuariosImportados.filter((usuariosImportados) => {
-//     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
-// })       
-    this.setState({ usuariosBorrados: res})
-      // this.setState({selectedItem: null})      
-  }catch(error){
-    console.log(error);
+    await AsyncStorage.removeItem(borrados)
+    let res = []
+    const jsonDefinitivos = JSON.stringify(res);
+    await AsyncStorage.setItem('UsuariosBorrados2', jsonDefinitivos)
+    this.setState({usuariosBorrados: []})
+  }catch(e){
+    console.log(e)
   }
 }
 
@@ -300,7 +329,8 @@ keyExtractor = (item, index) => item.login.uuid;
                       </TouchableOpacity>
 
                       <TouchableOpacity style={styles.borrarDef} 
-                      onPressIn={() => this.borrarDefinitivo(this.state.selectedItem)}
+                      // onPressIn={() => this.borrarDefinitivo(this.state.selectedItem)}
+                      onPressIn={() => this.definitivo('UsuariosBorrados2')}
                       onPress={() => this.setState({showModal: false})}>
                           <View>
                             <Text style={styles.agregarTextoDos}>BORRAR DEFINITIVAMENTE</Text>

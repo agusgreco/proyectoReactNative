@@ -336,25 +336,27 @@ import {
                   {rotateX: this.rotacion}
                 ]
               }}>
-                 <TouchableOpacity style={styles.botones} 
-                 onPress={() => this.getData()}
-                 onPressIn={this.flip}
-                 >
-                   <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
-                  </TouchableOpacity>
+                <TouchableOpacity style={styles.botones} 
+                  onPressIn={() => this.getData()}
+                  onPress={this.flip}
+                  >
+                   {/* <View> */}
+                     <Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text>
+                   {/* </View> */}
+                </TouchableOpacity>
 
-             
+                  </Animated.View> 
 
                   <TouchableOpacity 
                     style={styles.botonesAbajo} 
-                    onPress={() => this.getDatosParaRecuperar2()} 
+                    onPressIn={() => this.getDatosParaRecuperar2()}
+                    onPress={this.flip} 
                      >
                       {/* <View> */}
                         <Text style={styles.recycleTexto}>RECUPERAR TARJETAS BORRADAS</Text>
                         {/* </View> */}
                   </TouchableOpacity>
 
-               </Animated.View> 
 
               <Modal 
                  visible={this.state.showModal}
