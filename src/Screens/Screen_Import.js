@@ -117,9 +117,7 @@ render(){
             </TouchableOpacity>
 
         
-          <View style={styles.importScreen}>
-           
-           
+          <ScrollView style={styles.importScreen}>           
             <View>
               {this.state.activity 
                 ?<ActivityIndicator 
@@ -129,8 +127,10 @@ render(){
                 : valores
                 }
             </View>
-          
+          </ScrollView>
+
           <Animated.View style={{
+            marginTop: 20,
             backgroundColor: '#111010',
             left: this.position,
             transform: [
@@ -145,8 +145,6 @@ render(){
                   {/* </View> */}
             </TouchableOpacity>
             </Animated.View>
-          </View>
-          
             
 
             {/* <Button title="Apreta para animar!" onPress={this.topDown}>

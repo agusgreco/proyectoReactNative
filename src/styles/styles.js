@@ -283,11 +283,12 @@ recycleTexto:{
 guardarDatos:{
     paddingVertical: 5,
     borderRadius: 30,
+    width: 200,
     backgroundColor:  'grey', // "black",
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 30,
-    marginVertical: 90,
+    // marginVertical: 90,
     // position: 'relative'
 },
 guardarDatosTexto:{
