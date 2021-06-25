@@ -194,49 +194,6 @@ async getDatosParaRecuperar(){
       }
     }
 
-    // async filtrarPorNombre(texto){
-    //     if (texto.length !== 0) {
-    //       var escrito = texto
-    //       let usuariosImportados = this.state.usuariosImportados
-
-    //       let filtrado = usuariosImportados.filter(dato => {
-    //         let itemData = dato.name.first.toUpperCase()
-    //         let textData = escrito.toUpperCase()  
-    //         if(itemData.includes(textData)) return dato
-            
-    //       })
-    //       console.log(texto)
-    //       this.setState({ usuariosImportados: filtrado})
-    //     } 
-    //     else {
-    //        await this.getData()
-    //         console.log(texto)
-
-    //     }
-    //   }
-
-    //   async filtrarPorNombre(texto){
-    //     if (texto.length !== 0) {
-    //       var escrito = texto
-    //       let usuariosImportados = this.state.usuariosImportados
-    //       this.setState({ usuariosVisualizados: usuariosImportados})
-
-
-    //       let filtrado = usuariosVisualizados.filter(dato => {
-    //         let itemData = dato.name.first.toUpperCase()
-    //         let textData = escrito.toUpperCase()  
-    //         if(itemData.includes(textData)) return dato
-            
-    //       })
-    //       console.log(texto)
-    //       this.setState({ usuariosVisualizados: filtrado})
-    //     } 
-    //     else {
-    //        await this.getData()
-    //         console.log(texto)
-
-    //     }
-    //   }
 
       async filtrarPorApellido(texto){
         if (texto.length !== 0) {
@@ -259,14 +216,19 @@ async getDatosParaRecuperar(){
         }
       }
 
-      async filtrarPorCiudadOEstado(texto){
+
+      async filtrarPorCiudadOPais(texto){
         if (texto.length !== 0) {
+
+          
           var escrito = texto
           let usuariosImportados = this.state.usuariosImportados
           let filtrado = usuariosImportados.filter(dato => {
-            let itemData = dato.location.city.toUpperCase() || dato.location.state.toUpperCase()
-            let textData = escrito.toUpperCase()  
-            if(itemData.includes(textData)) return dato
+            if(
+              dato.location.city.toUpperCase().includes(escrito.toUpperCase()) ||
+              dato.location.country.toUpperCase().includes(escrito.toUpperCase())
+            )
+          return dato
           })
           console.log(texto)
           this.setState({ usuariosImportados: filtrado})
@@ -282,12 +244,10 @@ async getDatosParaRecuperar(){
       //   if (texto.length !== 0) {
       //     var escrito = texto
       //     let usuariosImportados = this.state.usuariosImportados
-
       //     let filtrado = usuariosImportados.filter(dato => {
-      //       let itemData = dato.location.city.toUpperCase() && dato.location.state.toUpperCase()
+      //       let itemData = dato.location.city.toUpperCase() || dato.location.state.toUpperCase()
       //       let textData = escrito.toUpperCase()  
       //       if(itemData.includes(textData)) return dato
-            
       //     })
       //     console.log(texto)
       //     this.setState({ usuariosImportados: filtrado})
@@ -299,39 +259,8 @@ async getDatosParaRecuperar(){
       //   }
       // }
 
-    //   async adicionar(texto){
-    //     if (texto.length !== 0) {
-    //       var escrito = texto
-    //       let informacionadicional = this.state.informacionadicional
-
-    //       let filtrado = informacionadicional.filter(dato => {
-    //         let itemData = dato.location.city.toUpperCase() && dato.location.state.toUpperCase()
-    //         let textData = escrito.toUpperCase()  
-    //         if(itemData.includes(textData)) return dato
-            
-    //       })
-    //       console.log(texto)
-    //       this.setState({ informacionadicional: filtrado})
-    //     } 
-    //     else {
-    //        await this.getData()
-    //         console.log(texto)
-
-    //     }
-    //   }
-    //   async storeData(){
-    //     //setStringStorage
-    //     try{
-    //         const jsonUsuarios = JSON.stringify(this.state.usuarios);
-    //         await AsyncStorage.setItem('Usuarios', jsonUsuarios)
-    //         console.log("Datos almacenados")
-    //     }catch(error){
-    //       console.log(error);
-    //     }
-    //   }
 
     renderItem = ({item}) => {
-    // renderItem = () => {
 
         return(
          <View style={styles.itemContainer}> 
@@ -449,8 +378,8 @@ async getDatosParaRecuperar(){
                   <TextInput style={styles.buscarSquare} onChangeText={(escrito) => this.filtrarPorApellido(escrito)}>
                 </TextInput> 
 
-                <Text style={styles.buscarText}>Estado/Ciudad:</Text>
-                  <TextInput style={styles.buscarSquarePais} onChangeText={(escrito) => this.filtrarPorCiudadOEstado(escrito)}>
+                <Text style={styles.buscarText}>Ciudad/Pais:</Text>
+                  <TextInput style={styles.buscarSquarePais} onChangeText={(escrito) => this.filtrarPorCiudadOPais(escrito)}>
                 </TextInput> 
               </View>
 
@@ -545,7 +474,7 @@ async getDatosParaRecuperar(){
                           Age: {this.state.selectedItem && this.state.selectedItem.dob.age}
                       </Text>
                       <Text style={styles.modalText}> 
-                          Direccion: {this.state.selectedItem && this.state.selectedItem.location.street.name + ' ' + this.state.selectedItem.location.street.number + ' ' + this.state.selectedItem.location.city + ' ' + this.state.selectedItem.location.state + ' ' + this.state.selectedItem.location.postcode}
+                          Direccion: {this.state.selectedItem && this.state.selectedItem.location.street.name + ' ' + this.state.selectedItem.location.street.number + ' ' + this.state.selectedItem.location.city + ' ' + this.state.selectedItem.location.country + ' ' + this.state.selectedItem.location.postcode}
                       </Text>
                       <Text style={styles.modalText}> 
                           Telefono: {this.state.selectedItem && this.state.selectedItem.phone}
@@ -558,7 +487,7 @@ async getDatosParaRecuperar(){
                           {/* <TextInput onChangeText={(escrito) => this.adicionar(escrito)}> </TextInput>  */}
                       </Text>
                       <Text style={styles.texto}> {this.state.textHandler} </Text>
-                      <TextInput style={styles.adicional} secureTextEntry={true} onChangeText={text => this.setState({textHandler:text})}/>
+                      <TextInput style={styles.adicional}  onChangeText={text => this.setState({textHandler:text})}/>
                       <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}>
                         <View>
                           <Text style={styles.agregarTexto}>AGREGAR</Text>
