@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getData} from '../api/RandomUsers';
 import {styles} from '../styles/styles';
-import { Card } from '../Components/Card';
 
 import { 
     View,
@@ -13,10 +12,8 @@ import {
     TextInput,
     FlatList, 
     TouchableOpacity, 
-    Button,
     Animated,
     Easing,
-    ScrollView
 } from 'react-native';
 
  export class Screen_Flatlist extends Component {
@@ -75,11 +72,7 @@ import {
 
       async addData(textoEscrito){
         try{
-
-        //   let res = this.state.usuariosImportados.filter((usuariosImportados) => {
-        //     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
-        // })
-      
+     
           if(textoEscrito.length !== 0){
             this.state.textHandler.push(textoEscrito);
             this.setState({textHandler: textHandler})
@@ -94,31 +87,6 @@ import {
           console.log(error);
         }
        }
-
-       
-      
-// async getDatosParaRecuperar(){
-//   try{
-//     const resultado = await AsyncStorage.getItem('UsuariosRecuperados');
-//     if(resultado !== null){
-
-//       const contactosRecuperados = JSON.parse(resultado);
-
-//       this.setState({ usuariosRecuperados: contactosRecuperados})   
-//                this.state.usuariosImportados.push(usuariosRecuperados)
-//                this.setState({usuariosImportados: usuariosImportados})
-
-
-
-//       console.log(resultado)
-//     }else{
-//       console.log('no se encontro')
-//     }
-//   }catch(error){
-//     console.log(error);
-//   }
-// }
-
 
 
       async getDatosParaRecuperar2(){
@@ -141,10 +109,6 @@ import {
         }
  }
 
-
-
-
-
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});
     } 
@@ -161,10 +125,7 @@ import {
         let filtrado = usuariosImportados.filter(dato => {
           let itemData = dato.name.first.toUpperCase()
           let textData = escrito.toUpperCase()  
-          return itemData.indexOf(textData) > -1
-
-          // if(itemData.includes(textData)) return dato
-          
+          return itemData.indexOf(textData) > -1          
         })
 
         this.setState({ usuariosImportados: filtrado})
@@ -231,7 +192,6 @@ import {
         return(
          <View style={styles.itemContainer}> 
           
-          {/* ESTE ES EL ORIGINAL: */}
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
                 <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
@@ -272,7 +232,6 @@ import {
       easing: Easing.elastic(3),
       useNativeDriver: false
      }).start()
-    // this.setState({toValue: this.position==1? 1.2 :1})
   }
 
 
@@ -287,7 +246,6 @@ import {
 
           <View style={styles.container}>
 
-            {/* {valoresParaRecuperar} */}
               <View style={styles.headerBorderImport}>
                   <Text style={styles.headerTextImport}> TARJETAS IMPORTADAS </Text>
               </View>
@@ -318,7 +276,6 @@ import {
                       data={this.state.usuariosImportados}
                       keyExtractor={this.keyExtractor}
                       renderItem={this.renderItem}
-                      // numberColumns= {2}
                       ItemSeparatorComponent={this.separator}
                     />                           
                   }
@@ -337,9 +294,7 @@ import {
                   onPressIn={() => this.getData()}
                   onPress={this.flip}
                   >
-                   {/* <View> */}
                      <Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text>
-                   {/* </View> */}
                 </TouchableOpacity>
 
                   </Animated.View> 
@@ -349,9 +304,7 @@ import {
                     onPressIn={() => this.getDatosParaRecuperar2()}
                     onPress={this.flip} 
                      >
-                      {/* <View> */}
                         <Text style={styles.recycleTexto}>RECUPERAR TARJETAS BORRADAS</Text>
-                        {/* </View> */}
                   </TouchableOpacity>
 
 
@@ -390,10 +343,7 @@ import {
                       </Text>
                       <Text style={styles.texto}> {this.state.textHandler} </Text>
 
-                      {/* <Text style={styles.texto}>  {this.state.selectedItem && this.state.selectedItem.text} </Text> */}
-
                       <TextInput style={styles.adicional}  onChangeText={text => this.setState({textHandler:text})}/>
-                      {/* <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}> */}
                       <TouchableOpacity style={styles.agregar} onPress={() => this.addData(this.state.selectedItem)}>
 
                         <View>
@@ -417,28 +367,6 @@ import {
                      </View>
                     </View>
                </Modal>
-
-               {/* <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#A9A9A9', height: 100}}>
-                 <TouchableOpacity style={{height: 100, width: 100}}>
-                   <Text style={styles.textoMenu}
-                      onPress={ () => this.props.navigation.navigate('Screen Menu')}
-                    > MENU </Text>
-                 </TouchableOpacity>
-                 <TouchableOpacity style={styles.icons}>
-                 <Text style={styles.textoMenu}
-                    onPress={ () => this.props.navigation.navigate('Screen Import')}
-                  >IMPORTAR </Text>
-                 </TouchableOpacity>
-                 <TouchableOpacity style={styles.icons}>
-                 <Text style={styles.textoMenu}
-                    onPress={ () => this.props.navigation.navigate('Screen Recycle')}
-                  >PAPELERA </Text>
-                 </TouchableOpacity>
-                 
-                 
-               </View> */}
-
-                
             
             </View>
 

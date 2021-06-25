@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {getData} from '../api/RandomUsers';
 import {styles} from '../styles/styles';
 
-// import {ModalInfo} from '../Components/ModalInfo'
 import { 
     View,
     Text,
@@ -64,9 +63,7 @@ import {
               <Text style={styles.menuHeaderText}> MENU </Text>
             </Animated.View>
 
-                
-              {/* {valores} */}
-
+              
             <View style={{position: 'absolute', bottom: 0, width: '100%'}}>
                 <Text style={styles.textoDeMenu}
                   onPress={ () => this.props.navigation.navigate('Screen Import')}

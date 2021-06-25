@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {styles} from '../styles/styles';
-
-// import {ModalInfo} from '../Components/ModalInfo'
 import { 
     View,
     Text,
@@ -29,7 +27,7 @@ import {
 
                 <View style={styles.acercaDe}> 
                     <Text style={styles.acercaDeText} >Agustina Greco</Text>
-            
+          
                     <Text style={styles.acercaDeText} >Ema Juarez</Text>
                 </View>
 

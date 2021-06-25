@@ -41,34 +41,11 @@ class Screen_Import extends Component {
   }
   
 
-    // componentDidMount(){
-    // fetch("https://randomuser.me/api/?results=" + this.state.numeroDePersonas)
-    // .then(result => result.json())
-    // .then(data => {
-    // this.setState({usuarios: data.results})
-    // console.log(data)
-    // })
-    
-    // }
-
-// componentDidMount(){
-//   fetch("https://randomuser.me/api/?results=9")
-//   .then(result => result.json())
-//   .then(data => {
-//     this.setState({usuarios: data.results})
-//     console.log(data)
-//   })
-//   // cada contacto tener un boton de guardar, y que cuando lo toques llames a storeData, etc 
-
-// }
-
 async storeData(){
-    //setStringStorage
     try{
         const jsonUsuarios = JSON.stringify(this.state.usuarios);
         await AsyncStorage.setItem('Usuarios', jsonUsuarios)
         console.log("Datos almacenados")
-        //Alert.alert("Los datos fueron guardados!")
     }catch(error){
       console.log(error);
     }
@@ -88,7 +65,6 @@ async storeData(){
       easing: Easing.elastic(3),
       useNativeDriver: false
      }).start()
-    // this.setState({toValue: this.position==1? 1.2 :1})
   }
 
 render(){
@@ -145,42 +121,7 @@ render(){
                   {/* </View> */}
             </TouchableOpacity>
             </Animated.View>
-            
 
-            {/* <Button title="Apreta para animar!" onPress={this.topDown}>
-              <Animated.View style={{
-                top: this.position,
-                width: 150,
-                height: 300,
-                backgroundColor: 'red',
-              }}></Animated.View>
-            </Button> */}
-
-            {/* <View style={styles.touchbarContainer}>
-              <TouchableOpacity style={styles.menu}>
-                <Text style={styles.textoMenu}
-                    onPress={ () => this.props.navigation.navigate('Screen Menu')}
-                  > MENU</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.icons}>
-                <Text style={styles.textoMenu}
-                    onPress={ () => this.props.navigation.navigate('Screen Flatlist')}
-                  > IMPORTADAS</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.icons}>
-                <Text style={styles.icons}
-                    onPress={ () => this.props.navigation.navigate('Screen Recycle')}
-                  > PAPELERA </Text>
-              </TouchableOpacity>
-            </View> */}
-              
-              {/* no se si esta bien */}
-
-            {/* <View style={styles.botonmenu}>
-              <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-                <Text styles={styles.textmenu}>MENU</Text>
-              </TouchableOpacity>
-            </View> */}
         </View>
 
 
