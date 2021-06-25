@@ -12,28 +12,79 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {styles} from '../styles/styles';
 import { Easing } from 'react-native-reanimated';
+import {getData} from "../api/RandomUsers"
+
 
 class Screen_Import extends Component {
     constructor(props){
       super(props);
       this.state = {
         usuarios: [],
+        apiImportada: [],
+        importados: [],
         toValue: 1.2,
-        activity: false
+        activity: false,
+        numeroDePersonas: "",
       }
     }
 
+// componentDidMount(){
+//         // this.getData();
+//   fetch("https://randomuser.me/api/?results=9")
+//   .then(result => result.json())
+//   .then(data => {
+//     this.setState({usuarios: data.results})
+//     console.log(data)
+//   })
+//   // cada contacto tener un boton de guardar, y que cuando lo toques llames a storeData, etc 
+
+// }
 componentDidMount(){
-        // this.getData();
-  fetch("https://randomuser.me/api/?results=9")
-  .then(result => result.json())
-  .then(data => {
-    this.setState({usuarios: data.results})
-    console.log(data)
-  })
-  // cada contacto tener un boton de guardar, y que cuando lo toques llames a storeData, etc 
+  // this.getData();
+fetch("https://randomuser.me/api/?results=" + this.state.numeroDePersonas)
+.then(result => result.json())
+.then(data => {
+this.setState({usuarios: data.results})
+console.log(data)
+})
+// cada contacto tener un boton de guardar, y que cuando lo toques llames a storeData, etc 
 
 }
+
+componentDidMount () {
+  this.unsuscribe = this.props.navigation.addListener( "focus", () => {
+
+    this.getMyContactsStorage();
+ })
+ 
+}
+componentWillUnmount(){
+      this.unsuscribe()
+}
+
+
+async getDataFromApi (){
+  let personas = await getData(this.state.numeroDePersonas)
+  this.setState({usuarios : personas, activity: false})
+  
+}
+
+async getMyContactsStorage () {
+  try{
+    const jsonUsuarios = await Asyncstorage.getItem("Usuarios");
+    console.log(jsonUsuarios);
+
+    if(jsonUsuarios !== null){
+      const contactos_recuperados = JSON.parse(jsonUsuarios);
+      this.setState({ usuarios: contactos_recuperados})
+    } else {
+      console.log("No existe nada");
+    }
+  } catch (error){
+    console.log(error);
+  }
+}
+
 
 async storeData(){
     //setStringStorage
@@ -46,6 +97,14 @@ async storeData(){
       console.log(error);
     }
   }
+
+  
+ cargarPersonas() {
+    
+  this.getDataFromApi()
+  this.setState({activity: true})
+  
+}
 
   position = new Animated.Value(0);
   rotacion = this.position.interpolate({
@@ -66,6 +125,7 @@ async storeData(){
 
 render(){
 
+  
     const valores = this.state.usuarios.map(item =>
         <Text key={item.login.uuid}
         style={styles.importTexto}>{item.name.first} {item.name.last}</Text>
@@ -78,7 +138,21 @@ render(){
             <Text style={styles.headerText}>LAS TARJETAS PARA IMPORTAR</Text>
           </View>
 
+
           <View style={styles.importScreen}>
+
+
+          <TouchableOpacity style= {styles.touchable} onPress={this.cargarPersonas.bind(this)}>
+                       <Text>Cargar personas </Text>
+                    </TouchableOpacity>
+
+                    <TextInput  keyboardType="number-pad"
+                      placeholder="Ingresa la cantidad de personas"
+                    onChangeText={text=> this.setState({numeroDePersonas : text})}
+                    /> 
+           
+    
+
             <View>
               {this.state.activity 
                 ?<ActivityIndicator 
@@ -150,3 +224,14 @@ render(){
 }
 }
 export {Screen_Import};
+
+
+{/* <Text style={styles.modalText}> 
+Cantidad de usuarios: {}
+</Text>
+<TextInput style={styles.adicional}  onChangeText={text => this.setState({numeroDePersonas:text})}/>
+<TouchableOpacity style={styles.agregar} onPress={() => this.getData()}>
+<View>
+<Text style={styles.agregarTexto}>AGREGAR</Text>
+</View>
+</TouchableOpacity> */}

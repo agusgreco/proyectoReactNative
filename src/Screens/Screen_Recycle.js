@@ -134,19 +134,26 @@ async storeDatosParaRecuperar2(seleccionado){
 
 
 
-//  async getUnDataBorrada(){
+// async borrarDefinitivo(seleccionado){
 //   try{
-//     const resultado = await AsyncStorage.getItem('UsuarioBorrado');
-//     if(resultado !== null){
-//       this.setState({usuarioBorrado: JSON.parse(resultado)});
-//       console.log(resultado)
-//     }else{
-//       console.log('no se encontro')
-//     }
+//     let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
+//       return ( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
+//     })
+
+//     // res = JSON.stringify(res)
+
+//     this.setState({ usuariosBorrados: res})
+//     const jsonUsuariosBorrados2 = JSON.stringify(this.state.usuariosBorrados);
+
+//     await AsyncStorage.setItem('UsuariosBorrados2', jsonUsuariosBorrados2)
+     
 //   }catch(error){
 //     console.log(error);
 //   }
 // }
+
+
+
 
 
 async borrarDefinitivo(seleccionado){
@@ -158,6 +165,10 @@ async borrarDefinitivo(seleccionado){
 //     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
 // })       
     this.setState({ usuariosBorrados: res})
+    
+    const jsonUsuariosBorrados2 = JSON.stringify(res)
+  await Asyncstorage.setItem( "UsuariosBorrados2" , jsonUsuariosBorrados2)
+
       // this.setState({selectedItem: null})      
   }catch(error){
     console.log(error);
@@ -165,19 +176,6 @@ async borrarDefinitivo(seleccionado){
 }
 
 
-//  async getDataUnBorrada(){
-//   try{
-//     const resultado = await AsyncStorage.getItem('UsuarioBorrados');
-//     if(resultado !== null){
-//       this.setState({usuarioBorrado: JSON.parse(resultado)});
-//       console.log(resultado)
-//     }else{
-//       console.log('no se encontro')
-//     }
-//   }catch(error){
-//     console.log(error);
-//   }
-// }
     
 
 showModal (item) {
