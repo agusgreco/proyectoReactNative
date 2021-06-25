@@ -133,29 +133,6 @@ async storeDatosParaRecuperar2(seleccionado){
 }
 
 
-
-// async borrarDefinitivo(seleccionado){
-//   try{
-//     let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
-//       return ( usuariosBorrados.login.uuid !== seleccionado.login.uuid)
-//     })
-
-//     // res = JSON.stringify(res)
-
-//     this.setState({ usuariosBorrados: res})
-//     const jsonUsuariosBorrados2 = JSON.stringify(this.state.usuariosBorrados);
-
-//     await AsyncStorage.setItem('UsuariosBorrados2', jsonUsuariosBorrados2)
-     
-//   }catch(error){
-//     console.log(error);
-//   }
-// }
-
-
-
-
-
 async borrarDefinitivo(seleccionado){
   try{
     let res = this.state.usuariosBorrados.filter((usuariosBorrados) => {
@@ -165,10 +142,6 @@ async borrarDefinitivo(seleccionado){
 //     return( usuariosImportados.login.uuid == seleccionado.login.uuid)
 // })       
     this.setState({ usuariosBorrados: res})
-    
-    const jsonUsuariosBorrados2 = JSON.stringify(res)
-  await Asyncstorage.setItem( "UsuariosBorrados2" , jsonUsuariosBorrados2)
-
       // this.setState({selectedItem: null})      
   }catch(error){
     console.log(error);
