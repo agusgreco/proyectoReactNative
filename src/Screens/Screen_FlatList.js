@@ -4,7 +4,6 @@ import {getData} from '../api/RandomUsers';
 import {styles} from '../styles/styles';
 import { Card } from '../Components/Card';
 
-// import {ModalInfo} from '../Components/ModalInfo'
 import { 
     View,
     Text,
@@ -41,31 +40,14 @@ import {
          }
      }
 
-    //  const todosLosUsuarios = [...this.state.usuariosImportados, ...this.state.usuariosParaRecuperar]
-              //  const todosUsuarios: this.state.usuariosImportados.concat(this.state.usuariosParaRecuperar)
-
-
-    // async getData(){
-    //     try{
-    //       const resultado = await AsyncStorage.getItem('Usuarios');
-    //       if(resultado !== null){
-    //         this.setState({usuariosImportados: JSON.parse(resultado)});
-    //       }else{
-    //         console.log('no encontre el key')
-    //       }
-    //     }catch(error){
-    //       console.log(error);
-    //     }
-    // }
+ 
 
     async getData() {
       try{
           const usuarios = await AsyncStorage.getItem('Usuarios');
           this.setState({usuariosImportados: JSON.parse(usuarios), contactosOriginales: JSON.parse(usuarios)});
           return usuarios
-          // const todosUsuarios: this.state.usuariosImportados.concat(this.state.usuariosParaRecuperar)
-          // this.setState({todosLosUsuarios: this.state.usuariosImportados})
-          // const interest = [...food, ...sports];
+  
 
 
       }catch(e){
@@ -73,23 +55,6 @@ import {
       }
     }
 
-//     async getDatosParaRecuperar(){
-//       try{
-//         const resultado = await AsyncStorage.getItem('UsuariosParaRecuperar');
-//         if(resultado !== null){
-
-//           this.state.usuariosImportados.push(JSON.parse(resultado))
-
-//           // this.setState({usuariosImportados: JSON.parse(resultado)});
-//           console.log(resultado)
-//         }else{
-//           console.log('no se encontro')
-//         }
-//       }catch(error){
-//         console.log(error);
-//       }
-// }
-    
 
 
       async storeBorrarData2(seleccionado){
@@ -113,28 +78,27 @@ import {
 
       
 
-async getDatosParaRecuperar(){
-  try{
-    const resultado = await AsyncStorage.getItem('UsuariosRecuperados');
-    if(resultado !== null){
+// async getDatosParaRecuperar(){
+//   try{
+//     const resultado = await AsyncStorage.getItem('UsuariosRecuperados');
+//     if(resultado !== null){
 
-      const contactosRecuperados = JSON.parse(resultado);
-      // this.setState({ usuariosImportados: contactosRecuperados, usuariosOriginales: contactosRecuperados})      
-      // this.state.usuariosImportados.push(contactosRecuperados)
-      this.setState({ usuariosRecuperados: contactosRecuperados})   
-               this.state.usuariosImportados.push(usuariosRecuperados)
-               this.setState({usuariosImportados: usuariosImportados})
+//       const contactosRecuperados = JSON.parse(resultado);
 
+//       this.setState({ usuariosRecuperados: contactosRecuperados})   
+//                this.state.usuariosImportados.push(usuariosRecuperados)
+//                this.setState({usuariosImportados: usuariosImportados})
 
 
-      console.log(resultado)
-    }else{
-      console.log('no se encontro')
-    }
-  }catch(error){
-    console.log(error);
-  }
-}
+
+//       console.log(resultado)
+//     }else{
+//       console.log('no se encontro')
+//     }
+//   }catch(error){
+//     console.log(error);
+//   }
+// }
 
 
 
@@ -143,12 +107,7 @@ async getDatosParaRecuperar(){
           const resultado = await AsyncStorage.getItem('UsuariosRecuperados');
           if(resultado !== null){
             this.setState({usuariosParaRecuperar: JSON.parse(resultado)});
-            // this.state.usuariosImportados.push(usuariosRecuperados)
-           
-                //  const contactosRecuperados = JSON.parse(resultado);
-                // this.setState({ usuariosParaRecuperar: contactosRecuperados})   
-      //          this.state.usuariosImportados.push(usuariosParaRecuperar)
-      //          this.setState({usuariosImportados: usuariosImportados})
+
 
                const todosLosUsuarios = [...this.state.usuariosImportados, ...this.state.usuariosParaRecuperar]
               this.setState({usuariosImportados: todosLosUsuarios})
@@ -164,11 +123,33 @@ async getDatosParaRecuperar(){
  }
 
 
+ async addData(textoEscrito){
+  try{
+
+    if(textoEscrito.length !== 0){
+      this.state.textHandler.push(textoEscrito);
+      this.setState({textHandler: textHandler})
+
+      const masTexto = [...this.state.text, ...this.state.textHandler]
+      this.setState({text: masTexto})
+
+    }else{
+      console.log('no se encontro')
+    }
+  }catch(error){
+    console.log(error);
+  }
+ }
+
+
     showModal (item) {
         this.setState({selectedItem: item, showModal: true});
     } 
     keyExtractor = (item, index) => item.login.uuid;
     
+
+
+
     async filtrarPorNombre(texto){
       if (texto.length !== 0) {
         var escrito = texto
@@ -240,24 +221,6 @@ async getDatosParaRecuperar(){
         }
       }
 
-      // async filtrarPorCiudadOEstado(texto){
-      //   if (texto.length !== 0) {
-      //     var escrito = texto
-      //     let usuariosImportados = this.state.usuariosImportados
-      //     let filtrado = usuariosImportados.filter(dato => {
-      //       let itemData = dato.location.city.toUpperCase() || dato.location.state.toUpperCase()
-      //       let textData = escrito.toUpperCase()  
-      //       if(itemData.includes(textData)) return dato
-      //     })
-      //     console.log(texto)
-      //     this.setState({ usuariosImportados: filtrado})
-      //   } 
-      //   else {
-      //      await this.getData()
-      //       console.log(texto)
-
-      //   }
-      // }
 
 
     renderItem = ({item}) => {
@@ -265,8 +228,6 @@ async getDatosParaRecuperar(){
         return(
          <View style={styles.itemContainer}> 
           
-          {/* <Card/> */}
-
           {/* ESTE ES EL ORIGINAL: */}
             <TouchableOpacity onPress={ () => this.showModal(item)}> 
             <View style={styles.card}> 
@@ -288,51 +249,10 @@ async getDatosParaRecuperar(){
 
          </View>
 
-
-      //     <View style={styles.container}> 
-      //     <TouchableOpacity onPress={ () => this.showModal(item)}> 
-      //     <View style={styles.card}> 
-      //     <Image style={styles.image} source={{uri: item.picture.thumbnail}}/> 
-      //         <Text style={styles.modalText}> {item.name.last}, {item.name.first} </Text>
-      //     </View>
-      //     </TouchableOpacity>
-      //  </View>
-
         )
     }
-
-
-    renderItem2 = ({item}) => {
-  
-          return(
-           <View style={styles.itemContainer}> 
-            
-            {/* <Card/> */}
-  
-            {/* ESTE ES EL ORIGINAL: */}
-              <View style={styles.card}> 
-                  <Image style={styles.imageModal} source={{uri: item.picture.large}}/> 
-                  <Text style={styles.itemTextName}> 
-                      {item.name.last}, {item.name.first} 
-                  </Text>
-                  <Text style={styles.itemText}> 
-                      {item.email} 
-                  </Text>
-                  <Text style={styles.itemText}> 
-                      Fecha de nacimiento: {item.dob.date}
-                  </Text>
-                  <Text style={styles.itemText}> 
-                      ({item.dob.age} years old)
-                  </Text>
-              </View>
-  
-           </View>
-  
-          )
-      }
   
 
-    // keyExtractor = (item, idx) => idx.toString()
 
     separator = () => <View style={styles.separator}/>
     position = new Animated.Value(0);
@@ -383,7 +303,6 @@ async getDatosParaRecuperar(){
                 </TextInput> 
               </View>
 
-            {/* <ScrollView > */}
               <View style={styles.listContainer}>
                 
                 { this.state.activity 
@@ -392,9 +311,7 @@ async getDatosParaRecuperar(){
                       size={60}
                       />
                   :<FlatList
-                      // let todosLosUsuarios = [...this.state.usuariosImportados, ...this.state.usuariosParaRecuperar]
 
-                      // data={this.state.usuariosImportados}
                       data={this.state.usuariosImportados}
                       keyExtractor={this.keyExtractor}
                       renderItem={this.renderItem}
@@ -402,26 +319,17 @@ async getDatosParaRecuperar(){
                       ItemSeparatorComponent={this.separator}
                     />                           
                   }
-                  {/* <FlatList
-                      data={this.state.usuariosParaRecuperar}
-                      keyExtractor={this.keyExtractor}
-                      renderItem={this.renderItem2}
-                      // numberColumns= {2}
-                      ItemSeparatorComponent={this.separator}
-                    />                       */}
+
                 </View>
-            {/* </ScrollView> */}
 
               
 
               <Animated.View style={styles.botonBackground, {
-                // backgroundColor: 'black', //'#111010',
                 left: this.position,
                 transform: [
                   {rotateX: this.rotacion}
                 ]
               }}>
-                 {/* <Button style={styles.guardarDatos} title="Obtener resultados" onPress={() => this.getData()}/> */}
                  <TouchableOpacity style={styles.botones} 
                  onPress={() => this.getData()}
                  onPressIn={this.flip}
@@ -429,12 +337,7 @@ async getDatosParaRecuperar(){
                    <View><Text style={styles.recycleTexto} >OBTENER RESULTADOS</Text></View>
                   </TouchableOpacity>
 
-                  {/* <TouchableOpacity 
-                    style={styles.botones} 
-                    onPress={() => this.getDatosParaRecuperar()} 
-                     >
-                        <Text style={styles.recycleTexto}>RECUPERAR LAS TARJETAS BORRADAS</Text> */}
-                  {/* </TouchableOpacity> */}
+             
 
                   <TouchableOpacity 
                     style={styles.botonesAbajo} 
@@ -445,13 +348,6 @@ async getDatosParaRecuperar(){
                         {/* </View> */}
                   </TouchableOpacity>
 
-                    {/* <TouchableOpacity onPress={() => this.setState({usuariosImportados:[]})}>
-                        <View><Text>ELIMINAR DATOS IMPORTADOS</Text></View>
-                    </TouchableOpacity> */}
-{/* 
-                 <TouchableOpacity style={styles.botones} onPress={() => this.storeBorrarData()}>
-                    <View><Text style={styles.recycleTexto}>ELIMINAR DATOS IMPORTADOS</Text></View>
-                  </TouchableOpacity> */}
                </Animated.View> 
 
               <Modal 
@@ -484,25 +380,17 @@ async getDatosParaRecuperar(){
                       </Text>
                       <Text style={styles.modalText}> 
                           Datos adicionales: {}
-                          {/* <TextInput onChangeText={(escrito) => this.adicionar(escrito)}> </TextInput>  */}
                       </Text>
                       <Text style={styles.texto}> {this.state.textHandler} </Text>
                       <TextInput style={styles.adicional}  onChangeText={text => this.setState({textHandler:text})}/>
-                      <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}>
+                      {/* <TouchableOpacity style={styles.agregar} onPress={() => this.setState({text: this.state.textHandler})}> */}
+                      <TouchableOpacity style={styles.agregar} onPress={() => this.addData(this.state.selectedItem)}>
+
                         <View>
                           <Text style={styles.agregarTexto}>AGREGAR</Text>
                         </View>
                       </TouchableOpacity>
-                              {/* <Button title="BORRAR USUARIO" onPress={() => this.borrarUser()}/> */}
-                              {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(UsuarioBorrado, results)}/> */}
-                              {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData()}/> */}
-                              {/* <Button title="BORRAR USUARIO" onPress={() => this.storeBorrarUnData(item)}/> */}
-                      {/* <TouchableOpacity style={styles.borrar} onPress={() => this.storeBorrarUnData(item)}>
-                        <View>
-                          <Text style={styles.agregarTexto}>BORRAR USUARIO</Text>
-                        </View>
-                      </TouchableOpacity> */}
-
+      
                       <TouchableOpacity style={styles.borrar}
                       onPressIn={() => this.storeBorrarData2(this.state.selectedItem)}
                       onPress={() => this.setState({showModal: false})}>
@@ -547,16 +435,3 @@ async getDatosParaRecuperar(){
         )
     }
  }
-
-         // storeBorrarUnData(useridx){
-    //     let res = this.state.usuariosImportados.filter((usuariosImportados) => {
-    //         return( useridx!== usuariosImportados.login.uuid)
-    //     })
-    //     let borrado = this.state.usuariosImportados.filter((usuariosImportados) => {
-    //         return( useridx== usuariosImportados.login.uuid)
-    //     })
-    //     //  let arrayBorrado = [...this.state.usuariosBorrados, ...borrado]
-    //      this.setState(usuariosImportados= res, usuariosBorrados= borrado)
-    //      //antes decia arrayBorrado en vez de borrado
-    //      storeDataBorrado
-    //     }
